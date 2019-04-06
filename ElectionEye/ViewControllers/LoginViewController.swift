@@ -61,15 +61,22 @@ class LoginViewController: UIViewController {
         phone = phoneNumberField.text!
         Requests.shared.numberVerification(number: phoneNo) { (verification, otpSent) in
             if otpSent {
-                self.verificationID = verification
-                self.headerLabel.text = "Please enter the OTP you received"
-                self.stage = 2
-                self.loginBttn.alpha = 1.0
-                self.loginBttn.isEnabled = true
-                self.phoneNumberField.text = ""
+                DispatchQueue.main.async {
+                    self.verificationID = verification
+                    self.headerLabel.text = "Please enter the OTP you received"
+                    self.stage = 2
+                    self.loginBttn.alpha = 1.0
+                    self.loginBttn.isEnabled = true
+                    self.phoneNumberField.text = ""
+                }
             }
             else {
-                self.showAlert(title: "OTP Verification Failed", message: "Please check your internet connection or try again later")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "OTP Verification Failed", message: "Please check your internet connection or try again later")
+                    self.loginBttn.alpha = 1.0
+                    self.loginBttn.isEnabled = true
+                    self.phoneNumberField.text = ""
+                }
             }
         }
     }
@@ -79,7 +86,8 @@ class LoginViewController: UIViewController {
             if verified {
                 Requests.shared.performLogin(phone: self.phone) {(details, verifiedUser) in
                     if verifiedUser {
-                        UserDefaults.standard.set(details, forKey: "ElectionEye_user")
+                    //    UserDefaults.standard.set(details, forKey: "ElectionEye_user")
+                        
                         self.getZones()
                     } else {
                         DispatchQueue.main.async {
@@ -91,8 +99,6 @@ class LoginViewController: UIViewController {
             }
             else {
                 self.showAlert(title: "Invalid", message: "Invalid OTP entered")
-                self.loginBttn.isEnabled = false
-                self.loginBttn.alpha = 0.3
             }
         }
         

@@ -52,7 +52,6 @@ class Requests {
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                print(error?.localizedDescription)
                 completion(userDetails,false)
             }
             else {
@@ -60,6 +59,7 @@ class Requests {
                 
                 do {
                     userDetails = try JSONDecoder().decode(UserRoles.self, from: data)
+                    print(userDetails)
                     completion(userDetails,true)
                 } catch {
                     print(error.localizedDescription)

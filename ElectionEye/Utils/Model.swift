@@ -33,5 +33,5 @@ struct UserLogin : Codable {
 }
 
 let baseURL = "http://elections.vit.ac.in:3000/api/v1/"
-let fetchZonesURL = URL(string: baseURL+"role")
-let loginURL = URL(string: baseURL+"zones")
+let fetchZonesURL = URL(string: baseURL+"zones")
+let loginURL = URL(string: baseURL+"role")
