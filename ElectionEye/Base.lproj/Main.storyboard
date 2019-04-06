@@ -174,7 +174,7 @@
                         <viewLayoutGuide key="safeArea" id="Wmz-kT-iHo"/>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="7L6-vt-K5g" id="zmv-4W-aKS"/>
+                        <outlet property="mapView" destination="7L6-vt-K5g" id="y1x-iU-OqO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mm3-cb-O8b" sceneMemberID="firstResponder"/>
