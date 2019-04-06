@@ -46,15 +46,15 @@ class DistrictViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func markOnMap(title: String,latitude: Double, longitude:Double){
-        let marker = GMSMarker()
-        marker.icon = mapIconView
-        mapIconView.locationLabel.text = title
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.title = title
-        marker.snippet = "Tamil Nadu"
-        marker.map = mapView
-    }
+//    func markOnMap(title: String,latitude: Double, longitude:Double){
+//        let marker = GMSMarker()
+//        marker.icon = mapIconView
+//        mapIconView.locationLabel.text = title
+//        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//        marker.title = title
+//        marker.snippet = "Tamil Nadu"
+//        marker.map = mapView
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if let vc = segue.destination as? DistrictDetailViewController {

@@ -8,7 +8,11 @@
 
 import Foundation
 import FirebaseAuth
+import Starscream
+
 class Requests {
+    
+    var socket = WebSocket(url: URL(string: "ws://localhost:8080/")!)
     
     static let shared : Requests = Requests()
     
@@ -75,7 +79,6 @@ class Requests {
         guard let fetchZonesURL = fetchZonesURL else { return }
         URLSession.shared.dataTask(with: fetchZonesURL) { (data, response, error) in
             if error != nil {
-                print(error?.localizedDescription)
                 completion(zones,false)
             }
             else {
@@ -93,7 +96,6 @@ class Requests {
     }
     
     func fetchConstituency(completion : @escaping([Constituency],Bool) -> ()) {
-        
         guard let constituencyURL = constituencyURL else { return }
         var constituencies: [Constituency] = []
         URLSession.shared.dataTask(with: constituencyURL) { (data, response, error) in
@@ -104,15 +106,23 @@ class Requests {
             }
             
             do {
-                print(response)
-                print(String(data: data, encoding: .utf8))
                 constituencies = try JSONDecoder().decode([Constituency].self, from: data)
-                print(constituencies)
                 completion(constituencies, true)
             } catch {
                 completion(constituencies,false)
             }
-            }.resume()
+        }.resume()
     }
     
+    func sendLocationData() {
+        
+    }
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("websocket is connected")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("websocket is disconnected: \(error?.localizedDescription)")
+    }
 }
