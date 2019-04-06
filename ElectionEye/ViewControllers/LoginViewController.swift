@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     var stage = 1
     var verificationID = ""
     var phone = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backView.layer.cornerRadius = 8
