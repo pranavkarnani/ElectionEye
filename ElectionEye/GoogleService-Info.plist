@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>802019585462-jse1oa3asb7a2846t51immqec5nd7rii.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.802019585462-jse1oa3asb7a2846t51immqec5nd7rii</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>802019585462-ii435uhfehd3lnnoisndro46fb1654u1.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB6fGkS-e24kDxXRHb22L_PU8sfatuFQVI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>802019585462</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>adg.ElectionEye</string>
+	<key>PROJECT_ID</key>
+	<string>electioneye-283a1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>electioneye-283a1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:802019585462:ios:5420798bf9b8e5c0</string>
+	<key>DATABASE_URL</key>
+	<string>https://electioneye-283a1.firebaseio.com</string>
+</dict>
+</plist>

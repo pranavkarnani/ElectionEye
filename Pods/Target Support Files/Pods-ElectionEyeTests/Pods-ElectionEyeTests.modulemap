@@ -1,0 +1,6 @@
+framework module Pods_ElectionEyeTests {
+  umbrella header "Pods-ElectionEyeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
