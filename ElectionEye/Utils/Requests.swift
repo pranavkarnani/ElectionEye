@@ -37,30 +37,57 @@ class Requests {
         }
     }
     
-    func performLogin() {
+    func performLogin(phone: String, completion : @escaping(UserRoles,Bool) -> ()) {
         
         guard let loginURL = loginURL else { return }
+
+        var details = UserLogin()
+        details.phone_no = phone
+        let loginDetails = try? JSONEncoder().encode(details)
+        var userDetails = UserRoles()
+        var request = URLRequest(url: loginURL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = loginDetails
         
-        URLSession.shared.dataTask(with: loginURL) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil {
-                
+                print(error?.localizedDescription)
+                completion(userDetails,false)
             }
             else {
+                guard let data = data else { return }
                 
+                do {
+                    userDetails = try JSONDecoder().decode(UserRoles.self, from: data)
+                    completion(userDetails,true)
+                } catch {
+                    print(error.localizedDescription)
+                    completion(userDetails,false)
+                }
+                completion(userDetails,true)
             }
         }.resume()
     }
     
-    func getZones() {
-        
+    func getZones(completion : @escaping([Zones],Bool) -> ()) {
+        var zones : [Zones] = []
         guard let fetchZonesURL = fetchZonesURL else { return }
-        
         URLSession.shared.dataTask(with: fetchZonesURL) { (data, response, error) in
             if error != nil {
-                
+                completion(zones,false)
             }
             else {
-                
+                URLSession.shared.dataTask(with: fetchZonesURL, completionHandler: { (data, resposne, error) in
+                    do {
+                        guard let data = data else { return }
+                        zones = try JSONDecoder().decode([Zones].self, from: data)
+                        print(zones)
+                        completion(zones,true)
+                    } catch {
+                        completion(zones,false)
+                    }
+                })
             }
         }.resume()
     }

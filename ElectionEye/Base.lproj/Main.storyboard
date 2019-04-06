@@ -39,13 +39,6 @@
                                     <constraint firstAttribute="height" constant="178" id="qVA-Em-obf"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-1024" translatesAutoresizingMaskIntoConstraints="NO" id="Kni-bG-cah">
-                                <rect key="frame" x="136.5" y="42" width="102" height="95"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Kni-bG-cah" secondAttribute="height" multiplier="102:95" id="DPH-qF-upt"/>
-                                    <constraint firstAttribute="height" constant="95" id="u66-SB-5Cd"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nt-Hq-Who">
                                 <rect key="frame" x="20" y="167" width="335" height="300"/>
                                 <subviews>
@@ -117,6 +110,13 @@
                                     <action selector="loginBttnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4z0-Nw-byZ"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-1024" translatesAutoresizingMaskIntoConstraints="NO" id="Kni-bG-cah">
+                                <rect key="frame" x="136" y="42" width="102" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Kni-bG-cah" secondAttribute="height" multiplier="102:95" id="DPH-qF-upt"/>
+                                    <constraint firstAttribute="height" constant="95" id="u66-SB-5Cd"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.98814910650253296" green="0.98829048871994019" blue="0.98811811208724976" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

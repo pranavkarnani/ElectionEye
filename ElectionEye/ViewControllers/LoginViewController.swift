@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginBttn: UIButton!
     var stage = 1
     var verificationID = ""
+    var phone = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         backView.layer.cornerRadius = 8
@@ -57,6 +58,7 @@ class LoginViewController: UIViewController {
     
     func performLogin(number: String) {
         let phoneNo = "+91" + phoneNumberField.text!
+        phone = phoneNumberField.text!
         Requests.shared.numberVerification(number: phoneNo) { (verification, otpSent) in
             if otpSent {
                 self.verificationID = verification
@@ -75,9 +77,17 @@ class LoginViewController: UIViewController {
     func performVerification(otp : String) {
         Requests.shared.OTPVerification(otp: otp, verificationID: verificationID) { (verified) in
             if verified {
-                let phoneNo = "+91" + self.phoneNumberField.text!
-                UserDefaults.standard.set(phoneNo, forKey: "ElectionEye_phoneNumber")
-                print("DOne done done bitch")
+                Requests.shared.performLogin(phone: self.phone) {(details, verifiedUser) in
+                    if verifiedUser {
+                        UserDefaults.standard.set(details, forKey: "ElectionEye_user")
+                        self.getZones()
+                    } else {
+                        DispatchQueue.main.async {
+                            self.showAlert(title: "Error", message: "User does not exist")
+                        }
+                        
+                    }
+                }
             }
             else {
                 self.showAlert(title: "Invalid", message: "Invalid OTP entered")
@@ -86,6 +96,16 @@ class LoginViewController: UIViewController {
             }
         }
         
+    }
+    
+    func getZones() {
+        Requests.shared.getZones { (zoneData, fetchedZones) in
+            if fetchedZones {
+                //segue to next screen
+            } else {
+                print("Error fetching zones")
+            }
+        }
     }
     
 }
