@@ -32,6 +32,14 @@ struct UserLogin : Codable {
     var phone_no : String?
 }
 
+struct Constituency: Decodable {
+    var name: String?
+    var ac_no: String?
+    var location_count: Int?
+    var booth_count: Int?
+}
+
 let baseURL = "http://elections.vit.ac.in:3000/api/v1/"
 let fetchZonesURL = URL(string: baseURL+"zones")
 let loginURL = URL(string: baseURL+"role")
+let constituencyURL = URL(string:  baseURL + "constituencies")

@@ -92,4 +92,27 @@ class Requests {
         }.resume()
     }
     
+    func fetchConstituency(completion : @escaping([Constituency],Bool) -> ()) {
+        
+        guard let constituencyURL = constituencyURL else { return }
+        var constituencies: [Constituency] = []
+        URLSession.shared.dataTask(with: constituencyURL) { (data, response, error) in
+            
+            guard let data = data else {
+                completion(constituencies,false)
+                return
+            }
+            
+            do {
+                print(response)
+                print(String(data: data, encoding: .utf8))
+                constituencies = try JSONDecoder().decode([Constituency].self, from: data)
+                print(constituencies)
+                completion(constituencies, true)
+            } catch {
+                completion(constituencies,false)
+            }
+            }.resume()
+    }
+    
 }
