@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         backView.layer.cornerRadius = 8
-        backView.makeCard()
+        backView.makeLoginCard()
         loginBttn.layer.cornerRadius = loginBttn.frame.height/2
         loginBttn.makeCard()
         phoneNumberField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: phoneNumberField.frame.height))
@@ -86,9 +86,9 @@ class LoginViewController: UIViewController {
             if verified {
                 Requests.shared.performLogin(phone: self.phone) {(details, verifiedUser) in
                     if verifiedUser {
-                    //    UserDefaults.standard.set(details, forKey: "ElectionEye_user")
-                        
-                        self.getZones()
+                        UserDefaults.standard.set(details, forKey: "ElectionEye_user")
+//                        self.getZones()
+                        self.performSegue(withIdentifier: "loggedIn", sender: Any?.self)
                     } else {
                         DispatchQueue.main.async {
                             self.showAlert(title: "Error", message: "User does not exist")
@@ -103,10 +103,11 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
     func getZones() {
         Requests.shared.getZones { (zoneData, fetchedZones) in
             if fetchedZones {
-                //segue to next screen
+                //save this chut
             } else {
                 print("Error fetching zones")
             }
@@ -126,6 +127,13 @@ extension UIViewController {
 
 extension UIView{
     func makeCard(){
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 20
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowColor = UIColor.black.cgColor
+    }
+    
+    func makeLoginCard(){
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 50
         self.layer.shadowOpacity = 0.15

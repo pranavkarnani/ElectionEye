@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kMV-il-Uv9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -111,7 +111,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-1024" translatesAutoresizingMaskIntoConstraints="NO" id="Kni-bG-cah">
-                                <rect key="frame" x="136" y="42" width="102" height="95"/>
+                                <rect key="frame" x="136.5" y="42" width="102" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Kni-bG-cah" secondAttribute="height" multiplier="102:95" id="DPH-qF-upt"/>
                                     <constraint firstAttribute="height" constant="95" id="u66-SB-5Cd"/>
@@ -143,11 +143,43 @@
                         <outlet property="headerLabel" destination="gby-GU-7I0" id="Xi0-cU-Hyw"/>
                         <outlet property="loginBttn" destination="VVP-RY-6fw" id="4MD-Db-vcu"/>
                         <outlet property="phoneNumberField" destination="htJ-Hk-irs" id="yuv-Uu-BfS"/>
+                        <segue destination="kMV-il-Uv9" kind="show" identifier="loggedIn" id="mLQ-PM-dNc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53.600000000000001" y="27.436281859070466"/>
+        </scene>
+        <!--District View Controller-->
+        <scene sceneID="aSt-yz-ltp">
+            <objects>
+                <viewController id="kMV-il-Uv9" customClass="DistrictViewController" customModule="ElectionEye" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="59s-f2-xlc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7L6-vt-K5g" customClass="GMSMapView">
+                                <rect key="frame" x="20" y="50" width="335" height="567"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7L6-vt-K5g" firstAttribute="centerX" secondItem="59s-f2-xlc" secondAttribute="centerX" id="Cg0-gu-crk"/>
+                            <constraint firstItem="7L6-vt-K5g" firstAttribute="leading" secondItem="Wmz-kT-iHo" secondAttribute="leading" constant="20" id="IlG-89-tGm"/>
+                            <constraint firstItem="Wmz-kT-iHo" firstAttribute="trailing" secondItem="7L6-vt-K5g" secondAttribute="trailing" constant="20" id="W51-t7-hMX"/>
+                            <constraint firstItem="7L6-vt-K5g" firstAttribute="height" secondItem="59s-f2-xlc" secondAttribute="height" multiplier="0.85" id="rJ5-cn-qQ5"/>
+                            <constraint firstItem="7L6-vt-K5g" firstAttribute="centerY" secondItem="59s-f2-xlc" secondAttribute="centerY" id="yNJ-Vu-xto"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wmz-kT-iHo"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="7L6-vt-K5g" id="zmv-4W-aKS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mm3-cb-O8b" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856.79999999999995" y="26.53673163418291"/>
         </scene>
     </scenes>
     <resources>
