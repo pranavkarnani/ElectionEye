@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     var phone = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        getZones()
         backView.layer.cornerRadius = 8
         backView.makeCard()
         loginBttn.layer.cornerRadius = loginBttn.frame.height/2
@@ -101,7 +102,6 @@ class LoginViewController: UIViewController {
                 self.showAlert(title: "Invalid", message: "Invalid OTP entered")
             }
         }
-        
     }
     
     func getZones() {

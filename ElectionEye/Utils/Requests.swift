@@ -75,19 +75,19 @@ class Requests {
         guard let fetchZonesURL = fetchZonesURL else { return }
         URLSession.shared.dataTask(with: fetchZonesURL) { (data, response, error) in
             if error != nil {
+                print(error?.localizedDescription)
                 completion(zones,false)
             }
             else {
-                URLSession.shared.dataTask(with: fetchZonesURL, completionHandler: { (data, resposne, error) in
-                    do {
-                        guard let data = data else { return }
-                        zones = try JSONDecoder().decode([Zones].self, from: data)
-                        print(zones)
-                        completion(zones,true)
-                    } catch {
-                        completion(zones,false)
-                    }
-                })
+                do {
+                    guard let data = data else { return }
+                    zones = try JSONDecoder().decode([Zones].self, from: data)
+                    print(zones)
+                    completion(zones,true)
+                } catch {
+                    print(error.localizedDescription)
+                    completion(zones,false)
+                }
             }
         }.resume()
     }
