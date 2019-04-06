@@ -11,6 +11,7 @@ import FirebaseAuth
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var phoneNumberField: UITextField!
     @IBOutlet weak var loginBttn: UIButton!
@@ -18,7 +19,16 @@ class ViewController: UIViewController {
     var verificationID = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backView.layer.cornerRadius = 8
+        backView.makeCard()
+        loginBttn.layer.cornerRadius = loginBttn.frame.height/2
+        loginBttn.makeCard()
+        phoneNumberField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: phoneNumberField.frame.height))
+        phoneNumberField.leftViewMode = .always
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBAction func loginBttnTapped(_ sender: Any) {
@@ -54,6 +64,7 @@ class ViewController: UIViewController {
                 self.stage = 2
                 self.loginBttn.alpha = 1.0
                 self.loginBttn.isEnabled = true
+                self.phoneNumberField.text = ""
             }
             else {
                 self.showAlert(title: "OTP Verification Failed", message: "Please check your internet connection or try again later")
@@ -85,6 +96,15 @@ extension UIViewController {
         let bttn = UIAlertAction(title: "Done", style: .cancel, handler: nil)
         alert.addAction(bttn)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension UIView{
+    func makeCard(){
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 50
+        self.layer.shadowOpacity = 0.15
+        self.layer.shadowColor = UIColor.black.cgColor
     }
 }
 
