@@ -8,6 +8,8 @@
 
 import Foundation
 import FirebaseAuth
+import CoreLocation
+
 class Requests {
     
     static let shared : Requests = Requests()
@@ -113,6 +115,24 @@ class Requests {
                 completion(constituencies,false)
             }
             }.resume()
+    }
+    
+    func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()){
+        CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
+            if error != nil {
+                print(error)
+                let placemark = CLPlacemark()
+                completion(placemark,false)
+                return
+            }
+            if (placemarks?.count)! > 0 {
+                let placemark = placemarks?[0]
+                let location = placemark?.location
+                let coordinate = location?.coordinate
+                print("\nlat: \(coordinate!.latitude), long: \(coordinate!.longitude)")
+                completion(placemark!,true)
+            }
+        })
     }
     
 }
