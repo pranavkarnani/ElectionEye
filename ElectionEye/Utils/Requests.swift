@@ -36,4 +36,32 @@ class Requests {
             }
         }
     }
+    
+    func performLogin() {
+        
+        guard let loginURL = loginURL else { return }
+        
+        URLSession.shared.dataTask(with: loginURL) { (data, response, error) in
+            if error != nil {
+                
+            }
+            else {
+                
+            }
+        }.resume()
+    }
+    
+    func getZones() {
+        
+        guard let fetchZonesURL = fetchZonesURL else { return }
+        
+        URLSession.shared.dataTask(with: fetchZonesURL) { (data, response, error) in
+            if error != nil {
+                
+            }
+            else {
+                
+            }
+        }.resume()
+    }
 }
