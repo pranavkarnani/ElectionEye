@@ -31,7 +31,7 @@
 		816C14722258C24500EFF30B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C14712258C24500EFF30B /* Model.swift */; };
 		816C14762258C40F00EFF30B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 816C14752258C40F00EFF30B /* GoogleService-Info.plist */; };
 		8171EAFD2258C02200C5D032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171EAFC2258C02200C5D032 /* AppDelegate.swift */; };
-		8171EAFF2258C02200C5D032 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171EAFE2258C02200C5D032 /* ViewController.swift */; };
+		8171EAFF2258C02200C5D032 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171EAFE2258C02200C5D032 /* LoginViewController.swift */; };
 		8171EB022258C02200C5D032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8171EB002258C02200C5D032 /* Main.storyboard */; };
 		8171EB052258C02200C5D032 /* ElectionEye.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8171EB032258C02200C5D032 /* ElectionEye.xcdatamodeld */; };
 		8171EB072258C02300C5D032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8171EB062258C02300C5D032 /* Assets.xcassets */; };
@@ -90,7 +90,7 @@
 		816C14752258C40F00EFF30B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8171EAF92258C02200C5D032 /* ElectionEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectionEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8171EAFC2258C02200C5D032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8171EAFE2258C02200C5D032 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8171EAFE2258C02200C5D032 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8171EB012258C02200C5D032 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8171EB042258C02200C5D032 /* ElectionEye.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ElectionEye.xcdatamodel; sourceTree = "<group>"; };
 		8171EB062258C02300C5D032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		816C14742258C26900EFF30B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8171EAFE2258C02200C5D032 /* ViewController.swift */,
+				8171EAFE2258C02200C5D032 /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				816C14722258C24500EFF30B /* Model.swift in Sources */,
 				8171EB052258C02200C5D032 /* ElectionEye.xcdatamodeld in Sources */,
 				816C14702258C23E00EFF30B /* Requests.swift in Sources */,
-				8171EAFF2258C02200C5D032 /* ViewController.swift in Sources */,
+				8171EAFF2258C02200C5D032 /* LoginViewController.swift in Sources */,
 				8171EAFD2258C02200C5D032 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
