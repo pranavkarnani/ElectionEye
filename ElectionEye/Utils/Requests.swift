@@ -11,9 +11,7 @@ import FirebaseAuth
 import Starscream
 import CoreLocation
 
-class Requests {
-    
-    var socket = WebSocket(url: URL(string: "ws://election.vit.ac.in:3000/streams/locations")!)
+class Requests : WebSocketDelegate {
     
     static let shared : Requests = Requests()
     
@@ -63,7 +61,11 @@ class Requests {
                 guard let data = data else { return }
                 
                 do {
+                    guard let locationURL = locationURL else { return }
+                    socket = WebSocket(url: locationURL)
                     userDetails = try JSONDecoder().decode(UserRoles.self, from: data)
+                    socket.delegate = self
+                    socket.connect()
                     print(userDetails)
                     completion(userDetails,true)
                 } catch {
@@ -124,12 +126,20 @@ class Requests {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("websocket is disconnected: \(error?.localizedDescription)")
+        print("websocket is disconnected")
     }
-    func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()){
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print(text)
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print(data)
+    }
+    
+    func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()) {
         CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
             if error != nil {
-                print(error)
                 let placemark = CLPlacemark()
                 completion(placemark,false)
                 return

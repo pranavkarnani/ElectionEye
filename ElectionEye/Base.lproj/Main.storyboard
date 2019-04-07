@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kMV-il-Uv9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ymk-F6-xfv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,6 +24,39 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Landing View Controller-->
+        <scene sceneID="Y5t-XZ-5WN">
+            <objects>
+                <viewController id="ymk-F6-xfv" customClass="LandingViewController" customModule="ElectionEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qTw-WS-Zng">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-1024" translatesAutoresizingMaskIntoConstraints="NO" id="eqT-Rj-PgN">
+                                <rect key="frame" x="136.5" y="286" width="102" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eqT-Rj-PgN" secondAttribute="height" multiplier="102:95" id="lrm-Vr-VHi"/>
+                                    <constraint firstAttribute="height" constant="95" id="veo-uf-hj6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eqT-Rj-PgN" firstAttribute="width" secondItem="eqT-Rj-PgN" secondAttribute="height" multiplier="102:95" id="GsT-QY-L8L"/>
+                            <constraint firstItem="eqT-Rj-PgN" firstAttribute="centerX" secondItem="qTw-WS-Zng" secondAttribute="centerX" id="ivr-Uo-rEv"/>
+                            <constraint firstItem="eqT-Rj-PgN" firstAttribute="centerY" secondItem="qTw-WS-Zng" secondAttribute="centerY" id="qPj-Du-Xj2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lnt-NJ-TlX"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLogin" id="3nN-Xr-Lri"/>
+                        <segue destination="kMV-il-Uv9" kind="show" identifier="bypass" id="wQs-nM-8OH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qpC-ZK-Uem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="473" y="-733"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -186,4 +219,7 @@
         <image name="Home" width="1080" height="1140"/>
         <image name="Icon-1024" width="768" height="768"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wQs-nM-8OH"/>
+    </inferredMetricsTieBreakers>
 </document>

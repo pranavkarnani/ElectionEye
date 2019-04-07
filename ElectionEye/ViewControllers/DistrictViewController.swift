@@ -53,7 +53,7 @@ class DistrictViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func markOnMap(title: String,latitude: Double, longitude:Double){
+    func markOnMap(title: String,latitude: Double, longitude:Double) {
         let marker = GMSMarker()
         let icon = UIView()
         icon.iconView(text: title)
@@ -65,9 +65,7 @@ class DistrictViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let vc = segue.destination as? DistrictDetailViewController {
-//            vc.mapPosition = self.buttonLocation
-//        }
+
     }
     
     @IBAction func unwindToDistrictViewController(segue:UIStoryboardSegue) { }
