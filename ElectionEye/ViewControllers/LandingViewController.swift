@@ -12,25 +12,38 @@ import CoreLocation
 class LandingViewController: UIViewController, CLLocationManagerDelegate {
     
     var status = ""
+    var performSegue = false
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        locationManager.requestAlwaysAuthorization()
         let userToken = UserDefaults.standard.value(forKey: "ElectionEye_token") as? String ?? "NA"
         print(userToken)
         if userToken != "" {
             status = "bypass"
-            self.startLocationUpdates()
         }
         else {
             status = "toLogin"
-            self.startLocationUpdates()
+        }
+        startLocationUpdates()
+        
+        switch CLLocationManager.authorizationStatus() {
+            case .authorizedAlways: performSegue = true
+            break
+            case .authorizedWhenInUse,.denied,.notDetermined,.restricted:performSegue = false
+            break
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.performSegue(withIdentifier: status, sender: Any?.self)
+        if performSegue {
+            self.performSegue(withIdentifier: status, sender: Any?.self)
+        }
+        else {
+            self.showAlert(title: "Location Privacy Alert", message: "This application requires all the users to permit location access.")
+        }
     }
     
     func startLocationUpdates() {
