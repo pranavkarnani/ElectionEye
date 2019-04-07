@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseAuth
 import Starscream
+import CoreLocation
 
 class Requests {
     
@@ -125,4 +126,22 @@ class Requests {
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("websocket is disconnected: \(error?.localizedDescription)")
     }
+    func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()){
+        CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
+            if error != nil {
+                print(error)
+                let placemark = CLPlacemark()
+                completion(placemark,false)
+                return
+            }
+            if (placemarks?.count)! > 0 {
+                let placemark = placemarks?[0]
+                let location = placemark?.location
+                let coordinate = location?.coordinate
+                print("\nlat: \(coordinate!.latitude), long: \(coordinate!.longitude)")
+                completion(placemark!,true)
+            }
+        })
+    }
+    
 }

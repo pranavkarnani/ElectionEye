@@ -19,13 +19,20 @@ class DistrictViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Requests.shared.fetchConstituency { (constituencies,status)  in
-//            if status{
-//                self.constituencies = constituencies
-//                DispatchQueue.main.async {
-//                }
-//            }
-//        }
+        Requests.shared.fetchConstituency { (constituencies,status)  in
+            if status{
+                self.constituencies = constituencies
+                DispatchQueue.main.async {
+                    for place in constituencies{
+                        Requests.shared.geoLocation(address: place.name!, completion: { (placemark, status) in
+                            if status{
+                                self.markOnMap(title: place.name!, latitude: (placemark?.location?.coordinate.latitude)!, longitude: (placemark?.location?.coordinate.longitude)!)
+                            }
+                        })
+                    }
+                }
+            }
+        }
         
         let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
         mapView.camera = camera
@@ -43,8 +50,6 @@ class DistrictViewController: UIViewController {
             print("One or more of the map styles failed to load. \(error)")
         }
         // Creates a marker in the center of the map.
-        
-        
         // Do any additional setup after loading the view.
     }
     

@@ -29,14 +29,15 @@ extension UIView{
     }
     
     func iconView(text: String){
-        self.frame = CGRect(x: 0, y: 0, width: 80, height: 40)
+        self.frame = CGRect(x: 0, y: 0, width: 80, height: 20)
         self.backgroundColor = UIColor.epink
         self.layer.cornerRadius = self.frame.height/2
         let locationLabel = UILabel()
         locationLabel.textColor = UIColor.white
         locationLabel.text = text
-        locationLabel.frame = CGRect(x: 10, y: 0, width: 60, height: 40)
-        locationLabel.font = UIFont(name: "Lato-Bold", size: 15)
+        locationLabel.textAlignment = .center
+        locationLabel.frame = CGRect(x: 5, y: 0, width: 70, height: 20)
+        locationLabel.font = UIFont(name: "Lato-Bold", size: 10)
         self.addSubview(locationLabel)
     }
 }
