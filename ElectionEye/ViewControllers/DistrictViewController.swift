@@ -19,13 +19,13 @@ class DistrictViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Requests.shared.fetchConstituency { (constituencies,status)  in
-            if status{
-                self.constituencies = constituencies
-                DispatchQueue.main.async {
-                }
-            }
-        }
+//        Requests.shared.fetchConstituency { (constituencies,status)  in
+//            if status{
+//                self.constituencies = constituencies
+//                DispatchQueue.main.async {
+//                }
+//            }
+//        }
         
         let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
         mapView.camera = camera
@@ -43,18 +43,21 @@ class DistrictViewController: UIViewController {
             print("One or more of the map styles failed to load. \(error)")
         }
         // Creates a marker in the center of the map.
+        
+        
         // Do any additional setup after loading the view.
     }
     
-//    func markOnMap(title: String,latitude: Double, longitude:Double){
-//        let marker = GMSMarker()
-//        marker.icon = mapIconView
-//        mapIconView.locationLabel.text = title
-//        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-//        marker.title = title
-//        marker.snippet = "Tamil Nadu"
-//        marker.map = mapView
-//    }
+    func markOnMap(title: String,latitude: Double, longitude:Double){
+        let marker = GMSMarker()
+        let icon = UIView()
+        icon.iconView(text: title)
+        marker.iconView = icon
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        marker.title = title
+        marker.snippet = "Tamil Nadu"
+        marker.map = mapView
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if let vc = segue.destination as? DistrictDetailViewController {
@@ -69,7 +72,7 @@ class DistrictViewController: UIViewController {
 extension DistrictViewController: GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        self.performSegue(withIdentifier: "detail", sender: Any?.self)
+//        self.performSegue(withIdentifier: "detail", sender: Any?.self)
         return true
     }
 }

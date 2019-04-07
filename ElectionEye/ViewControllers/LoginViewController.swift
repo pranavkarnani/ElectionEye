@@ -117,28 +117,3 @@ class LoginViewController: UIViewController {
     
 }
 
-extension UIViewController {
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let bttn = UIAlertAction(title: "Done", style: .cancel, handler: nil)
-        alert.addAction(bttn)
-        present(alert, animated: true, completion: nil)
-    }
-}
-
-extension UIView{
-    func makeCard(){
-        self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 20
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowColor = UIColor.black.cgColor
-    }
-    
-    func makeLoginCard(){
-        self.layer.shadowOffset = CGSize(width: 0, height: 0)
-        self.layer.shadowRadius = 50
-        self.layer.shadowOpacity = 0.15
-        self.layer.shadowColor = UIColor.black.cgColor
-    }
-}
-

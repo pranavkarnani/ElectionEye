@@ -29,8 +29,7 @@
 		30B139D72258FF0500557FDF /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139C32258FF0400557FDF /* Lato-ThinItalic.ttf */; };
 		30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB757F2259224300D6AA47 /* DistrictViewController.swift */; };
 		30BB7585225927CF00D6AA47 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 30BB7584225927CF00D6AA47 /* style.json */; };
-		30BB758722592F5300D6AA47 /* mapIcon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BB758622592F5300D6AA47 /* mapIcon.xib */; };
-		30BB758922592FEE00D6AA47 /* mapIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB758822592FEE00D6AA47 /* mapIconView.swift */; };
+		30BB758B2259351600D6AA47 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB758A2259351600D6AA47 /* Extensions.swift */; };
 		816C14702258C23E00EFF30B /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C146F2258C23E00EFF30B /* Requests.swift */; };
 		816C14722258C24500EFF30B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C14712258C24500EFF30B /* Model.swift */; };
 		816C14762258C40F00EFF30B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 816C14752258C40F00EFF30B /* GoogleService-Info.plist */; };
@@ -88,8 +87,7 @@
 		30B139C32258FF0400557FDF /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		30BB757F2259224300D6AA47 /* DistrictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictViewController.swift; sourceTree = "<group>"; };
 		30BB7584225927CF00D6AA47 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
-		30BB758622592F5300D6AA47 /* mapIcon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mapIcon.xib; sourceTree = "<group>"; };
-		30BB758822592FEE00D6AA47 /* mapIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapIconView.swift; sourceTree = "<group>"; };
+		30BB758A2259351600D6AA47 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49D8A7A87364C23B105E2D4A /* Pods-ElectionEye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEye.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEye/Pods-ElectionEye.debug.xcconfig"; sourceTree = "<group>"; };
 		590CA82CF5239F18255A5320 /* Pods_ElectionEyeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElectionEyeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		789DA53CC92818936B4CC00F /* Pods-ElectionEyeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEyeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEyeUITests/Pods-ElectionEyeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 		30BB7583225924B300D6AA47 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				30BB758822592FEE00D6AA47 /* mapIconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,6 +206,7 @@
 				30BB7584225927CF00D6AA47 /* style.json */,
 				816C146F2258C23E00EFF30B /* Requests.swift */,
 				816C14712258C24500EFF30B /* Model.swift */,
+				30BB758A2259351600D6AA47 /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -252,7 +250,6 @@
 				30BB7583225924B300D6AA47 /* View */,
 				816C14742258C26900EFF30B /* ViewControllers */,
 				8171EB002258C02200C5D032 /* Main.storyboard */,
-				30BB758622592F5300D6AA47 /* mapIcon.xib */,
 				816C14732258C25600EFF30B /* Utils */,
 				8171EB062258C02300C5D032 /* Assets.xcassets */,
 				8171EB082258C02300C5D032 /* LaunchScreen.storyboard */,
@@ -391,7 +388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				30B139C42258FF0500557FDF /* Lato-HeavyItalic.ttf in Resources */,
-				30BB758722592F5300D6AA47 /* mapIcon.xib in Resources */,
 				30B139D22258FF0500557FDF /* Lato-Heavy.ttf in Resources */,
 				30B139C72258FF0500557FDF /* Lato-Thin.ttf in Resources */,
 				30BB7585225927CF00D6AA47 /* style.json in Resources */,
@@ -544,10 +540,10 @@
 				816C14722258C24500EFF30B /* Model.swift in Sources */,
 				8171EB052258C02200C5D032 /* ElectionEye.xcdatamodeld in Sources */,
 				30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */,
+				30BB758B2259351600D6AA47 /* Extensions.swift in Sources */,
 				816C14702258C23E00EFF30B /* Requests.swift in Sources */,
 				8171EAFF2258C02200C5D032 /* LoginViewController.swift in Sources */,
 				8171EAFD2258C02200C5D032 /* AppDelegate.swift in Sources */,
-				30BB758922592FEE00D6AA47 /* mapIconView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ import Starscream
 
 class Requests {
     
-    var socket = WebSocket(url: URL(string: "ws://localhost:8080/")!)
+    var socket = WebSocket(url: URL(string: "ws://election.vit.ac.in:3000/streams/locations")!)
     
     static let shared : Requests = Requests()
     
