@@ -9,9 +9,10 @@
 import UIKit
 import GoogleMaps
 
-class DetailDistrictViewController: UIViewController, GMSMapViewDelegate {
+class DetailDistrictViewController: UIViewController {
 
     var pollStations = [PollStation]()
+    var station = Station()
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
@@ -19,7 +20,7 @@ class DetailDistrictViewController: UIViewController, GMSMapViewDelegate {
         super.viewDidLoad()
         mapSetup()
         for pollStation in pollStations{
-            markOnMap(title: pollStation.location_name!, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+            markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
         setup()
         // Do any additional setup after loading the view.
@@ -60,6 +61,21 @@ class DetailDistrictViewController: UIViewController, GMSMapViewDelegate {
         self.performSegue(withIdentifier: "unwinded", sender: Any?.self)
     }
     
+    @IBAction func unwindToDetailDistrictViewController(segue:UIStoryboardSegue) { }
     
-    
+}
+
+extension DetailDistrictViewController: GMSMapViewDelegate{
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        let index = Int(marker.title!)!
+        let poll = pollStations[index]
+        Requests.shared.fetchStation(stn_no: poll.stn_no!) { (station, status) in
+            if status{
+                self.station = station
+                self.performSegue(withIdentifier: "station", sender: Any?.self)
+            }
+        }
+        
+        return true
+    }
 }

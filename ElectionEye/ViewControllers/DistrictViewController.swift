@@ -23,6 +23,9 @@ class DistrictViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
+        mapView.camera = camera
+        
         Requests.shared.fetchConstituency { (constituencies,status)  in
             if status{
                 self.constituencies = constituencies
@@ -55,8 +58,6 @@ class DistrictViewController: UIViewController {
         fpc.addPanel(toParent: self)
         
         //map
-        let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
-        mapView.camera = camera
         mapView.delegate = self
         
         mapView.layer.cornerRadius = 8

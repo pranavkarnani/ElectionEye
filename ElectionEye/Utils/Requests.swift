@@ -135,6 +135,25 @@ class Requests : WebSocketDelegate {
             }.resume()
     }
     
+    func fetchStation(stn_no: Int, completion : @escaping(Station,Bool)->()){
+        let searchStationURL = URL(string: (stationURL?.absoluteString)! + "search?key=stn_no&val=\(stn_no)")
+        var station: Station?
+        URLSession.shared.dataTask(with: searchStationURL!) { (data, response, error) in
+            
+            guard let data = data else {
+                completion(station!,false)
+                return
+            }
+            
+            do {
+                station = try JSONDecoder().decode([Station].self, from: data)[0]
+                completion(station!, true)
+            } catch {
+                completion(station!,false)
+            }
+            }.resume()
+    }
+    
     
     func sendLocationData() {
         
