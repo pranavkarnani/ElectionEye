@@ -9,12 +9,15 @@
 import UIKit
 import GoogleMaps
 import Starscream
+import FloatingPanel
 
 class DistrictViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     var marker: GMSMarker?
     var constituencies = [Constituency]()
+    let fpc = FloatingPanelController()
+    var contentVC = SearchViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,10 @@ class DistrictViewController: UIViewController {
         Requests.shared.fetchConstituency { (constituencies,status)  in
             if status{
                 self.constituencies = constituencies
+                self.contentVC.array = constituencies
+                DispatchQueue.main.async {
+                    self.contentVC.searchTable.reloadData()
+                }
                 DispatchQueue.main.async {
                     for place in constituencies{
                         Requests.shared.geoLocation(address: place.name!, completion: { (placemark, status) in
@@ -34,6 +41,18 @@ class DistrictViewController: UIViewController {
             }
         }
         
+        // fpc
+        
+        fpc.delegate = self
+        fpc.surfaceView.backgroundColor = .clear
+        fpc.surfaceView.cornerRadius = 9.0
+        fpc.surfaceView.shadowHidden = false
+        contentVC = (storyboard?.instantiateViewController(withIdentifier: "SearchPanel") as? SearchViewController)!
+        fpc.set(contentViewController: contentVC)
+        fpc.track(scrollView: contentVC.searchTable)
+        fpc.addPanel(toParent: self)
+        
+        //map
         let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
         mapView.camera = camera
         mapView.delegate = self
@@ -64,6 +83,15 @@ class DistrictViewController: UIViewController {
         marker.map = mapView
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        fpc.addPanel(toParent: self, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        fpc.removePanelFromParent(animated: true)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     }
@@ -78,4 +106,8 @@ extension DistrictViewController: GMSMapViewDelegate{
 //        self.performSegue(withIdentifier: "detail", sender: Any?.self)
         return true
     }
+}
+
+extension DistrictViewController: FloatingPanelControllerDelegate{
+    
 }

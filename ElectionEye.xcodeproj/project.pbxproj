@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3081B62A225A787000AD0E1D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3081B629225A787000AD0E1D /* SearchTableViewCell.swift */; };
+		3081B630225A7AEC00AD0E1D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3081B62F225A7AEC00AD0E1D /* SearchViewController.swift */; };
 		30B139C42258FF0500557FDF /* Lato-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139B02258FF0400557FDF /* Lato-HeavyItalic.ttf */; };
 		30B139C52258FF0500557FDF /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139B12258FF0400557FDF /* Lato-Italic.ttf */; };
 		30B139C62258FF0500557FDF /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139B22258FF0400557FDF /* Lato-LightItalic.ttf */; };
@@ -66,6 +68,8 @@
 
 /* Begin PBXFileReference section */
 		28047D25DCA42DA51708C932 /* Pods-ElectionEyeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEyeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEyeTests/Pods-ElectionEyeTests.release.xcconfig"; sourceTree = "<group>"; };
+		3081B629225A787000AD0E1D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		3081B62F225A7AEC00AD0E1D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = /Users/aritropaul/Documents/Codes/iOS/ElectionEye/ElectionEye/ElectionEye/ViewControllers/SearchViewController.swift; sourceTree = "<absolute>"; };
 		30B139B02258FF0400557FDF /* Lato-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HeavyItalic.ttf"; sourceTree = "<group>"; };
 		30B139B12258FF0400557FDF /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		30B139B22258FF0400557FDF /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 		30BB7583225924B300D6AA47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3081B629225A787000AD0E1D /* SearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				30BB757F2259224300D6AA47 /* DistrictViewController.swift */,
+				3081B62F225A7AEC00AD0E1D /* SearchViewController.swift */,
 				8171EAFE2258C02200C5D032 /* LoginViewController.swift */,
 				81B7CAE0225A90110043B9AA /* LandingViewController.swift */,
 			);
@@ -549,10 +555,12 @@
 				8171EB052258C02200C5D032 /* ElectionEye.xcdatamodeld in Sources */,
 				81B7CAE1225A90110043B9AA /* LandingViewController.swift in Sources */,
 				30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */,
+				3081B630225A7AEC00AD0E1D /* SearchViewController.swift in Sources */,
 				30BB758B2259351600D6AA47 /* Extensions.swift in Sources */,
 				816C14702258C23E00EFF30B /* Requests.swift in Sources */,
 				8171EAFF2258C02200C5D032 /* LoginViewController.swift in Sources */,
 				8171EAFD2258C02200C5D032 /* AppDelegate.swift in Sources */,
+				3081B62A225A787000AD0E1D /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,13 +737,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P7Q45HP436;
+				DEVELOPMENT_TEAM = 2J3WW2KWBU;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = adg.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = aritro.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -748,13 +756,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P7Q45HP436;
+				DEVELOPMENT_TEAM = 2J3WW2KWBU;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = adg.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = aritro.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
