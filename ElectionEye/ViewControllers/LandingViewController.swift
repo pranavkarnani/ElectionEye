@@ -19,6 +19,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
         
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
         let userToken = UserDefaults.standard.value(forKey: "ElectionEye_token") as? String ?? "NA"
         print(userToken)
         if userToken != "" {
