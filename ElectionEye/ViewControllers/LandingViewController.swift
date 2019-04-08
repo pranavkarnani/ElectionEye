@@ -14,46 +14,48 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
     var status = ""
     var performSegue = false
     let locationManager = CLLocationManager()
+    var userToken = ""
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
-        let userToken = UserDefaults.standard.value(forKey: "ElectionEye_token") as? String ?? "NA"
-        print(userToken)
-        if userToken != "" {
+        locationManager.startMonitoringSignificantLocationChanges()
+        userToken = UserDefaults.standard.value(forKey: "ElectionEye_token") as? String ?? ""
+        if  userToken != "" {
             status = "bypass"
         }
         else {
             status = "toLogin"
         }
-        startLocationUpdates()
-        
-        switch CLLocationManager.authorizationStatus() {
-            case .authorizedAlways: performSegue = true
-            break
-            case .authorizedWhenInUse,.denied,.notDetermined,.restricted:performSegue = false
-            break
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.pausesLocationUpdatesAutomatically = false
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("index",locations.last?.coordinate)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways {
+            performSegue = true
+            transition()
+        }
+    }
+    
+    func transition() {
         if performSegue {
             self.performSegue(withIdentifier: status, sender: Any?.self)
         }
         else {
             self.showAlert(title: "Location Privacy Alert", message: "This application requires all the users to permit location access.")
         }
-    }
-    
-    func startLocationUpdates() {
-        locationManager.delegate = self
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations.last?.coordinate)
     }
 }

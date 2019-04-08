@@ -58,4 +58,4 @@ let fetchZonesURL = URL(string: baseURL+"zones")
 let loginURL = URL(string: baseURL+"role")
 let pollURL = URL(string: baseURL+"poll")
 let constituencyURL = URL(string:  baseURL + "constituencies")
-var socket : WebSocket = WebSocket(url: locationURL!)
+var socket : WebSocket?
