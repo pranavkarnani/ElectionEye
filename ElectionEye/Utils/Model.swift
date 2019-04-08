@@ -39,9 +39,23 @@ struct Constituency: Decodable {
     var booth_count: Int?
 }
 
+struct PollStation: Decodable {
+    var stn_no: Int?
+    var location_name: String?
+    var location_name_native: String?
+    var stn_address: String?
+    var latitude: Double?
+    var longitude: Double?
+    var zone_no: String?
+    var booths: String?
+    var polling_location_incharge_number: String?
+    var ac_no: String?
+}
+
 let baseURL = "http://elections.vit.ac.in:3000/api/v1/"
 let locationURL = URL(string: "ws://election.vit.ac.in:3000/streams/locations")
 let fetchZonesURL = URL(string: baseURL+"zones")
 let loginURL = URL(string: baseURL+"role")
+let pollURL = URL(string: baseURL+"poll")
 let constituencyURL = URL(string:  baseURL + "constituencies")
 var socket : WebSocket = WebSocket(url: locationURL!)

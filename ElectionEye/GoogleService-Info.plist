@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>adg.ElectionEye</string>
+	<string>aritro.ElectionEye</string>
 	<key>PROJECT_ID</key>
 	<string>electioneye-283a1</string>
 	<key>STORAGE_BUCKET</key>

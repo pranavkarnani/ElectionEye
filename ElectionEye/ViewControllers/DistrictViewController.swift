@@ -18,6 +18,7 @@ class DistrictViewController: UIViewController {
     var constituencies = [Constituency]()
     let fpc = FloatingPanelController()
     var contentVC = SearchViewController()
+    var pollStations = [PollStation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class DistrictViewController: UIViewController {
                         Requests.shared.geoLocation(address: place.name!, completion: { (placemark, status) in
                             if status{
                                 self.markOnMap(title: place.name!, latitude: (placemark?.location?.coordinate.latitude)!, longitude: (placemark?.location?.coordinate.longitude)!)
+                                print("Here")
                             }
                         })
                     }
@@ -91,11 +93,6 @@ class DistrictViewController: UIViewController {
         fpc.removePanelFromParent(animated: true)
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-    }
-    
     @IBAction func unwindToDistrictViewController(segue:UIStoryboardSegue) { }
 
 }
@@ -103,8 +100,31 @@ class DistrictViewController: UIViewController {
 extension DistrictViewController: GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        self.performSegue(withIdentifier: "detail", sender: Any?.self)
+        var ac_no: String?
+        if let constituency = constituencies.first(where: {$0.name == marker.title}) {
+            ac_no = constituency.ac_no
+            Requests.shared.fetchPollStations(ac_no: ac_no!) { (pollstation, status) in
+                if status{
+                    for station in pollstation{
+                        if station.ac_no == ac_no{
+                            self.pollStations.append(station)
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "detail", sender: Any?.self)
+                    }
+                }
+            }
+        } else {
+            showAlert(title: "Couldn't Find", message: "Couldn't find constituency.")
+        }
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? DetailDistrictViewController {
+            viewController.pollStations = pollStations
+        }
     }
 }
 

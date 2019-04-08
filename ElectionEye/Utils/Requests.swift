@@ -117,6 +117,26 @@ class Requests : WebSocketDelegate {
         }.resume()
     }
     
+    func fetchPollStations(ac_no: String, completion : @escaping([PollStation],Bool)->()){
+        guard let pollURL = pollURL else { return }
+        var pollStations: [PollStation] = []
+        URLSession.shared.dataTask(with: pollURL) { (data, response, error) in
+            
+            guard let data = data else {
+                completion(pollStations,false)
+                return
+            }
+            
+            do {
+                pollStations = try JSONDecoder().decode([PollStation].self, from: data)
+                completion(pollStations, true)
+            } catch {
+                completion(pollStations,false)
+            }
+            }.resume()
+    }
+    
+    
     func sendLocationData() {
         
     }

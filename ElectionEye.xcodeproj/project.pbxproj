@@ -29,6 +29,7 @@
 		30B139D52258FF0500557FDF /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139C12258FF0400557FDF /* Lato-Light.ttf */; };
 		30B139D62258FF0500557FDF /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139C22258FF0400557FDF /* Lato-Medium.ttf */; };
 		30B139D72258FF0500557FDF /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139C32258FF0400557FDF /* Lato-ThinItalic.ttf */; };
+		30B15774225B9AE200FB0D76 /* DetailDistrictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B15773225B9AE200FB0D76 /* DetailDistrictViewController.swift */; };
 		30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB757F2259224300D6AA47 /* DistrictViewController.swift */; };
 		30BB7585225927CF00D6AA47 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 30BB7584225927CF00D6AA47 /* style.json */; };
 		30BB758B2259351600D6AA47 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB758A2259351600D6AA47 /* Extensions.swift */; };
@@ -90,6 +91,7 @@
 		30B139C12258FF0400557FDF /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		30B139C22258FF0400557FDF /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Medium.ttf"; sourceTree = "<group>"; };
 		30B139C32258FF0400557FDF /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
+		30B15773225B9AE200FB0D76 /* DetailDistrictViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDistrictViewController.swift; sourceTree = "<group>"; };
 		30BB757F2259224300D6AA47 /* DistrictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictViewController.swift; sourceTree = "<group>"; };
 		30BB7584225927CF00D6AA47 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		30BB758A2259351600D6AA47 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				3081B62F225A7AEC00AD0E1D /* SearchViewController.swift */,
 				8171EAFE2258C02200C5D032 /* LoginViewController.swift */,
 				81B7CAE0225A90110043B9AA /* LandingViewController.swift */,
+				30B15773225B9AE200FB0D76 /* DetailDistrictViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				816C14722258C24500EFF30B /* Model.swift in Sources */,
 				8171EB052258C02200C5D032 /* ElectionEye.xcdatamodeld in Sources */,
 				81B7CAE1225A90110043B9AA /* LandingViewController.swift in Sources */,
+				30B15774225B9AE200FB0D76 /* DetailDistrictViewController.swift in Sources */,
 				30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */,
 				3081B630225A7AEC00AD0E1D /* SearchViewController.swift in Sources */,
 				30BB758B2259351600D6AA47 /* Extensions.swift in Sources */,
