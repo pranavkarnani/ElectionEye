@@ -64,8 +64,7 @@ class Requests : WebSocketDelegate {
                     guard let locationURL = locationURL else { return }
                     socket = WebSocket(url: locationURL)
                     userDetails = try JSONDecoder().decode(UserRoles.self, from: data)
-                    socket.delegate = self
-                    socket.connect()
+                    self.firstConnection(user: userDetails)
                     print(userDetails)
                     completion(userDetails,true)
                 } catch {
@@ -141,17 +140,27 @@ class Requests : WebSocketDelegate {
         CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
             if error != nil {
                 let placemark = CLPlacemark()
-                print(error?.localizedDescription)
                 completion(placemark,false)
             }
             if (placemarks?.count)! > 0 {
                 let placemark = placemarks?[0]
                 let location = placemark?.location
                 let coordinate = location?.coordinate
-            //    print("\nlat: \(coordinate!.latitude), long: \(coordinate!.longitude)")
                 completion(placemark!,true)
             }
         })
+    }
+    
+    func firstConnection(user: UserRoles) {
+        
+        guard let locationURL = locationURL else { return }
+        
+        var request = URLRequest(url: locationURL)
+        request.timeoutInterval = 5
+        request.setValue("Bearer"+user.token!, forHTTPHeaderField: "Authorization")
+        socket = WebSocket(request: request)
+        
+        socket?.connect()
     }
     
 }

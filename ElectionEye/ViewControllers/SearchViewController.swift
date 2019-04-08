@@ -1,14 +1,14 @@
 //
 //  SearchViewController.swift
-//  
+//  ElectionEye
 //
-//  Created by Aritro Paul on 08/04/19.
+//  Created by Pranav Karnani on 08/04/19.
+//  Copyright © 2019 Pranav Karnani. All rights reserved.
 //
-
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     var array = [Any]()
     let searchController = UISearchController(searchResultsController: nil)
     var filteredLocations = [String]()
@@ -27,7 +27,6 @@ class SearchViewController: UIViewController {
         searchTable.backgroundColor = .clear
         searchTable.delegate = self
         searchTable.dataSource = self
-        // Do any additional setup after loading the view.
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,7 +36,7 @@ class SearchViewController: UIViewController {
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         self.searchTable.reloadData()
     }
-
+    
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
@@ -55,7 +54,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-//        filterContentForSearchText(searchController.searchBar.text!)
+        //        filterContentForSearchText(searchController.searchBar.text!)
         // search logic here
     }
     

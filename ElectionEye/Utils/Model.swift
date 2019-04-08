@@ -44,4 +44,4 @@ let locationURL = URL(string: "ws://election.vit.ac.in:3000/streams/locations")
 let fetchZonesURL = URL(string: baseURL+"zones")
 let loginURL = URL(string: baseURL+"role")
 let constituencyURL = URL(string:  baseURL + "constituencies")
-var socket : WebSocket = WebSocket(url: locationURL!)
+var socket : WebSocket?
