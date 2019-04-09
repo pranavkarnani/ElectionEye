@@ -76,21 +76,21 @@
                                 <rect key="frame" x="20" y="167" width="335" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHQ-Up-Ube">
-                                        <rect key="frame" x="25" y="50" width="61.5" height="30"/>
+                                        <rect key="frame" x="25" y="50" width="62.5" height="29.5"/>
                                         <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="25"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2Kn-yU-9cZ">
-                                        <rect key="frame" x="25" y="157" width="285" height="63"/>
+                                        <rect key="frame" x="25" y="157.5" width="285" height="62.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gby-GU-7I0">
-                                                <rect key="frame" x="0.0" y="0.0" width="161" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="163" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="htJ-Hk-irs">
-                                                <rect key="frame" x="0.0" y="33" width="285" height="30"/>
+                                                <rect key="frame" x="0.0" y="32.5" width="285" height="30"/>
                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="JPv-NV-oul"/>
@@ -105,7 +105,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A 6 digit OTP will be sent to this number via SMS to verify this phone number." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afi-os-3kG">
-                                        <rect key="frame" x="25" y="236" width="260" height="24"/>
+                                        <rect key="frame" x="25" y="236" width="260" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -208,11 +208,124 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="7L6-vt-K5g" id="y1x-iU-OqO"/>
+                        <segue destination="N9R-j7-sH6" kind="show" identifier="detail" id="Tsh-AA-Jfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mm3-cb-O8b" sceneMemberID="firstResponder"/>
+                <exit id="v40-mf-NYd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="856.79999999999995" y="26.53673163418291"/>
+        </scene>
+        <!--Detail District View Controller-->
+        <scene sceneID="nmR-Jw-5eF">
+            <objects>
+                <viewController id="N9R-j7-sH6" customClass="DetailDistrictViewController" customModule="ElectionEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fY3-fS-78w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uL0-nO-HbJ" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mM6-g9-LZj">
+                                <rect key="frame" x="-25" y="40" width="151" height="60"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.33725490200000002" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3Us-Cq-lft"/>
+                                    <constraint firstAttribute="width" constant="151" id="9K1-rg-DbJ"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="-3" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Back" image="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backTapped:" destination="N9R-j7-sH6" eventType="touchUpInside" id="KwQ-Ih-BR5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mM6-g9-LZj" firstAttribute="leading" secondItem="mD2-AY-HL2" secondAttribute="leading" constant="-25" id="1LF-br-9gd"/>
+                            <constraint firstItem="mM6-g9-LZj" firstAttribute="top" secondItem="mD2-AY-HL2" secondAttribute="top" constant="20" id="ISm-Hk-Bk1"/>
+                            <constraint firstItem="mD2-AY-HL2" firstAttribute="trailing" secondItem="uL0-nO-HbJ" secondAttribute="trailing" id="Iqw-QG-dHO"/>
+                            <constraint firstItem="mD2-AY-HL2" firstAttribute="bottom" secondItem="uL0-nO-HbJ" secondAttribute="bottom" id="kxz-r4-ih3"/>
+                            <constraint firstItem="uL0-nO-HbJ" firstAttribute="top" secondItem="mD2-AY-HL2" secondAttribute="top" constant="-20" id="mWX-Kc-VHf"/>
+                            <constraint firstItem="uL0-nO-HbJ" firstAttribute="leading" secondItem="mD2-AY-HL2" secondAttribute="leading" id="ysk-R6-OpR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mD2-AY-HL2"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="mM6-g9-LZj" id="7N7-PP-KcN"/>
+                        <outlet property="mapView" destination="uL0-nO-HbJ" id="Yhg-Ca-Hcj"/>
+                        <segue destination="v40-mf-NYd" kind="unwind" identifier="unwinded" unwindAction="unwindToDistrictViewControllerWithSegue:" id="Nba-vi-upg"/>
+                        <segue destination="Fkd-bE-B2k" kind="show" identifier="station" id="8VK-5P-b9c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fPY-wA-3Y4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="i4K-dg-DqB" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="856.79999999999995" y="740.7796101949026"/>
+        </scene>
+        <!--Station View Controller-->
+        <scene sceneID="eUf-aW-7UL">
+            <objects>
+                <viewController id="Fkd-bE-B2k" customClass="StationViewController" customModule="ElectionEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P87-Zi-xpV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qfy-h3-sUV" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zT2-Zk-arB">
+                                <rect key="frame" x="0.0" y="214" width="375" height="453"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uru-jC-2cy">
+                                <rect key="frame" x="-25" y="40" width="151" height="60"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.33725490200000002" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="1NG-p5-m3H"/>
+                                    <constraint firstAttribute="height" constant="60" id="DlU-Is-TVv"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="-3" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Back" image="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backTapped:" destination="N9R-j7-sH6" eventType="touchUpInside" id="FEQ-JJ-eIe"/>
+                                    <action selector="backTapped:" destination="Fkd-bE-B2k" eventType="touchUpInside" id="cVS-Ws-gE8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zT2-Zk-arB" firstAttribute="top" secondItem="Qfy-h3-sUV" secondAttribute="bottom" id="AQa-MQ-pyF"/>
+                            <constraint firstItem="zT2-Zk-arB" firstAttribute="top" secondItem="Qfy-h3-sUV" secondAttribute="bottom" id="FDN-rR-SAB"/>
+                            <constraint firstItem="Uru-jC-2cy" firstAttribute="leading" secondItem="uCC-6N-cyt" secondAttribute="leading" constant="-25" id="Lbn-ju-VbW"/>
+                            <constraint firstItem="Uru-jC-2cy" firstAttribute="top" secondItem="uCC-6N-cyt" secondAttribute="top" constant="20" id="Shq-nz-4v3"/>
+                            <constraint firstItem="zT2-Zk-arB" firstAttribute="height" secondItem="uCC-6N-cyt" secondAttribute="height" multiplier="0.7" id="X8N-yz-uv7"/>
+                            <constraint firstItem="zT2-Zk-arB" firstAttribute="trailing" secondItem="uCC-6N-cyt" secondAttribute="trailing" id="bgU-t0-LeQ"/>
+                            <constraint firstItem="zT2-Zk-arB" firstAttribute="bottom" secondItem="uCC-6N-cyt" secondAttribute="bottom" id="eN5-Y5-5Ql"/>
+                            <constraint firstItem="zT2-Zk-arB" firstAttribute="leading" secondItem="uCC-6N-cyt" secondAttribute="leading" id="nL0-Z1-K5h"/>
+                            <constraint firstItem="Qfy-h3-sUV" firstAttribute="trailing" secondItem="uCC-6N-cyt" secondAttribute="trailing" id="oef-Rq-LYm"/>
+                            <constraint firstItem="Qfy-h3-sUV" firstAttribute="top" secondItem="P87-Zi-xpV" secondAttribute="top" id="qUJ-Ez-YZ9"/>
+                            <constraint firstItem="Qfy-h3-sUV" firstAttribute="leading" secondItem="uCC-6N-cyt" secondAttribute="leading" id="soI-6d-hc5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uCC-6N-cyt"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="Uru-jC-2cy" id="BYU-PZ-F4m"/>
+                        <outlet property="mapView" destination="Qfy-h3-sUV" id="Y4g-jg-GfF"/>
+                        <outlet property="tableView" destination="zT2-Zk-arB" id="dDz-0k-TPs"/>
+                        <segue destination="i4K-dg-DqB" kind="unwind" identifier="unwindDetail" unwindAction="unwindToDistrictViewControllerWithSegue:" id="eMR-Te-L8E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BNg-FD-7wt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1665" y="741"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="VsY-hY-NGC">
@@ -294,6 +407,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Back" width="64" height="64"/>
         <image name="Home" width="1080" height="1140"/>
         <image name="Icon-1024" width="768" height="768"/>
     </resources>

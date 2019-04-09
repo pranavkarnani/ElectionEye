@@ -15,7 +15,7 @@ class SearchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.backgroundColor = .clear
-        resultLabel.textColor = .white
+        resultLabel.textColor = .black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
