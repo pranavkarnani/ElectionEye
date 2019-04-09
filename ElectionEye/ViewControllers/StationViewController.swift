@@ -11,15 +11,49 @@ class StationViewController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var tableView: UITableView!
     var pollingStation: Station?
+    
+    @IBOutlet weak var locationNameLabel: UILabel!
+    @IBOutlet weak var nativeNameLabel: UILabel!
+    @IBOutlet weak var zoneNumber: UILabel!
+    @IBOutlet weak var boothNumbers: UILabel!
+    @IBOutlet weak var stationNumber: UILabel!
+    @IBOutlet weak var stationBackView: UIView!
+    @IBOutlet weak var officerName: UILabel!
+    @IBOutlet weak var vulnerableView: UIView!
+    @IBOutlet weak var vulStation: UILabel!
+    @IBOutlet weak var vulType: UILabel!
+    @IBOutlet weak var boothDetails: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         mapSetup()
+        print(pollingStation)
         markOnMap(title: (pollingStation?.location_name)!, latitude: Double(exactly:  (pollingStation?.latitude)!)!, longitude: Double(exactly: (pollingStation?.longitude)!)!)
         mapView.animate(to: GMSCameraPosition.camera(withLatitude: Double(exactly:  (pollingStation?.latitude)!)!, longitude: Double(exactly: (pollingStation?.longitude)!)!, zoom: 12.0))
+        locationNameLabel.text = pollingStation?.location_name
+        nativeNameLabel.text = pollingStation?.location_name_native
+        zoneNumber.text = pollingStation?.zone_no
+        boothNumbers.text = pollingStation?.booths
+        stationNumber.text = String(describing: (pollingStation?.stn_no!)!)
+        stationBackView.layer.cornerRadius = stationBackView.frame.height/2
+        officerName.text = pollingStation?.police_officer_name
+        vulnerableView.layer.cornerRadius = 8
+        
+        if (pollingStation?.is_vulnerable)!{
+            vulnerableView.alpha = 1
+            boothDetails.text = pollingStation?.vulnerable_booth_detail![0].vul_habitats
+            vulType.text = pollingStation?.vulnerable_booth_detail![0].vul_types
+            vulStation.text = "\((pollingStation?.vulnerable_booth_detail![0].stn_no)!)"
+        }
+        else{
+            vulnerableView.alpha = 0
+            boothDetails.alpha = 0
+            vulType.alpha = 0
+            vulStation.alpha = 0
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -60,6 +94,15 @@ class StationViewController: UIViewController {
         marker.map = mapView
     }
     
+    @IBAction func callTapped(_ sender: Any) {
+        if let url = URL(string: "tel://\(pollingStation!.polling_location_incharge_number!)"), UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
 }
 
 extension StationViewController: GMSMapViewDelegate{

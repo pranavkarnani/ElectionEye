@@ -9,15 +9,16 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    var array = [Any]()
+    var array : [Constituency] = []
     let searchController = UISearchController(searchResultsController: nil)
-    var filteredLocations = [String]()
+    var filteredLocations = [Constituency]()
+    var selected = 0
     
     @IBOutlet weak var searchTable: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.searchTable.register(SearchTableViewCell.self, forCellReuseIdentifier: "searchCell")
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
@@ -27,6 +28,18 @@ class SearchViewController: UIViewController {
         searchTable.backgroundColor = .clear
         searchTable.delegate = self
         searchTable.dataSource = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        definesPresentationContext = true
+        let searchView = UIView()
+        self.view.addSubview(searchTable)
+        searchView.addSubview(searchController.searchBar)
+        searchController.searchBar.searchBarStyle = .minimal
+        self.searchTable.tableHeaderView = searchView
+        self.searchTable.tableHeaderView?.frame.size.height = 50
+        self.searchTable.separatorStyle = .none
+        searchTable.reloadData()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -34,6 +47,9 @@ class SearchViewController: UIViewController {
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredLocations = array.filter({( constituency : Constituency) -> Bool in
+            return constituency.name!.lowercased().contains(searchText.lowercased())
+        })
         self.searchTable.reloadData()
     }
     
@@ -41,12 +57,22 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filteredLocations.count
+        }
+        
         return array.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchTableViewCell
-        cell.resultLabel.text = (array[indexPath.row] as! Constituency).name
+        let const: Constituency
+        if isFiltering() {
+            const = filteredLocations[indexPath.row]
+        } else {
+            const = array[indexPath.row]
+        }
+        cell.resultLabel.text = const.name
         return cell
     }
     
@@ -54,8 +80,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        //        filterContentForSearchText(searchController.searchBar.text!)
-        // search logic here
+        filterContentForSearchText(searchController.searchBar.text!)
     }
     
     func isFiltering() -> Bool {
@@ -65,5 +90,10 @@ extension SearchViewController: UISearchResultsUpdating {
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         return searchController.searchBar.text?.isEmpty ?? true
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
     }
 }

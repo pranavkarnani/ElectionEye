@@ -132,20 +132,19 @@ class Requests : WebSocketDelegate {
             }.resume()
     }
     
-    func fetchStation(stn_no: Int, completion : @escaping(Station,Bool)->()){
-        let searchStationURL = URL(string: (stationURL?.absoluteString)! + "/search?key=stn_no&val=\(stn_no)")
-        var station: Station?
-        URLSession.shared.dataTask(with: searchStationURL!) { (data, response, error) in
+    func fetchStation(completion : @escaping([Station],Bool)->()){
+        var stationArray = [Station]()
+        guard let stationURL = stationURL else { return }
+        URLSession.shared.dataTask(with: stationURL) { (data, response, error) in
             guard let data = data else {
-                completion(station!,false)
+                completion(stationArray,false)
                 return
             }
             do {
-                let stationArray = try JSONDecoder().decode(StationMaster.self, from: data)
-                station = stationArray.stations![0]
-                completion(station!, true)
+                stationArray = try JSONDecoder().decode(StationMaster.self, from: data).stations!
+                completion(stationArray, true)
             } catch {
-                completion(station!,false)
+                completion(stationArray,false)
             }
             }.resume()
     }

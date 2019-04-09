@@ -71,6 +71,11 @@ struct Station: Decodable {
     var name: String?
     var booths: String?
     var is_vulnerable: Bool?
+    var police_officer_name: String?
+    var officer_contact_number: String?
+    var officer_rank: String?
+    var police_station: String?
+    var polling_location_incharge_number: String?
     var vulnerable_booth_detail: [BoothDetails]?
 }
 

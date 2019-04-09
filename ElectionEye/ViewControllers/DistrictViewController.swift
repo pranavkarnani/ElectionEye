@@ -18,6 +18,7 @@ class DistrictViewController: UIViewController {
     var constituencies = [Constituency]()
     let fpc = FloatingPanelController()
     var contentVC = SearchViewController()
+    var searchBar = UISearchBar()
     var pollStations = [PollStation]()
 
     override func viewDidLoad() {
@@ -56,9 +57,13 @@ class DistrictViewController: UIViewController {
         fpc.set(contentViewController: contentVC)
         fpc.track(scrollView: contentVC.searchTable)
         fpc.addPanel(toParent: self)
-        
+        fpc.move(to: .tip, animated: true)
         //map
+        searchBar = contentVC.searchController.searchBar
+        searchBar.delegate = self
         mapView.delegate = self
+        
+        mapView.animate(to: GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0))
         
         mapView.layer.cornerRadius = 8
         mapView.makeCard()
@@ -102,10 +107,13 @@ extension DistrictViewController: GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         var ac_no: String?
+        let alert = UIAlertController(title: "Loading", message: "Fetching \(marker.title!) Details", preferredStyle: .alert)
+//        self.present(alert, animated: true, completion: nil)
         if let constituency = constituencies.first(where: {$0.name == marker.title}) {
             ac_no = constituency.ac_no
             Requests.shared.fetchPollStations(ac_no: ac_no!) { (pollstation, status) in
                 if status{
+//                    alert.dismiss(animated: true, completion: nil)
                     for station in pollstation{
                         if station.ac_no == ac_no{
                             self.pollStations.append(station)
@@ -131,4 +139,13 @@ extension DistrictViewController: GMSMapViewDelegate{
 
 extension DistrictViewController: FloatingPanelControllerDelegate{
     
+}
+
+extension DistrictViewController: UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        fpc.move(to: .full, animated: true)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        fpc.move(to: .tip, animated: true)
+    }
 }
