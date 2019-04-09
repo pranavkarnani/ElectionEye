@@ -29,11 +29,33 @@ class DataHandler {
         }
     }
     
-    func pollingStations(pollStations : [Station]) {
+    func persistPollingStations(pollStations: [PollStation]){
         DispatchQueue.main.async {
             let delegate = UIApplication.shared.delegate as! AppDelegate
             let context = delegate.persistentContainer.viewContext
             for item in pollStations {
+                let entity = NSEntityDescription.insertNewObject(forEntityName: "PollingStationData", into: context)
+                
+                entity.setValue(item.ac_no, forKey: "ac_no")
+                entity.setValue(item.stn_no, forKey: "stn_no")
+                entity.setValue(item.location_name, forKey: "location_name")
+                entity.setValue(item.location_name_native, forKey: "location_name_native")
+                entity.setValue(item.stn_address, forKey: "stn_address")
+                entity.setValue(item.latitude, forKey: "latitude")
+                entity.setValue(item.longitude, forKey: "longitude")
+                entity.setValue(item.zone_no, forKey: "zone_no")
+                entity.setValue(item.booths, forKey: "booths")
+                entity.setValue(item.polling_location_incharge_number, forKey: "polling_location_incharge_number")
+                
+            }
+        }
+    }
+    
+    func persistStations(stations : [Station]) {
+        DispatchQueue.main.async {
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            let context = delegate.persistentContainer.viewContext
+            for item in stations {
                 let entity = NSEntityDescription.insertNewObject(forEntityName: "StationData", into: context)
                 entity.setValue(item.ac_no, forKey: "ac_no")
                 entity.setValue(item.booths, forKey: "booths")
@@ -89,11 +111,50 @@ class DataHandler {
         }
     }
     
-    func retrievePollingStations(ac_no: String, completion : @escaping([Station],Bool) -> ()) {
+    func retrievePollingStations(ac_no: String, completion : @escaping([PollStation],Bool) -> ()){
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConstituencyData")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PollingStationData")
+        
+        do {
+            request.predicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])
+            let results = try context.fetch(request)
+            
+            var pollstations : [PollStation] = []
+            for item in results as! [NSManagedObject] {
+                var pollstation = PollStation()
+                pollstation.stn_no =  item.value(forKey: "stn_no") as? Int ?? 0
+                pollstation.location_name =  item.value(forKey: "location_name") as? String ?? ""
+                pollstation.location_name_native =  item.value(forKey: "location_name_native") as? String ?? ""
+                pollstation.stn_address =  item.value(forKey: "stn_address") as? String ?? ""
+                pollstation.latitude =  item.value(forKey: "latitude") as? Double ?? 0.0
+                pollstation.longitude =  item.value(forKey: "longitude") as? Double ?? 0.0
+                pollstation.zone_no =  item.value(forKey: "zone_no") as? String ?? ""
+                pollstation.booths =  item.value(forKey: "booths") as? String ?? ""
+                pollstation.polling_location_incharge_number =  item.value(forKey: "polling_location_incharge_number") as? String ?? ""
+                pollstation.ac_no =  item.value(forKey: "ac_no") as? String ?? ""
+                pollstations.append(pollstation)
+            }
+            
+            if pollstations.count == results.count {
+                completion(pollstations,true)
+            }
+            else {
+                completion([],false)
+            }
+            
+        } catch {
+            print("error")
+        }
+    }
+}
+    
+    func retrieveStations(ac_no: String, completion : @escaping([Station],Bool) -> ()) {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StationData")
         
         do {
             request.predicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])
@@ -135,4 +196,3 @@ class DataHandler {
             print("error")
         }
     }
-}
