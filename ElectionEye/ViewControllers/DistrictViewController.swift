@@ -112,12 +112,10 @@ extension DistrictViewController: GMSMapViewDelegate{
         if let constituency = constituencies.first(where: {$0.name == marker.title}) {
             ac_no = constituency.ac_no
             pollStations.removeAll()
-            Requests.shared.fetchPollStations(ac_no: ac_no!) { (pollstation, status) in
+            DataHandler.shared.retrievePollingStations(ac_no: ac_no!) { (pollstation, status) in
                 if status{
-                    for station in pollstation{
-                        if station.ac_no == ac_no{
-                            self.pollStations.append(station)
-                        }
+                    for station in pollstation {
+                        self.pollStations.append(station)
                     }
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: {

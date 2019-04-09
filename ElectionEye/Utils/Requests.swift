@@ -133,19 +133,20 @@ class Requests : WebSocketDelegate {
             }.resume()
     }
     
-    func fetchStation(completion : @escaping([Station],Bool)->()){
+    func fetchStation(completion : @escaping(Bool)->()){
         var stationArray = [Station]()
         guard let stationURL = stationURL else { return }
         URLSession.shared.dataTask(with: stationURL) { (data, response, error) in
             guard let data = data else {
-                completion(stationArray,false)
+                completion(false)
                 return
             }
             do {
                 stationArray = try JSONDecoder().decode(StationMaster.self, from: data).stations!
-                completion(stationArray, true)
+                DataHandler.shared.pollingStations(pollStations : stationArray)
+                completion(true)
             } catch {
-                completion(stationArray,false)
+                completion(false)
             }
             }.resume()
     }

@@ -6,7 +6,28 @@
         <attribute name="location_count" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="StationData" representedClassName="StationData" syncable="YES" codeGenerationType="class">
+        <attribute name="ac_no" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="booths" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conduct_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_vulnerable" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="location_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_name_native" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="officer_contact_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="officer_rank" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="police_officer_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="police_station" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="polling_location_incharge_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sec_officer_names" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stn_address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stn_no" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="zone_no" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="ConstituencyData" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="StationData" positionX="-63" positionY="9" width="128" height="30"/>
     </elements>
 </model>

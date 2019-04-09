@@ -123,6 +123,9 @@ class LoginViewController: UIViewController {
         Requests.shared.fetchConstituency { (fetched) in
             print(fetched)
         }
+        Requests.shared.fetchStation { (fetched) in
+            print(fetched)
+        }
     }
     
 }

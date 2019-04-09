@@ -32,6 +32,7 @@ class DetailDistrictViewController: UIViewController {
                 print("Done")
             }
         }
+        
         for pollStation in pollStations{
             markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
