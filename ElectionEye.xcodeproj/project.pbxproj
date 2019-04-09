@@ -230,11 +230,11 @@
 		816C14742258C26900EFF30B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				30BB757F2259224300D6AA47 /* DistrictViewController.swift */,
-				8171EAFE2258C02200C5D032 /* LoginViewController.swift */,
-				81CF9C03225C7037008B0034 /* StationViewController.swift */,
-				81CF9BFF225B4139008B0034 /* DistrictSearchViewController.swift */,
 				81B7CAE0225A90110043B9AA /* LandingViewController.swift */,
+				8171EAFE2258C02200C5D032 /* LoginViewController.swift */,
+				30BB757F2259224300D6AA47 /* DistrictViewController.swift */,
+				81CF9BFF225B4139008B0034 /* DistrictSearchViewController.swift */,
+				81CF9C03225C7037008B0034 /* StationViewController.swift */,
 				30B15773225B9AE200FB0D76 /* DetailDistrictViewController.swift */,
 				30ADF3CB225C9F4C00083025 /* StationSearchViewController.swift */,
 			);

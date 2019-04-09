@@ -29,7 +29,7 @@ class DataHandler {
         }
     }
     
-    func persistPollingStations(pollStations: [PollStation]){
+    func persistPollingStations(pollStations: [PollStation]) {
         DispatchQueue.main.async {
             let delegate = UIApplication.shared.delegate as! AppDelegate
             let context = delegate.persistentContainer.viewContext
@@ -89,6 +89,7 @@ class DataHandler {
         do {
             let results = try context.fetch(request)
             var constituencies : [Constituency] = []
+            print(results.count)
             for item in results as! [NSManagedObject] {
                 var constituency = Constituency()
                 constituency.ac_no = item.value(forKey: "ac_no") as? String ?? ""
@@ -111,7 +112,7 @@ class DataHandler {
         }
     }
     
-    func retrievePollingStations(ac_no: String, completion : @escaping([PollStation],Bool) -> ()){
+    func retrievePollingStations(ac_no: String, completion : @escaping([PollStation],Bool) -> ()) {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
         
@@ -119,8 +120,8 @@ class DataHandler {
         
         do {
             request.predicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])
-            let results = try context.fetch(request)
             
+            let results = try context.fetch(request)
             var pollstations : [PollStation] = []
             for item in results as! [NSManagedObject] {
                 var pollstation = PollStation()
@@ -148,8 +149,7 @@ class DataHandler {
             print("error")
         }
     }
-}
-    
+
     func retrieveStations(ac_no: String, completion : @escaping([Station],Bool) -> ()) {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
@@ -196,3 +196,4 @@ class DataHandler {
             print("error")
         }
     }
+}

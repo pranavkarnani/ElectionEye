@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var phoneNumberField: UITextField!
     @IBOutlet weak var loginBttn: UIButton!
     
+    var count = 0
     var stage = 1
     var verificationID = ""
     var phone = ""
@@ -99,9 +100,7 @@ class LoginViewController: UIViewController {
                         UserDefaults.standard.set(details.token, forKey: "ElectionEye_token")
                         UserDefaults.standard.set(details.zone_no, forKey: "ElectionEye_zone_no")
                         Requests.shared.setupSockets()
-                        DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "loggedIn", sender: Any?.self)
-                        }
+                        self.transition()
                     } else {
                         DispatchQueue.main.async {
                             self.showAlert(title: "Error", message: "User does not exist")
@@ -121,12 +120,24 @@ class LoginViewController: UIViewController {
     
     func fetchData() {
         Requests.shared.fetchConstituency { (fetched) in
-            print(fetched)
+            if fetched {
+                self.transition()
+            }
         }
-        Requests.shared.fetchStation { (fetched) in
-            print(fetched)
+        Requests.shared.fetchPollStations() { (fetched) in
+            if fetched {
+                self.transition()
+            }
         }
     }
     
+    func transition() {
+        count = count + 1
+        if(count == 3) {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "loggedIn", sender: Any?.self)
+            }
+        }
+    }
 }
 

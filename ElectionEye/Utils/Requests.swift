@@ -114,21 +114,22 @@ class Requests : WebSocketDelegate {
         }.resume()
     }
     
-    func fetchPollStations(ac_no: String, completion : @escaping([PollStation],Bool)->()){
+    func fetchPollStations(completion : @escaping(Bool)->()){
         guard let pollURL = pollURL else { return }
         var pollStations: [PollStation] = []
         URLSession.shared.dataTask(with: pollURL) { (data, response, error) in
             
             guard let data = data else {
-                completion(pollStations,false)
+                completion(false)
                 return
             }
             
             do {
                 pollStations = try JSONDecoder().decode([PollStation].self, from: data)
-                completion(pollStations, true)
+                DataHandler.shared.persistPollingStations(pollStations: pollStations)
+                completion(true)
             } catch {
-                completion(pollStations,false)
+                completion(false)
             }
             }.resume()
     }
@@ -143,7 +144,7 @@ class Requests : WebSocketDelegate {
             }
             do {
                 stationArray = try JSONDecoder().decode(StationMaster.self, from: data).stations!
-                DataHandler.shared.pollingStations(pollStations : stationArray)
+                DataHandler.shared.persistStations(stations : stationArray)
                 completion(true)
             } catch {
                 completion(false)

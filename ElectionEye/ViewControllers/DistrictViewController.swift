@@ -28,6 +28,7 @@ class DistrictViewController: UIViewController {
         mapView.camera = camera
         
         DataHandler.shared.retrieveConstituencies() { (constituencies,status)  in
+            print(constituencies)
             if status{
                 self.constituencies = constituencies
                 self.contentVC.array = constituencies
@@ -67,6 +68,7 @@ class DistrictViewController: UIViewController {
         
         mapView.layer.cornerRadius = 8
         mapView.makeCard()
+        
         do {
             if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
                 mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
@@ -76,8 +78,6 @@ class DistrictViewController: UIViewController {
         } catch {
             print("One or more of the map styles failed to load. \(error)")
         }
-        // Creates a marker in the center of the map.
-        // Do any additional setup after loading the view.
     }
     
     func markOnMap(title: String,latitude: Double, longitude:Double) {
@@ -111,14 +111,13 @@ extension DistrictViewController: GMSMapViewDelegate{
         self.present(alert, animated: true, completion: nil)
         if let constituency = constituencies.first(where: {$0.name == marker.title}) {
             ac_no = constituency.ac_no
-            pollStations.removeAll()
             DataHandler.shared.retrievePollingStations(ac_no: ac_no!) { (pollstation, status) in
                 if status{
-                    for station in pollstation {
-                        self.pollStations.append(station)
-                    }
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: {
+                            let vc = DetailDistrictViewController()
+                            vc.pollStations = pollstation
+                            print(pollstation)
                             self.performSegue(withIdentifier: "detail", sender: Any?.self)
                         })
                     }
@@ -128,12 +127,6 @@ extension DistrictViewController: GMSMapViewDelegate{
             showAlert(title: "Couldn't Find", message: "Couldn't find constituency.")
         }
         return true
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? DetailDistrictViewController {
-            viewController.pollStations = pollStations
-        }
     }
 }
 

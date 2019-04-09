@@ -26,19 +26,20 @@ class DetailDistrictViewController: UIViewController {
         super.viewDidLoad()
         mapSetup()
         
-        Requests.shared.fetchStation() { (station, status) in
-            if status{
-                self.stations = station
-                print("Done")
-            }
-        }
-        
         for pollStation in pollStations{
             markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
         setup()
         fpcSetup()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        for pollStation in pollStations{
+            markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+        }
+        setup()
+        fpcSetup()
     }
     
     func fpcSetup(){
