@@ -40,7 +40,6 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //print("index",locations.last?.coordinate)
         Requests.shared.sendLocationData(coordinates: (locations.last?.coordinate)!)
     }
     

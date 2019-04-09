@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -115,6 +116,12 @@ class LoginViewController: UIViewController {
             self.loginBttn.alpha = 1.0
             self.loginBttn.isEnabled = true
             self.phoneNumberField.text = ""
+        }
+    }
+    
+    func fetchData() {
+        Requests.shared.fetchConstituency { (fetched) in
+            print(fetched)
         }
     }
     

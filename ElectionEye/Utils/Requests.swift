@@ -94,21 +94,22 @@ class Requests : WebSocketDelegate {
         }.resume()
     }
     
-    func fetchConstituency(completion : @escaping([Constituency],Bool) -> ()) {
+    func fetchConstituency(completion : @escaping(Bool) -> ()) {
         guard let constituencyURL = constituencyURL else { return }
         var constituencies: [Constituency] = []
         URLSession.shared.dataTask(with: constituencyURL) { (data, response, error) in
             
             guard let data = data else {
-                completion(constituencies,false)
+                completion(false)
                 return
             }
             
             do {
                 constituencies = try JSONDecoder().decode([Constituency].self, from: data)
-                completion(constituencies, true)
+                DataHandler.shared.persistConstituencies(constituency: constituencies)
+                completion(true)
             } catch {
-                completion(constituencies,false)
+                completion(false)
             }
         }.resume()
     }

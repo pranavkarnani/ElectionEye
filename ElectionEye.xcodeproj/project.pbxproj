@@ -33,6 +33,7 @@
 		30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB757F2259224300D6AA47 /* DistrictViewController.swift */; };
 		30BB7585225927CF00D6AA47 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 30BB7584225927CF00D6AA47 /* style.json */; };
 		30BB758B2259351600D6AA47 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB758A2259351600D6AA47 /* Extensions.swift */; };
+		8104260F225D257E00150323 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8104260E225D257E00150323 /* DataHandler.swift */; };
 		816C14702258C23E00EFF30B /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C146F2258C23E00EFF30B /* Requests.swift */; };
 		816C14722258C24500EFF30B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C14712258C24500EFF30B /* Model.swift */; };
 		816C14762258C40F00EFF30B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 816C14752258C40F00EFF30B /* GoogleService-Info.plist */; };
@@ -100,6 +101,7 @@
 		49D8A7A87364C23B105E2D4A /* Pods-ElectionEye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEye.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEye/Pods-ElectionEye.debug.xcconfig"; sourceTree = "<group>"; };
 		590CA82CF5239F18255A5320 /* Pods_ElectionEyeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElectionEyeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		789DA53CC92818936B4CC00F /* Pods-ElectionEyeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEyeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEyeUITests/Pods-ElectionEyeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8104260E225D257E00150323 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		816C146F2258C23E00EFF30B /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		816C14712258C24500EFF30B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		816C14752258C40F00EFF30B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				30BB7584225927CF00D6AA47 /* style.json */,
 				816C146F2258C23E00EFF30B /* Requests.swift */,
 				816C14712258C24500EFF30B /* Model.swift */,
+				8104260E225D257E00150323 /* DataHandler.swift */,
 				30BB758A2259351600D6AA47 /* Extensions.swift */,
 			);
 			path = Utils;
@@ -584,6 +587,7 @@
 				30B15774225B9AE200FB0D76 /* DetailDistrictViewController.swift in Sources */,
 				30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */,
 				30BB758B2259351600D6AA47 /* Extensions.swift in Sources */,
+				8104260F225D257E00150323 /* DataHandler.swift in Sources */,
 				816C14702258C23E00EFF30B /* Requests.swift in Sources */,
 				30ADF3CC225C9F4C00083025 /* StationSearchViewController.swift in Sources */,
 				8171EAFF2258C02200C5D032 /* LoginViewController.swift in Sources */,

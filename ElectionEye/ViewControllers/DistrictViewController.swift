@@ -27,7 +27,7 @@ class DistrictViewController: UIViewController {
         let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
         mapView.camera = camera
         
-        Requests.shared.fetchConstituency { (constituencies,status)  in
+        DataHandler.shared.retrieveConstituencies() { (constituencies,status)  in
             if status{
                 self.constituencies = constituencies
                 self.contentVC.array = constituencies

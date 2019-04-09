@@ -121,7 +121,7 @@ extension DetailDistrictViewController: FloatingPanelControllerDelegate{
 
 }
 
-extension DetailDistrictViewController: UISearchBarDelegate{
+extension DetailDistrictViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         fpc.move(to: .full, animated: true)
