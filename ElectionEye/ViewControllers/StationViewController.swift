@@ -1,15 +1,14 @@
 //
 //  StationViewController.swift
-//  
+//
 //
 //  Created by Aritro Paul on 09/04/19.
 //
-
 import UIKit
 import GoogleMaps
 
 class StationViewController: UIViewController {
-
+    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var tableView: UITableView!
@@ -60,10 +59,10 @@ extension StationViewController: GMSMapViewDelegate{
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        //
 //    }
-//    
+//
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        //
 //    }
-//    
-//    
+//
+//
 //}

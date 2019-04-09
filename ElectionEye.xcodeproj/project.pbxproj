@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3081B62A225A787000AD0E1D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3081B629225A787000AD0E1D /* SearchTableViewCell.swift */; };
-		30ADF3CA225BCF5900083025 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ADF3C9225BCF5900083025 /* StationViewController.swift */; };
 		30B139C42258FF0500557FDF /* Lato-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139B02258FF0400557FDF /* Lato-HeavyItalic.ttf */; };
 		30B139C52258FF0500557FDF /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139B12258FF0400557FDF /* Lato-Italic.ttf */; };
 		30B139C62258FF0500557FDF /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139B22258FF0400557FDF /* Lato-LightItalic.ttf */; };
@@ -46,6 +45,7 @@
 		8171EB202258C02300C5D032 /* ElectionEyeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171EB1F2258C02300C5D032 /* ElectionEyeUITests.swift */; };
 		81B7CAE1225A90110043B9AA /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7CAE0225A90110043B9AA /* LandingViewController.swift */; };
 		81CF9C00225B4139008B0034 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF9BFF225B4139008B0034 /* SearchViewController.swift */; };
+		81CF9C04225C7037008B0034 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF9C03225C7037008B0034 /* StationViewController.swift */; };
 		943FFA6A7D5824C1CA36A6CC /* Pods_ElectionEyeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 590CA82CF5239F18255A5320 /* Pods_ElectionEyeUITests.framework */; };
 		BC58F7627FD19CAD0E0656A9 /* Pods_ElectionEyeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5EF9268F5F23FF4520F019 /* Pods_ElectionEyeTests.framework */; };
 		DDA1694E326B950C7D0950FE /* Pods_ElectionEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F271778ECEAD0EE542F93741 /* Pods_ElectionEye.framework */; };
@@ -71,7 +71,6 @@
 /* Begin PBXFileReference section */
 		28047D25DCA42DA51708C932 /* Pods-ElectionEyeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEyeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEyeTests/Pods-ElectionEyeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3081B629225A787000AD0E1D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		30ADF3C9225BCF5900083025 /* StationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StationViewController.swift; path = /Users/aritropaul/Documents/Codes/iOS/ElectionEye/ElectionEye/ElectionEye/ViewControllers/StationViewController.swift; sourceTree = "<absolute>"; };
 		30B139B02258FF0400557FDF /* Lato-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HeavyItalic.ttf"; sourceTree = "<group>"; };
 		30B139B12258FF0400557FDF /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		30B139B22258FF0400557FDF /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -118,6 +117,7 @@
 		8171EB212258C02300C5D032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81B7CAE0225A90110043B9AA /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		81CF9BFF225B4139008B0034 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		81CF9C03225C7037008B0034 /* StationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		8E5EF9268F5F23FF4520F019 /* Pods_ElectionEyeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElectionEyeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D0C585BAAB7878D956E57FB /* Pods-ElectionEye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEye.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEye/Pods-ElectionEye.release.xcconfig"; sourceTree = "<group>"; };
 		C99EAFD4D509A6FAAEC1FA2C /* Pods-ElectionEyeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEyeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEyeTests/Pods-ElectionEyeTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 			children = (
 				30BB757F2259224300D6AA47 /* DistrictViewController.swift */,
 				8171EAFE2258C02200C5D032 /* LoginViewController.swift */,
-				30ADF3C9225BCF5900083025 /* StationViewController.swift */,
+				81CF9C03225C7037008B0034 /* StationViewController.swift */,
 				81CF9BFF225B4139008B0034 /* SearchViewController.swift */,
 				81B7CAE0225A90110043B9AA /* LandingViewController.swift */,
 				30B15773225B9AE200FB0D76 /* DetailDistrictViewController.swift */,
@@ -264,13 +264,10 @@
 				8171EAFC2258C02200C5D032 /* AppDelegate.swift */,
 				30BB7583225924B300D6AA47 /* View */,
 				816C14742258C26900EFF30B /* ViewControllers */,
-				8171EB002258C02200C5D032 /* Main.storyboard */,
+				81CF9C06225C70F6008B0034 /* Storyboard */,
 				816C14732258C25600EFF30B /* Utils */,
 				8171EB062258C02300C5D032 /* Assets.xcassets */,
-				8171EB082258C02300C5D032 /* LaunchScreen.storyboard */,
-				816C14752258C40F00EFF30B /* GoogleService-Info.plist */,
-				8171EB0B2258C02300C5D032 /* Info.plist */,
-				8171EB032258C02200C5D032 /* ElectionEye.xcdatamodeld */,
+				81CF9C05225C70CE008B0034 /* Supporting Files */,
 			);
 			path = ElectionEye;
 			sourceTree = "<group>";
@@ -291,6 +288,25 @@
 				8171EB212258C02300C5D032 /* Info.plist */,
 			);
 			path = ElectionEyeUITests;
+			sourceTree = "<group>";
+		};
+		81CF9C05225C70CE008B0034 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8171EB032258C02200C5D032 /* ElectionEye.xcdatamodeld */,
+				816C14752258C40F00EFF30B /* GoogleService-Info.plist */,
+				8171EB0B2258C02300C5D032 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81CF9C06225C70F6008B0034 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				8171EB002258C02200C5D032 /* Main.storyboard */,
+				8171EB082258C02300C5D032 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,9 +574,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				81CF9C00225B4139008B0034 /* SearchViewController.swift in Sources */,
+				81CF9C04225C7037008B0034 /* StationViewController.swift in Sources */,
 				816C14722258C24500EFF30B /* Model.swift in Sources */,
 				8171EB052258C02200C5D032 /* ElectionEye.xcdatamodeld in Sources */,
-				30ADF3CA225BCF5900083025 /* StationViewController.swift in Sources */,
 				81B7CAE1225A90110043B9AA /* LandingViewController.swift in Sources */,
 				30B15774225B9AE200FB0D76 /* DetailDistrictViewController.swift in Sources */,
 				30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */,
@@ -745,13 +761,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2J3WW2KWBU;
+				DEVELOPMENT_TEAM = P7Q45HP436;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ap.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = adg.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -764,13 +780,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2J3WW2KWBU;
+				DEVELOPMENT_TEAM = P7Q45HP436;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ap.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = adg.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
