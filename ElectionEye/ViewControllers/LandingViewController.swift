@@ -40,7 +40,8 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("index",locations.last?.coordinate)
+        //print("index",locations.last?.coordinate)
+        Requests.shared.sendLocationData(coordinates: (locations.last?.coordinate)!)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -52,7 +53,13 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
     
     func transition() {
         if performSegue {
-            self.performSegue(withIdentifier: status, sender: Any?.self)
+            if status == "bypass" {
+                Requests.shared.setupSockets()
+                self.performSegue(withIdentifier: status, sender: Any?.self)
+            }
+            else {
+                self.performSegue(withIdentifier: status, sender: Any?.self)
+            }
         }
         else {
             self.showAlert(title: "Location Privacy Alert", message: "This application requires all the users to permit location access.")

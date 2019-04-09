@@ -97,7 +97,7 @@ class LoginViewController: UIViewController {
                         UserDefaults.standard.set(details.role, forKey: "ElectionEye_role")
                         UserDefaults.standard.set(details.token, forKey: "ElectionEye_token")
                         UserDefaults.standard.set(details.zone_no, forKey: "ElectionEye_zone_no")
-                
+                        Requests.shared.setupSockets()
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "loggedIn", sender: Any?.self)
                         }
@@ -117,8 +117,6 @@ class LoginViewController: UIViewController {
             self.phoneNumberField.text = ""
         }
     }
-    
-    
     
 }
 
