@@ -25,6 +25,7 @@ class DetailDistrictViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapSetup()
+        
         Requests.shared.fetchStation() { (station, status) in
             if status{
                 self.stations = station

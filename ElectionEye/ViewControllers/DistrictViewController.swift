@@ -107,20 +107,21 @@ extension DistrictViewController: GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         var ac_no: String?
-        let alert = UIAlertController(title: "Loading", message: "Fetching \(marker.title!) Details", preferredStyle: .alert)
-//        self.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Loading", message: "Fetching \(marker.title!)'s Details", preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
         if let constituency = constituencies.first(where: {$0.name == marker.title}) {
             ac_no = constituency.ac_no
             Requests.shared.fetchPollStations(ac_no: ac_no!) { (pollstation, status) in
                 if status{
-//                    alert.dismiss(animated: true, completion: nil)
                     for station in pollstation{
                         if station.ac_no == ac_no{
                             self.pollStations.append(station)
                         }
                     }
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "detail", sender: Any?.self)
+                        self.dismiss(animated: true, completion: {
+                            self.performSegue(withIdentifier: "detail", sender: Any?.self)
+                        })
                     }
                 }
             }
