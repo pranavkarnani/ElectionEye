@@ -111,6 +111,7 @@ extension DistrictViewController: GMSMapViewDelegate{
         self.present(alert, animated: true, completion: nil)
         if let constituency = constituencies.first(where: {$0.name == marker.title}) {
             ac_no = constituency.ac_no
+            pollStations.removeAll()
             Requests.shared.fetchPollStations(ac_no: ac_no!) { (pollstation, status) in
                 if status{
                     for station in pollstation{

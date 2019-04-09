@@ -210,7 +210,7 @@ class Requests : WebSocketDelegate {
         request.setValue("Bearer "+userToken, forHTTPHeaderField: "Authorization")
         fetchLocationSocket = WebSocket(request: request)
         fetchLocationSocket?.delegate = self
-    fetchLocationSocket?.connect()
+        fetchLocationSocket?.connect()
     }
     
     func sendLocation(lat: Double,long: Double) {
