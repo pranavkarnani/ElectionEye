@@ -152,8 +152,8 @@ class Requests : WebSocketDelegate {
     }
     
     
-    func sendLocationData() {
-        
+    func sendLocationData(coordinates : CLLocationCoordinate2D) {
+        print("update")
     }
     
     func websocketDidConnect(socket: WebSocketClient) {

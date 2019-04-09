@@ -267,6 +267,7 @@
 				81CF9C06225C70F6008B0034 /* Storyboard */,
 				816C14732258C25600EFF30B /* Utils */,
 				8171EB062258C02300C5D032 /* Assets.xcassets */,
+				8171EB0B2258C02300C5D032 /* Info.plist */,
 				81CF9C05225C70CE008B0034 /* Supporting Files */,
 			);
 			path = ElectionEye;
@@ -295,7 +296,6 @@
 			children = (
 				8171EB032258C02200C5D032 /* ElectionEye.xcdatamodeld */,
 				816C14752258C40F00EFF30B /* GoogleService-Info.plist */,
-				8171EB0B2258C02300C5D032 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
