@@ -156,9 +156,8 @@ class Requests : WebSocketDelegate {
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("websocket is connected")
+        print(socket)
     }
-    
-    
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if let e = error as? WSError {
