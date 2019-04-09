@@ -40,8 +40,10 @@ struct Constituency: Decodable {
 }
 
 let baseURL = "http://elections.vit.ac.in:3000/api/v1/"
-let locationURL = URL(string: "ws://election.vit.ac.in:3000/streams/locations")
+let locationStreamURL = URL(string: "http://election.vit.ac.in:3000/streams/locations")
+let locationFetchURL = URL(string: "http://election.vit.ac.in:3000/streams/")
 let fetchZonesURL = URL(string: baseURL+"zones")
 let loginURL = URL(string: baseURL+"role")
 let constituencyURL = URL(string:  baseURL + "constituencies")
-var socket : WebSocket?
+var streamLocationSocket : WebSocket?
+var fetchLocationSocket : WebSocket?

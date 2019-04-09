@@ -61,10 +61,7 @@ class Requests : WebSocketDelegate {
                 guard let data = data else { return }
                 
                 do {
-                    guard let locationURL = locationURL else { return }
-                    socket = WebSocket(url: locationURL)
                     userDetails = try JSONDecoder().decode(UserRoles.self, from: data)
-                    self.firstConnection(user: userDetails)
                     print(userDetails)
                     completion(userDetails,true)
                 } catch {
@@ -124,16 +121,24 @@ class Requests : WebSocketDelegate {
         print("websocket is connected")
     }
     
+    
+    
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("websocket is disconnected")
+        if let e = error as? WSError {
+            print("websocket is disconnected: \(e.message)")
+        } else if let e = error {
+            print("websocket is disconnected: \(e.localizedDescription)")
+        } else {
+            print("websocket disconnected")
+        }
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
+        print("Received text: \(text)")
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print(data)
+        print("Received data: \(data.count)")
     }
     
     func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()) {
@@ -144,23 +149,34 @@ class Requests : WebSocketDelegate {
             }
             if (placemarks?.count)! > 0 {
                 let placemark = placemarks?[0]
-                let location = placemark?.location
-                let coordinate = location?.coordinate
                 completion(placemark!,true)
             }
         })
     }
     
-    func firstConnection(user: UserRoles) {
+    func setupSockets() {
         
-        guard let locationURL = locationURL else { return }
+        let userToken = UserDefaults.standard.value(forKey: "ElectionEye_token") as? String ?? ""
+        guard let locationStreamURL = locationStreamURL else { return }
+        guard let locationFetchURL = locationFetchURL else { return }
         
-        var request = URLRequest(url: locationURL)
+        var request = URLRequest(url: locationStreamURL)
         request.timeoutInterval = 5
-        request.setValue("Bearer"+user.token!, forHTTPHeaderField: "Authorization")
-        socket = WebSocket(request: request)
+        request.setValue("Bearer "+userToken, forHTTPHeaderField: "Authorization")
+        streamLocationSocket = WebSocket(request: request)
+        streamLocationSocket?.delegate = self
+        streamLocationSocket?.connect()
         
-        socket?.connect()
+        request = URLRequest(url: locationFetchURL)
+        request.timeoutInterval = 5
+        print(userToken)
+        request.setValue("Bearer "+userToken, forHTTPHeaderField: "Authorization")
+        fetchLocationSocket = WebSocket(request: request)
+        fetchLocationSocket?.delegate = self
+    fetchLocationSocket?.connect()
     }
     
+    func sendLocation(lat: Double,long: Double) {
+       // socket?.write(data: )
+    }
 }
