@@ -13,12 +13,14 @@ class StationViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var tableView: UITableView!
-    var pollingStation: PollStation?
+    var pollingStation: Station?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         mapSetup()
+        markOnMap(title: (pollingStation?.location_name)!, latitude: Double(exactly:  (pollingStation?.latitude)!)!, longitude: Double(exactly: (pollingStation?.longitude)!)!)
+        mapView.animate(to: GMSCameraPosition.camera(withLatitude: Double(exactly:  (pollingStation?.latitude)!)!, longitude: Double(exactly: (pollingStation?.longitude)!)!, zoom: 12.0))
         // Do any additional setup after loading the view.
     }
     
@@ -48,6 +50,15 @@ class StationViewController: UIViewController {
     
     @IBAction func backTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindDetail", sender: Any?.self)
+    }
+    
+    func markOnMap(title: String,latitude: Double, longitude:Double) {
+        let marker = GMSMarker()
+        marker.icon = UIImage(named: "icon")
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        marker.title = title
+        marker.snippet = "Tamil Nadu"
+        marker.map = mapView
     }
     
 }

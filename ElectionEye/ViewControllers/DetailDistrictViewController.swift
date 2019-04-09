@@ -63,6 +63,12 @@ class DetailDistrictViewController: UIViewController {
     
     @IBAction func unwindToDetailDistrictViewController(segue:UIStoryboardSegue) { }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? StationViewController {
+            viewController.pollingStation = station
+        }
+    }
+    
 }
 
 extension DetailDistrictViewController: GMSMapViewDelegate{

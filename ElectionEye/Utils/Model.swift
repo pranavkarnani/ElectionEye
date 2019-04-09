@@ -52,6 +52,11 @@ struct PollStation: Decodable {
     var ac_no: String?
 }
 
+struct StationMaster: Decodable {
+    var stations: [Station]?
+}
+
+
 struct Station: Decodable {
     var ac_no : String?
     var stn_no: Int?
