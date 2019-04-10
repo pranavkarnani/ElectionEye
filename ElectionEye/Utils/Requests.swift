@@ -10,6 +10,7 @@ import Foundation
 import FirebaseAuth
 import Starscream
 import CoreLocation
+import SwiftyJSON
 
 class Requests : WebSocketDelegate {
     
@@ -154,11 +155,16 @@ class Requests : WebSocketDelegate {
     
     
     func sendLocationData(coordinates : CLLocationCoordinate2D) {
-        print("update")
+        var userLocation = Location()
+        userLocation.lat = Float(coordinates.latitude)
+        userLocation.lng = Float(coordinates.longitude)
+        
+        let location = try? JSONEncoder().encode(userLocation)
+        
+        streamLocationSocket?.write(data: location!)
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
-        print("websocket is connected")
         print(socket)
     }
     
@@ -173,7 +179,33 @@ class Requests : WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("Received text: \(text)")
+        if let locationDetails = text.data(using: .utf8, allowLossyConversion: false) {
+            do {
+                let locationList = try JSON(data: locationDetails)
+                var user : [AdminLocation] = []
+                
+                for item in locationList {
+                    let locationJSON = item.1
+                    var individual = AdminLocation()
+                    individual.ac_no = locationJSON["ac_no"].stringValue
+                    individual.is_connection_lost = locationJSON["is_connection_lost"].boolValue
+                    individual.lat = locationJSON["lat"].floatValue
+                    individual.lng = locationJSON["lng"].floatValue
+                    individual.time = locationJSON["time"].doubleValue
+                    individual.zone_no = locationJSON["zone_no"].string
+                    
+                    user.append(individual)
+                }
+                
+                
+            } catch {
+                print("error")
+            }
+            
+        }
+        else {
+            print("retry")
+        }
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
@@ -215,7 +247,4 @@ class Requests : WebSocketDelegate {
         fetchLocationSocket?.connect()
     }
     
-    func sendLocation(lat: Double,long: Double) {
-       // socket?.write(data: )
-    }
 }

@@ -10,6 +10,7 @@ target 'ElectionEye' do
   pod 'Firebase/Auth'
   pod 'Firebase'
   pod 'FloatingPanel', '~> 1.4'
+  pod 'SwiftyJSON', '~> 4.0'
   
   target 'ElectionEyeTests' do
     inherit! :search_paths

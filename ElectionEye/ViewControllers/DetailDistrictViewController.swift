@@ -88,6 +88,14 @@ class DetailDistrictViewController: UIViewController {
         marker.map = mapView
     }
     
+    func carOnMap(zone_no: String,latitude: Double, longitude:Double) {
+        let marker = GMSMarker()
+        marker.icon = UIImage(named: "car")
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        marker.title = zone_no
+        marker.map = mapView
+    }
+    
     
     @IBAction func backTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "unwinded", sender: Any?.self)

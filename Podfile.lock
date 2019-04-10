@@ -68,6 +68,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Starscream (3.0.6)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Firebase
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - FloatingPanel (~> 1.4)
   - GoogleMaps
   - Starscream (~> 3.0.2)
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -91,6 +93,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - Starscream
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
@@ -106,7 +109,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: cc3a61aab426432dcaaec5c48c73335776e4a7dd
+PODFILE CHECKSUM: 354388aeb8867fd13d99b3f7313c017d457f00fd
 
 COCOAPODS: 1.5.0

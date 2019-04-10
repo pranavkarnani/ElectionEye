@@ -88,6 +88,20 @@ struct BoothDetails: Decodable {
     var polling_location_no: Int?
 }
 
+struct Location : Codable {
+    var lat: Float?
+    var lng: Float?
+}
+
+struct AdminLocation {
+    var lat: Float?
+    var ac_no: String?
+    var is_connection_lost: Bool?
+    var time: Double?
+    var zone_no: String?
+    var lng : Float?
+}
+
 let baseURL = "http://elections.vit.ac.in:3000/api/v1/"
 let locationStreamURL = URL(string: "ws://elections.vit.ac.in:3000/api/v1/stream/locations")
 let locationFetchURL = URL(string: "ws://elections.vit.ac.in:3000/api/v1/stream/")

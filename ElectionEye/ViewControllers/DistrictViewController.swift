@@ -40,7 +40,6 @@ class DistrictViewController: UIViewController {
                         Requests.shared.geoLocation(address: place.name!, completion: { (placemark, status) in
                             if status{
                                 self.markOnMap(title: place.name!, latitude: (placemark?.location?.coordinate.latitude)!, longitude: (placemark?.location?.coordinate.longitude)!)
-                                print("Here")
                             }
                         })
                     }
