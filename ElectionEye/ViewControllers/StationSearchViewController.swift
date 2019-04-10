@@ -54,7 +54,12 @@ class StationSearchViewController: UIViewController {
             filteredLocations = array
         }
         else{
+            if index > array.count{
+                index = 0
+            }
+            else{
             filteredLocations = [array[index]]
+            }
         }
         self.searchTable.reloadData()
     }

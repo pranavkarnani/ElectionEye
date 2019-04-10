@@ -15,6 +15,8 @@ class DetailDistrictViewController: UIViewController {
     var pollStations = [PollStation]()
     var stations = [Station]()
     var stationDetails = Station()
+    var userRole : String?
+    var fromModal = false
     
     let fpc = FloatingPanelController()
     var contentVC = StationSearchViewController()
@@ -25,12 +27,25 @@ class DetailDistrictViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapSetup()
+        contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
         
         for pollStation in pollStations{
             markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
         setup()
         fpcSetup()
+        
+        self.userRole = UserDefaults.standard.string(forKey: "ElectionEye_role")
+        print(self.userRole!)
+        if userRole == "0"{
+            if let locations = locations{
+                for location in locations{
+                    print(location)
+                    carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
+                }
+            }
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -47,7 +62,6 @@ class DetailDistrictViewController: UIViewController {
         fpc.surfaceView.backgroundColor = .clear
         fpc.surfaceView.cornerRadius = 9.0
         fpc.surfaceView.shadowHidden = false
-        contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
         fpc.set(contentViewController: contentVC)
         fpc.track(scrollView: contentVC.searchTable)
         fpc.addPanel(toParent: self)
@@ -56,6 +70,7 @@ class DetailDistrictViewController: UIViewController {
         searchBar = contentVC.searchController.searchBar
         searchBar.delegate = self
         contentVC.array = pollStations
+        contentVC.searchTable.reloadData()
     }
     
     func setup(){
@@ -98,7 +113,12 @@ class DetailDistrictViewController: UIViewController {
     
     
     @IBAction func backTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "unwinded", sender: Any?.self)
+        if fromModal{
+            self.dismiss(animated: true, completion: nil)
+        }
+        else{
+            self.performSegue(withIdentifier: "unwinded", sender: Any?.self)
+        }
     }
     
     @IBAction func unwindToDetailDistrictViewController(segue:UIStoryboardSegue) { }
@@ -115,12 +135,23 @@ extension DetailDistrictViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let index = Int(marker.title!)!
         let poll = pollStations[index]
-        for station in self.stations{
-            if station.ac_no == poll.ac_no{
-                if station.stn_no == poll.stn_no{
-                    self.stationDetails = station
-                    self.performSegue(withIdentifier: "station", sender: Any?.self)
+        print(poll.ac_no!)
+        DataHandler.shared.retrieveStations(ac_no: poll.ac_no!) { (stations, status) in
+            print(status)
+            if status{
+                print(stations)
+                for station in stations{
+                    if station.stn_no == poll.stn_no{
+                        self.stationDetails = station
+                        print(station)
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "station", sender: Any?.self)
+                        }
+                    }
                 }
+            }
+            else{
+                self.showAlert(title: "Couldn't Fetch", message: "Fuck.")
             }
         }
         return true

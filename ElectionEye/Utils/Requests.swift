@@ -182,8 +182,7 @@ class Requests : WebSocketDelegate {
         if let locationDetails = text.data(using: .utf8, allowLossyConversion: false) {
             do {
                 let locationList = try JSON(data: locationDetails)
-                var user : [AdminLocation] = []
-                
+                locations?.removeAll()
                 for item in locationList {
                     let locationJSON = item.1
                     var individual = AdminLocation()
@@ -194,7 +193,7 @@ class Requests : WebSocketDelegate {
                     individual.time = locationJSON["time"].doubleValue
                     individual.zone_no = locationJSON["zone_no"].string
                     
-                    user.append(individual)
+                    locations?.append(individual)
                 }
                 
                 

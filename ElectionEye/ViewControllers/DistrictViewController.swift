@@ -23,7 +23,8 @@ class DistrictViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        contentVC = (storyboard?.instantiateViewController(withIdentifier: "SearchPanel") as? SearchViewController)!
+
         let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
         mapView.camera = camera
         
@@ -33,16 +34,16 @@ class DistrictViewController: UIViewController {
                 self.constituencies = constituencies
                 self.contentVC.array = constituencies
                 DispatchQueue.main.async {
-                    self.contentVC.searchTable.reloadData()
-                }
-                DispatchQueue.main.async {
                     for place in constituencies{
                         Requests.shared.geoLocation(address: place.name!, completion: { (placemark, status) in
                             if status{
                                 self.markOnMap(title: place.name!, latitude: (placemark?.location?.coordinate.latitude)!, longitude: (placemark?.location?.coordinate.longitude)!)
                             }
                         })
+                        
                     }
+                    print(self.contentVC.array)
+                    self.contentVC.searchTable.reloadData()
                 }
             }
         }
@@ -53,7 +54,6 @@ class DistrictViewController: UIViewController {
         fpc.surfaceView.backgroundColor = .clear
         fpc.surfaceView.cornerRadius = 9.0
         fpc.surfaceView.shadowHidden = false
-        contentVC = (storyboard?.instantiateViewController(withIdentifier: "SearchPanel") as? SearchViewController)!
         fpc.set(contentViewController: contentVC)
         fpc.track(scrollView: contentVC.searchTable)
         fpc.addPanel(toParent: self)
@@ -79,6 +79,11 @@ class DistrictViewController: UIViewController {
         }
     }
     
+    func detail(pollStations: [PollStation]){
+        let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
+        self.present(ddvc, animated: true)
+    }
+    
     func markOnMap(title: String,latitude: Double, longitude:Double) {
         let marker = GMSMarker()
         let icon = UIView()
@@ -99,6 +104,12 @@ class DistrictViewController: UIViewController {
     }
     
     @IBAction func unwindToDistrictViewController(segue:UIStoryboardSegue) { }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? DetailDistrictViewController {
+            viewController.pollStations = self.pollStations
+        }
+    }
 
 }
 
@@ -114,9 +125,8 @@ extension DistrictViewController: GMSMapViewDelegate{
                 if status{
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: {
-                            let vc = DetailDistrictViewController()
-                            vc.pollStations = pollstation
-                            print(pollstation)
+                            self.pollStations = pollstation
+                            print(pollstation[0].location_name)
                             self.performSegue(withIdentifier: "detail", sender: Any?.self)
                         })
                     }

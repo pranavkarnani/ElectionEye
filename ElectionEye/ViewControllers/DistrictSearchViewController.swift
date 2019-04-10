@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     var array : [Constituency] = []
     let searchController = UISearchController(searchResultsController: nil)
     var filteredLocations = [Constituency]()
+    var constituency = Constituency()
     var selected = 0
     
     @IBOutlet weak var searchTable: UITableView!
@@ -74,6 +75,60 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
         }
         cell.resultLabel.text = const.name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFiltering(){
+            constituency = filteredLocations[indexPath.row]
+        }
+        else{
+            constituency = array[indexPath.row]
+        }
+        if searchController.isActive == true {
+            print("Active")
+            print(constituency.name)
+            searchController.dismiss(animated: true, completion: {
+                let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
+                let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "District") as! DistrictViewController
+                let ac_no: String?
+                ac_no = self.constituency.ac_no
+                DataHandler.shared.retrievePollingStations(ac_no: ac_no!) { (pollstation, status) in
+                    if status{
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: {
+                                ddvc.fromModal = true
+                                ddvc.pollStations = pollstation
+                                ddvc.modalTransitionStyle = .coverVertical
+                                dvc.present(ddvc, animated: true)
+                            })
+                        }
+                    }
+                }
+
+            })
+        }
+        else{
+            print("List")
+            print(constituency.name)
+            let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
+            let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "District") as! DistrictViewController
+            let ac_no: String?
+            ac_no = constituency.ac_no
+            DataHandler.shared.retrievePollingStations(ac_no: ac_no!) { (pollstation, status) in
+                if status{
+                    DispatchQueue.main.async {
+                        dvc.fpc.hide()
+                        self.dismiss(animated: true, completion: {
+                            ddvc.fromModal = true
+                            ddvc.pollStations = pollstation
+                            ddvc.modalTransitionStyle = .coverVertical
+                            dvc.present(ddvc,animated: true)
+                        })
+                    }
+                }
+            }
+        }
+        
     }
     
 }
