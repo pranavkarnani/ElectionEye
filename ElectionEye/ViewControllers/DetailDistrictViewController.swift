@@ -22,6 +22,8 @@ class DetailDistrictViewController: UIViewController {
     var contentVC = StationSearchViewController()
     var searchBar = UISearchBar()
     
+    var timer: Timer?
+    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
     override func viewDidLoad() {
@@ -36,23 +38,27 @@ class DetailDistrictViewController: UIViewController {
         fpcSetup()
         
         self.userRole = UserDefaults.standard.string(forKey: "ElectionEye_role")
-        print(self.userRole!)
+//        print(self.userRole!)
+        // Do any additional setup after loading the view.
+    }
+    
+    @objc func refreshMap() {
+        print("Refreshing")
+        mapView.clear()
+        for pollStation in pollStations{
+            markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+        }
         if userRole == "0"{
-            if let locations = locations{
                 for location in locations{
                     print(location)
                     carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
                 }
-            }
-        }
         
-        // Do any additional setup after loading the view.
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        for pollStation in pollStations{
-            markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
-        }
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.refreshMap), userInfo: nil, repeats: true)
         setup()
         fpcSetup()
     }
@@ -105,7 +111,7 @@ class DetailDistrictViewController: UIViewController {
     
     func carOnMap(zone_no: String,latitude: Double, longitude:Double) {
         let marker = GMSMarker()
-        marker.icon = UIImage(named: "car")
+        marker.icon = UIImage(named: "Car")
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         marker.title = zone_no
         marker.map = mapView
@@ -124,6 +130,7 @@ class DetailDistrictViewController: UIViewController {
     @IBAction func unwindToDetailDistrictViewController(segue:UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        timer?.invalidate()
         if let viewController = segue.destination as? StationViewController {
             viewController.pollingStation = stationDetails
         }

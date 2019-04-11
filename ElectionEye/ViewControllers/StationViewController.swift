@@ -32,14 +32,12 @@ class StationViewController: UIViewController {
     @IBOutlet weak var sectionalOfficerLabel: UILabel!
     @IBOutlet weak var conductNumberLabel: UILabel!
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         mapSetup()
         print(pollingStation)
-        markOnMap(title: (pollingStation?.location_name)!, latitude: Double(exactly:  (pollingStation?.latitude)!)!, longitude: Double(exactly: (pollingStation?.longitude)!)!)
-        mapView.animate(to: GMSCameraPosition.camera(withLatitude: Double(exactly:  (pollingStation?.latitude)!)!, longitude: Double(exactly: (pollingStation?.longitude)!)!, zoom: 12.0))
         locationNameLabel.text = pollingStation?.location_name
         nativeNameLabel.text = pollingStation?.location_name_native
         zoneNumber.text = pollingStation?.zone_no
@@ -59,8 +57,8 @@ class StationViewController: UIViewController {
         if (pollingStation?.is_vulnerable)!{
             vulnerableView.alpha = 1
             boothDetails.text = pollingStation?.vulnerable_booth_detail?[0].vul_habitats
-            vulType.text = pollingStation?.vulnerable_booth_detail![0].vul_types
-            vulStation.text = "\((pollingStation?.vulnerable_booth_detail![0].stn_no)!)"
+            vulType.text = pollingStation?.vulnerable_booth_detail?[0].vul_types
+            vulStation.text = "\((pollingStation?.vulnerable_booth_detail?[0].stn_no))"
         }
         else{
             vulnerableView.alpha = 0
@@ -71,6 +69,11 @@ class StationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19), zoom: 12.0)
+        markOnMap(title: (pollingStation?.location_name)!, latitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19))
+        mapView.camera = camera
+    }
     
     func setup(){
         backButton.makeCard()
@@ -78,8 +81,6 @@ class StationViewController: UIViewController {
     }
     
     func mapSetup(){
-        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19), zoom: 12.0)
-        mapView.camera = camera
         mapView.clear()
         mapView.delegate = self
         do {

@@ -114,4 +114,4 @@ var streamLocationSocket : WebSocket?
 var fetchLocationSocket : WebSocket?
 let stationURL = URL(string: baseURL + "stations")
 var socket : WebSocket?
-var locations : [AdminLocation]?
+var locations : [AdminLocation] = []
