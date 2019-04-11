@@ -98,16 +98,14 @@ class DataHandler {
                 constituency.name = item.value(forKey: "name") as? String ?? ""
                 
                 constituencies.append(constituency)
-            }
-            
-            if constituencies.count == results.count {
-                completion(constituencies,true)
-            }
-            else {
-                completion([],false)
+                
+                if constituencies.count == results.count {
+                    completion(constituencies,true)
+                }
             }
             
         } catch {
+            completion([],false)
             print("error")
         }
     }
@@ -115,7 +113,6 @@ class DataHandler {
     func retrievePollingStations(ac_no: String, completion : @escaping([PollStation],Bool) -> ()) {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "PollingStationData")
         
         do {
@@ -136,16 +133,13 @@ class DataHandler {
                 pollstation.polling_location_incharge_number =  item.value(forKey: "polling_location_incharge_number") as? String ?? ""
                 pollstation.ac_no =  item.value(forKey: "ac_no") as? String ?? ""
                 pollstations.append(pollstation)
+                
+                if pollstations.count == results.count {
+                    completion(pollstations,true)
+                }
             }
-            
-            if pollstations.count == results.count {
-                completion(pollstations,true)
-            }
-            else {
-                completion([],false)
-            }
-            
         } catch {
+            completion([],false)
             print("error")
         }
     }
@@ -183,16 +177,13 @@ class DataHandler {
                 station.zone_no = item.value(forKey: "zone_no") as? String ?? ""
                 
                 stations.append(station)
+                if stations.count == results.count {
+                    completion(stations,true)
+                }
             }
-            
-            if stations.count == results.count {
-                completion(stations,true)
-            }
-            else {
-                completion([],false)
-            }
-            
+
         } catch {
+            completion([],false)
             print("error")
         }
     }
