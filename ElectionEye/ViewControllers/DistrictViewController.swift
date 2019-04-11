@@ -10,8 +10,9 @@ import UIKit
 import GoogleMaps
 import Starscream
 import FloatingPanel
+import CoreLocation
 
-class DistrictViewController: UIViewController {
+class DistrictViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
     var marker: GMSMarker?
@@ -20,13 +21,15 @@ class DistrictViewController: UIViewController {
     var contentVC = SearchViewController()
     var searchBar = UISearchBar()
     var pollStations = [PollStation]()
+    var locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         contentVC = (storyboard?.instantiateViewController(withIdentifier: "SearchPanel") as? SearchViewController)!
-
-        let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 9.0)
-        mapView.camera = camera
         
         DataHandler.shared.retrieveConstituencies() { (constituencies,status)  in
             print(constituencies)
@@ -97,6 +100,13 @@ class DistrictViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         fpc.addPanel(toParent: self, animated: true)
+        let locationObj = locationManager.location as! CLLocation
+        let coord = locationObj.coordinate
+        let lattitude = coord.latitude
+        let longitude = coord.longitude
+        
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: lattitude, longitude: longitude, zoom: 9.0)
+        self.mapView.animate(to: camera)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

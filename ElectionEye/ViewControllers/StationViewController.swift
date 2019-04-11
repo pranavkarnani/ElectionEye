@@ -24,6 +24,13 @@ class StationViewController: UIViewController {
     @IBOutlet weak var vulStation: UILabel!
     @IBOutlet weak var vulType: UILabel!
     @IBOutlet weak var boothDetails: UILabel!
+    @IBOutlet weak var stationNameLabel: UILabel!
+    @IBOutlet weak var stationAddressLabel: UILabel!
+    @IBOutlet weak var officerRankLabel: UILabel!
+    @IBOutlet weak var officerContactLabel: UILabel!
+    @IBOutlet weak var policeStationLabel: UILabel!
+    @IBOutlet weak var sectionalOfficerLabel: UILabel!
+    @IBOutlet weak var conductNumberLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -40,11 +47,18 @@ class StationViewController: UIViewController {
         stationNumber.text = String(describing: (pollingStation?.stn_no!)!)
         stationBackView.layer.cornerRadius = stationBackView.frame.height/2
         officerName.text = pollingStation?.police_officer_name
+        stationNameLabel.text = pollingStation?.name
+        stationAddressLabel.text = pollingStation?.stn_address
+        officerRankLabel.text = pollingStation?.officer_rank
+        officerContactLabel.text = pollingStation?.officer_contact_number
+        policeStationLabel.text = pollingStation?.police_station
+        sectionalOfficerLabel.text = pollingStation?.sec_officer_names
+        conductNumberLabel.text = pollingStation?.conduct_number
         vulnerableView.layer.cornerRadius = 8
         
         if (pollingStation?.is_vulnerable)!{
             vulnerableView.alpha = 1
-            boothDetails.text = pollingStation?.vulnerable_booth_detail![0].vul_habitats
+            boothDetails.text = pollingStation?.vulnerable_booth_detail?[0].vul_habitats
             vulType.text = pollingStation?.vulnerable_booth_detail![0].vul_types
             vulStation.text = "\((pollingStation?.vulnerable_booth_detail![0].stn_no)!)"
         }
@@ -64,7 +78,7 @@ class StationViewController: UIViewController {
     }
     
     func mapSetup(){
-        let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 12.0)
+        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19), zoom: 12.0)
         mapView.camera = camera
         mapView.clear()
         mapView.delegate = self

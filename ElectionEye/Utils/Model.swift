@@ -62,20 +62,21 @@ struct Station: Decodable {
     var stn_no: Int16?
     var location_name: String?
     var location_name_native: String?
-    var stn_address: String?
     var latitude: Float?
     var longitude: Float?
     var zone_no: String?
-    var sec_officer_names: String?
-    var conduct_number: String?
-    var name: String?
     var booths: String?
     var is_vulnerable: Bool?
     var police_officer_name: String?
+    var polling_location_incharge_number: String?
     var officer_contact_number: String?
     var officer_rank: String?
     var police_station: String?
-    var polling_location_incharge_number: String?
+    var stn_address: String?
+    var sec_officer_names: String?
+    var conduct_number: String? //
+    var name: String?
+
     var vulnerable_booth_detail: [BoothDetails]?
 }
 

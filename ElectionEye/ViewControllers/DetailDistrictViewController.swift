@@ -79,7 +79,7 @@ class DetailDistrictViewController: UIViewController {
     }
     
     func mapSetup(){
-        let camera = GMSCameraPosition.camera(withLatitude: 12.92, longitude: 79.19, zoom: 12.0)
+        let camera = GMSCameraPosition.camera(withLatitude: pollStations[0].latitude ?? 12.92, longitude: pollStations[0].longitude ?? 79.19, zoom: 12.0)
         mapView.camera = camera
         mapView.clear()
         mapView.delegate = self
