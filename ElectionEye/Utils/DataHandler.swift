@@ -144,14 +144,18 @@ class DataHandler {
         }
     }
 
-    func retrieveStations(ac_no: String, completion : @escaping([Station],Bool) -> ()) {
+    func  retrieveStations(ac_no: String, stn_no:Int, completion : @escaping([Station],Bool) -> ()) {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StationData")
         
         do {
-            request.predicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])
+            let constPredicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])
+            let stationPredicate = NSPredicate(format: "stn_no == \(stn_no)")
+            let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [constPredicate,stationPredicate])
+            request.predicate = predicate
+            
             let results = try context.fetch(request)
             
             var stations : [Station] = []
@@ -173,11 +177,12 @@ class DataHandler {
                 station.polling_location_incharge_number = item.value(forKey: "polling_location_incharge_number") as? String ?? ""
                 station.sec_officer_names = item.value(forKey: "sec_officer_names") as? String ?? ""
                 station.stn_address = item.value(forKey: "stn_address") as? String ?? ""
-                station.stn_no = item.value(forKey: "stn_no") as? Int ?? 0
+                station.stn_no = item.value(forKey: "stn_no") as? Int16 ?? 0
                 station.zone_no = item.value(forKey: "zone_no") as? String ?? ""
                 
                 stations.append(station)
                 if stations.count == results.count {
+                    print(stations)
                     completion(stations,true)
                 }
             }

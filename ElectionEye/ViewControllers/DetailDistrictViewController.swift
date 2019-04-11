@@ -135,20 +135,17 @@ extension DetailDistrictViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let index = Int(marker.title!)!
         let poll = pollStations[index]
-        print(poll.ac_no!)
-        DataHandler.shared.retrieveStations(ac_no: poll.ac_no!) { (stations, status) in
-            print(status)
+        print(poll.stn_no!)
+        DataHandler.shared.retrieveStations(ac_no: poll.ac_no!, stn_no: poll.stn_no!) { (stations, status) in
             if status{
                 print(stations)
-                for station in stations{
-                    if station.stn_no == poll.stn_no{
-                        self.stationDetails = station
-                        print(station)
-                        DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "station", sender: Any?.self)
-                        }
-                    }
+                self.stationDetails = stations[0]
+                print(self.stationDetails)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "station", sender: Any?.self)
                 }
+                
+                
             }
             else{
                 self.showAlert(title: "Couldn't Fetch", message: "Fuck.")

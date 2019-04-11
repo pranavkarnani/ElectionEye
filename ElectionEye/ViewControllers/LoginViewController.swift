@@ -129,11 +129,17 @@ class LoginViewController: UIViewController {
                 self.transition()
             }
         }
+        
+        Requests.shared.fetchStation { (fetched) in
+            if fetched {
+                self.transition()
+            }
+        }
     }
     
     func transition() {
         count = count + 1
-        if(count == 3) {
+        if(count == 4) {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loggedIn", sender: Any?.self)
             }
