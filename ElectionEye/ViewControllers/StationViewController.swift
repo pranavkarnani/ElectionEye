@@ -99,17 +99,22 @@ class StationViewController: UIViewController {
         self.performSegue(withIdentifier: "unwindDetail", sender: Any?.self)
     }
     
-    func markOnMap(title: String,latitude: Double, longitude:Double) {
+    func markOnMap(station: Station,latitude: Double, longitude:Double) {
         let marker = GMSMarker()
-        marker.icon = UIImage(named: "icon")
+        if station.is_vulnerable!{
+            marker.icon = UIImage(named: "Vul")
+        }
+        else{
+            marker.icon = UIImage(named: "Safe")
+        }
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.title = title
+        marker.title = station.location_name
         marker.snippet = "Tamil Nadu"
         marker.map = mapView
     }
     
     @IBAction func callTapped(_ sender: Any) {
-        if let url = URL(string: "tel://\(pollingStation!.polling_location_incharge_number!)"), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: "tel://\(pollingStation!.officer_contact_number!)"), UIApplication.shared.canOpenURL(url) {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url)
             } else {

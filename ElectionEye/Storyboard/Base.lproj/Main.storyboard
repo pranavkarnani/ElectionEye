@@ -79,21 +79,21 @@
                                 <rect key="frame" x="20" y="167" width="335" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHQ-Up-Ube">
-                                        <rect key="frame" x="25" y="50" width="62.5" height="29.5"/>
+                                        <rect key="frame" x="25" y="50" width="61.5" height="30"/>
                                         <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="25"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2Kn-yU-9cZ">
-                                        <rect key="frame" x="25" y="157.5" width="285" height="62.5"/>
+                                        <rect key="frame" x="25" y="157" width="285" height="63"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gby-GU-7I0">
-                                                <rect key="frame" x="0.0" y="0.0" width="163" height="16.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="161" height="17"/>
                                                 <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="htJ-Hk-irs">
-                                                <rect key="frame" x="0.0" y="32.5" width="285" height="30"/>
+                                                <rect key="frame" x="0.0" y="33" width="285" height="30"/>
                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="JPv-NV-oul"/>
@@ -108,7 +108,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A 6 digit OTP will be sent to this number via SMS to verify this phone number." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afi-os-3kG">
-                                        <rect key="frame" x="25" y="236" width="260" height="23.5"/>
+                                        <rect key="frame" x="25" y="236" width="260" height="24"/>
                                         <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="10"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -233,13 +233,13 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mM6-g9-LZj">
                                 <rect key="frame" x="-25" y="40" width="151" height="60"/>
-                                <color key="backgroundColor" red="0.98823529409999999" green="0.33725490200000002" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.55294117649999996" green="0.23921568630000001" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3Us-Cq-lft"/>
                                     <constraint firstAttribute="width" constant="151" id="9K1-rg-DbJ"/>
                                 </constraints>
                                 <inset key="titleEdgeInsets" minX="-3" minY="0.0" maxX="5" maxY="0.0"/>
-                                <state key="normal" title="Back" image="Back">
+                                <state key="normal" title="Back" image="Back-1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -595,13 +595,13 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uru-jC-2cy">
                                 <rect key="frame" x="-25" y="40" width="151" height="60"/>
-                                <color key="backgroundColor" red="0.98823529409999999" green="0.33725490200000002" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.55294117649999996" green="0.23921568630000001" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="151" id="1NG-p5-m3H"/>
                                     <constraint firstAttribute="height" constant="60" id="DlU-Is-TVv"/>
                                 </constraints>
                                 <inset key="titleEdgeInsets" minX="-3" minY="0.0" maxX="5" maxY="0.0"/>
-                                <state key="normal" title="Back" image="Back">
+                                <state key="normal" title="Back" image="Back-1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -748,7 +748,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gs4-hg-5Jq">
-                                                    <rect key="frame" x="35" y="23.5" width="305" height="16.5"/>
+                                                    <rect key="frame" x="35" y="23.5" width="305" height="17"/>
                                                     <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                                     <color key="textColor" red="0.98823529409999999" green="0.33725490200000002" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -787,7 +787,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Back" width="64" height="64"/>
+        <image name="Back-1" width="64" height="64"/>
         <image name="Call Button" width="208" height="78"/>
         <image name="Home" width="1080" height="1140"/>
         <image name="Icon-1024" width="768" height="768"/>

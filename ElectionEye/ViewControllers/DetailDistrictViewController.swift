@@ -93,11 +93,21 @@ class DetailDistrictViewController: UIViewController {
         }
     }
     
-    func markOnMap(title: String,latitude: Double, longitude:Double) {
+    func markOnMap(station: PollStation ,latitude: Double, longitude:Double) {
         let marker = GMSMarker()
-        marker.icon = UIImage(named: "icon")
+        DataHandler.shared.retrieveStations(ac_no: station.ac_no!, stn_no: station.stn_no!) { (stations, status) in
+            if status {
+                let stationWanted = stations[0]
+                if stationWanted.is_vulnerable == true{
+                    marker.icon = UIImage(named: "Vul")
+                }
+                else{
+                    marker.icon = UIImage(named: "Safe")
+                }
+            }
+        }
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.title = title
+        marker.title = station.location_name
         marker.snippet = "Tamil Nadu"
         marker.map = mapView
     }
