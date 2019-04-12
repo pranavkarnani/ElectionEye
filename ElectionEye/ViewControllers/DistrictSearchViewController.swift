@@ -85,8 +85,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
             constituency = array[indexPath.row]
         }
         if searchController.isActive == true {
-            print("Active")
-            print(constituency.name)
             searchController.dismiss(animated: true, completion: {
                 let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
                 let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "District") as! DistrictViewController
@@ -108,8 +106,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
             })
         }
         else{
-            print("List")
-            print(constituency.name)
             let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
             let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "District") as! DistrictViewController
             let ac_no: String?

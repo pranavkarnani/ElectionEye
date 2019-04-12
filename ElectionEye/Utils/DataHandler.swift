@@ -89,7 +89,6 @@ class DataHandler {
         do {
             let results = try context.fetch(request)
             var constituencies : [Constituency] = []
-            print(results.count)
             for item in results as! [NSManagedObject] {
                 var constituency = Constituency()
                 constituency.ac_no = item.value(forKey: "ac_no") as? String ?? ""

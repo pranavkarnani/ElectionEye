@@ -63,7 +63,6 @@ class Requests : WebSocketDelegate {
                 
                 do {
                     userDetails = try JSONDecoder().decode(UserRoles.self, from: data)
-                    print(userDetails)
                     completion(userDetails,true)
                 } catch {
                     print(error.localizedDescription)
@@ -85,7 +84,6 @@ class Requests : WebSocketDelegate {
                 do {
                     guard let data = data else { return }
                     zones = try JSONDecoder().decode([Zones].self, from: data)
-                    print(zones)
                     completion(zones,true)
                 } catch {
                     print(error.localizedDescription)
@@ -200,7 +198,6 @@ class Requests : WebSocketDelegate {
             } catch {
                 print("error")
             }
-            
         }
         else {
             print("retry")
@@ -239,7 +236,6 @@ class Requests : WebSocketDelegate {
         
         request = URLRequest(url: locationFetchURL)
         request.timeoutInterval = 5
-        print(userToken)
         request.setValue("Bearer "+userToken, forHTTPHeaderField: "Authorization")
         fetchLocationSocket = WebSocket(request: request)
         fetchLocationSocket?.delegate = self

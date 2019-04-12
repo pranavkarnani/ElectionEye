@@ -21,18 +21,17 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
     var contentVC = SearchViewController()
     var searchBar = UISearchBar()
     var pollStations = [PollStation]()
-    var locationManager = CLLocationManager()
+    var locationManager = CLLocationManager() 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.startUpdatingLocation()
         contentVC = (storyboard?.instantiateViewController(withIdentifier: "SearchPanel") as? SearchViewController)!
         
         DataHandler.shared.retrieveConstituencies() { (constituencies,status)  in
-            print(constituencies)
             if status{
                 self.constituencies = constituencies
                 self.contentVC.array = constituencies
@@ -51,17 +50,7 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
         
-        // fpc
-        
-        fpc.delegate = self
-        fpc.surfaceView.backgroundColor = .clear
-        fpc.surfaceView.cornerRadius = 9.0
-        fpc.surfaceView.shadowHidden = false
-        fpc.set(contentViewController: contentVC)
-        fpc.track(scrollView: contentVC.searchTable)
-        fpc.addPanel(toParent: self)
-        fpc.move(to: .tip, animated: true)
-        //map
+        fpcsetup()
         searchBar = contentVC.searchController.searchBar
         searchBar.delegate = self
         mapView.delegate = self
@@ -80,6 +69,17 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
         } catch {
             print("One or more of the map styles failed to load. \(error)")
         }
+    }
+    
+    func fpcsetup() {
+        fpc.delegate = self
+        fpc.surfaceView.backgroundColor = .clear
+        fpc.surfaceView.cornerRadius = 9.0
+        fpc.surfaceView.shadowHidden = false
+        fpc.set(contentViewController: contentVC)
+        fpc.track(scrollView: contentVC.searchTable)
+        fpc.addPanel(toParent: self)
+        fpc.move(to: .tip, animated: true)
     }
     
     func detail(pollStations: [PollStation]){

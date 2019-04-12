@@ -15,7 +15,7 @@ class DetailDistrictViewController: UIViewController {
     var pollStations = [PollStation]()
     var stations = [Station]()
     var stationDetails = Station()
-    var userRole : String?
+    var userRole : Bool = false
     var fromModal = false
     
     let fpc = FloatingPanelController()
@@ -30,36 +30,29 @@ class DetailDistrictViewController: UIViewController {
         super.viewDidLoad()
         mapSetup()
         contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
-        
+        self.userRole = UserDefaults.standard.value(forKey: "ElectionEye_role") as? Bool ?? false
         for pollStation in pollStations{
             markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
-        setup()
         fpcSetup()
-        
-        self.userRole = UserDefaults.standard.string(forKey: "ElectionEye_role")
-//        print(self.userRole!)
-        // Do any additional setup after loading the view.
     }
     
     @objc func refreshMap() {
-        print("Refreshing")
         mapView.clear()
         for pollStation in pollStations{
             markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
-        if userRole == "0"{
-                for location in locations{
-                    print(location)
-                    carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
-                }
         
+        if userRole{
+            
+            for location in locations{
+                carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
+            }
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.refreshMap), userInfo: nil, repeats: true)
-        setup()
         fpcSetup()
     }
     
@@ -79,7 +72,7 @@ class DetailDistrictViewController: UIViewController {
         contentVC.searchTable.reloadData()
     }
     
-    func setup(){
+    override func viewDidLayoutSubviews() {
         backButton.makeCard()
         backButton.layer.cornerRadius = backButton.frame.height/2
     }
@@ -142,19 +135,12 @@ extension DetailDistrictViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let index = Int(marker.title!) ?? 0
         let poll = pollStations[index]
-        print("LOOK HERE")
-        print(poll.stn_no!)
-        print("RIGHT HERE")
         DataHandler.shared.retrieveStations(ac_no: poll.ac_no!, stn_no: poll.stn_no!) { (stations, status) in
             if status{
-                print(stations)
                 self.stationDetails = stations[0]
-                print(self.stationDetails)
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "station", sender: Any?.self)
                 }
-                
-                
             }
             else{
                 self.showAlert(title: "Couldn't Fetch", message: "Fuck.")

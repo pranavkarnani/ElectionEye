@@ -37,7 +37,6 @@ class StationViewController: UIViewController {
         super.viewDidLoad()
         setup()
         mapSetup()
-        print(pollingStation)
         locationNameLabel.text = pollingStation?.location_name
         nativeNameLabel.text = pollingStation?.location_name_native
         zoneNumber.text = pollingStation?.zone_no
