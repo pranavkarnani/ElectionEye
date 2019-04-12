@@ -142,7 +142,9 @@ extension DetailDistrictViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let index = Int(marker.title!)!
         let poll = pollStations[index]
+        print("LOOK HERE")
         print(poll.stn_no!)
+        print("RIGHT HERE")
         DataHandler.shared.retrieveStations(ac_no: poll.ac_no!, stn_no: poll.stn_no!) { (stations, status) in
             if status{
                 print(stations)

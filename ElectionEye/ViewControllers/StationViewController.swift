@@ -62,9 +62,9 @@ class StationViewController: UIViewController {
         }
         else{
             vulnerableView.alpha = 0
-            boothDetails.alpha = 0
-            vulType.alpha = 0
-            vulStation.alpha = 0
+            boothDetails.text = "None"
+            vulType.text = "None"
+            vulStation.text = "All Stations are safe"
         }
         // Do any additional setup after loading the view.
     }
