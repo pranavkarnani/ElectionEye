@@ -25,10 +25,6 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.startUpdatingLocation()
         contentVC = (storyboard?.instantiateViewController(withIdentifier: "SearchPanel") as? SearchViewController)!
         
         DataHandler.shared.retrieveConstituencies() { (constituencies,status)  in
@@ -100,13 +96,15 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         fpc.addPanel(toParent: self, animated: true)
-        let locationObj = locationManager.location as! CLLocation
+        let locationObj = locationManager.location!
         let coord = locationObj.coordinate
         let lattitude = coord.latitude
         let longitude = coord.longitude
         
         let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: lattitude, longitude: longitude, zoom: 9.0)
         self.mapView.animate(to: camera)
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -136,7 +134,6 @@ extension DistrictViewController: GMSMapViewDelegate{
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: {
                             self.pollStations = pollstation
-                            print(pollstation[0].location_name)
                             self.performSegue(withIdentifier: "detail", sender: Any?.self)
                         })
                     }

@@ -26,6 +26,12 @@ class DataHandler {
                 entity.setValue(item.location_count, forKey: "location_count")
                 entity.setValue(item.name, forKey: "name")
             }
+            
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -47,6 +53,12 @@ class DataHandler {
                 entity.setValue(item.booths, forKey: "booths")
                 entity.setValue(item.polling_location_incharge_number, forKey: "polling_location_incharge_number")
                 
+            }
+            
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }
@@ -73,8 +85,14 @@ class DataHandler {
                 entity.setValue(item.polling_location_incharge_number, forKey: "polling_location_incharge_number")
                 entity.setValue(item.sec_officer_names, forKey: "sec_officer_names")
                 entity.setValue(item.stn_address, forKey: "stn_address")
-                entity.setValue(item.stn_no, forKey: "stn_no")
+                entity.setValue(item.location_no, forKey: "stn_no")
                 entity.setValue(item.zone_no, forKey: "zone_no")
+            }
+            
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
             }
         }
         
@@ -132,7 +150,6 @@ class DataHandler {
                 pollstation.polling_location_incharge_number =  item.value(forKey: "polling_location_incharge_number") as? String ?? ""
                 pollstation.ac_no =  item.value(forKey: "ac_no") as? String ?? ""
                 pollstations.append(pollstation)
-                
                 if pollstations.count == results.count {
                     completion(pollstations,true)
                 }
@@ -143,51 +160,47 @@ class DataHandler {
         }
     }
 
-    func  retrieveStations(ac_no: String, stn_no:Int, completion : @escaping([Station],Bool) -> ()) {
+    func retrieveStations(ac_no: String, stn_no:Int, completion : @escaping(Station,Bool) -> ()) {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
-        
+        var station = Station()
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StationData")
         
         do {
             let constPredicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])
             let stationPredicate = NSPredicate(format: "stn_no == \(stn_no)")
-            let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [constPredicate,stationPredicate])
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [constPredicate,stationPredicate])
             request.predicate = predicate
             
-            let results = try context.fetch(request)
+            let results = try context.fetch(request) as! [NSManagedObject]
+            print(results.count)
             
-            var stations : [Station] = []
-            for item in results as! [NSManagedObject] {
-                var station = Station()
-                station.ac_no = item.value(forKey: "ac_no") as? String ?? ""
-                station.booths = item.value(forKey: "booths") as? String ?? ""
-                station.conduct_number = item.value(forKey: "conduct_number") as? String ?? ""
-                station.is_vulnerable = item.value(forKey: "is_vulnerable") as? Bool ?? false
-                station.latitude = item.value(forKey: "latitude") as? Float ?? 12.9165
-                station.location_name = item.value(forKey: "location_name") as? String ?? ""
-                station.location_name_native = item.value(forKey: "location_name_native") as? String ?? ""
-                station.longitude = item.value(forKey: "longitude") as? Float ?? 79.1325
-                station.name = item.value(forKey: "name") as? String ?? ""
-                station.officer_contact_number = item.value(forKey: "officer_contact_number") as? String ?? ""
-                station.officer_rank = item.value(forKey: "officer_rank") as? String ?? ""
-                station.police_officer_name = item.value(forKey: "police_officer_name") as? String ?? ""
-                station.police_station = item.value(forKey: "police_station") as? String ?? ""
-                station.polling_location_incharge_number = item.value(forKey: "polling_location_incharge_number") as? String ?? ""
-                station.sec_officer_names = item.value(forKey: "sec_officer_names") as? String ?? ""
-                station.stn_address = item.value(forKey: "stn_address") as? String ?? ""
-                station.stn_no = item.value(forKey: "stn_no") as? Int16 ?? 0
-                station.zone_no = item.value(forKey: "zone_no") as? String ?? ""
-                
-                stations.append(station)
-                if stations.count == results.count {
-                    print(stations)
-                    completion(stations,true)
-                }
-            }
-
+            
+           
+            let item = results[0]
+            
+            station.ac_no = item.value(forKey: "ac_no") as? String ?? ""
+            station.booths = item.value(forKey: "booths") as? String ?? ""
+            station.conduct_number = item.value(forKey: "conduct_number") as? String ?? ""
+            station.is_vulnerable = item.value(forKey: "is_vulnerable") as? Bool ?? false
+            station.latitude = item.value(forKey: "latitude") as? Float ?? 12.9165
+            station.location_name = item.value(forKey: "location_name") as? String ?? ""
+            station.location_name_native = item.value(forKey: "location_name_native") as? String ?? ""
+            station.longitude = item.value(forKey: "longitude") as? Float ?? 79.1325
+            station.name = item.value(forKey: "name") as? String ?? ""
+            station.officer_contact_number = item.value(forKey: "officer_contact_number") as? String ?? ""
+            station.officer_rank = item.value(forKey: "officer_rank") as? String ?? ""
+            station.police_officer_name = item.value(forKey: "police_officer_name") as? String ?? ""
+            station.police_station = item.value(forKey: "police_station") as? String ?? ""
+            station.polling_location_incharge_number = item.value(forKey: "polling_location_incharge_number") as? String ?? ""
+            station.sec_officer_names = item.value(forKey: "sec_officer_names") as? String ?? ""
+            station.stn_address = item.value(forKey: "stn_address") as? String ?? ""
+            station.location_no = item.value(forKey: "stn_no") as? Int ?? 0
+            station.zone_no = item.value(forKey: "zone_no") as? String ?? ""
+            
+            completion(station,true)
         } catch {
-            completion([],false)
+            completion(station,false)
             print("error")
         }
     }

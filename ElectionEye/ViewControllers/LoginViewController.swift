@@ -94,13 +94,11 @@ class LoginViewController: UIViewController {
             if verified {
                 Requests.shared.performLogin(phone: self.phone) {(details, verifiedUser) in
                     if verifiedUser {
-                        self.z = self.z+1
                         UserDefaults.standard.set(details.ac_no, forKey: "ElectionEye_ac_no")
                         UserDefaults.standard.set(details.phone_no, forKey: "ElectionEye_phone_no")
                         UserDefaults.standard.set(details.role, forKey: "ElectionEye_role")
                         UserDefaults.standard.set(details.token, forKey: "ElectionEye_token")
                         UserDefaults.standard.set(details.zone_no, forKey: "ElectionEye_zone_no")
-                        UserDefaults.standard.set(self.z,forKey: "ElectionEye_login")
                         Requests.shared.setupSockets()
                         self.transition()
                     } else {
@@ -121,35 +119,29 @@ class LoginViewController: UIViewController {
     }
     
     func fetchData() {
-        
         Requests.shared.fetchConstituency { (fetched) in
             if fetched {
-                self.z=self.z+1
-                UserDefaults.standard.set(self.z, forKey: "ElectionEye_login")
                 self.transition()
             }
         }
         Requests.shared.fetchPollStations() { (fetched) in
             if fetched {
-                self.z=self.z+1
-                UserDefaults.standard.set(self.z, forKey: "ElectionEye_login")
                 self.transition()
             }
         }
         
         Requests.shared.fetchStation { (fetched) in
             if fetched {
-                self.z=self.z+1
-                UserDefaults.standard.set(self.z, forKey: "ElectionEye_login")
                 self.transition()
             }
         }
     }
     
     func transition() {
-        count = UserDefaults.standard.value(forKey: "ElectionEye_login") as? Int ?? 0
+        count = count + 1
         if(count == 4) {
             DispatchQueue.main.async {
+                UserDefaults.standard.set(4, forKey: "ElectionEye_login")
                 self.performSegue(withIdentifier: "loggedIn", sender: Any?.self)
             }
         }

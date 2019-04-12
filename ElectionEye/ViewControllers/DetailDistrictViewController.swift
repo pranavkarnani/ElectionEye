@@ -31,8 +31,10 @@ class DetailDistrictViewController: UIViewController {
         mapSetup()
         contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
         self.userRole = UserDefaults.standard.value(forKey: "ElectionEye_role") as? Bool ?? false
-        for pollStation in pollStations{
+        for pollStation in pollStations {
+            
             markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+            print(pollStation)
         }
         fpcSetup()
     }
@@ -42,9 +44,7 @@ class DetailDistrictViewController: UIViewController {
         for pollStation in pollStations{
             markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
-        
         if userRole{
-            
             for location in locations{
                 carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
             }
@@ -52,7 +52,7 @@ class DetailDistrictViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.refreshMap), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.refreshMap), userInfo: nil, repeats: true)
         fpcSetup()
     }
     
@@ -97,8 +97,7 @@ class DetailDistrictViewController: UIViewController {
         let marker = GMSMarker()
         DataHandler.shared.retrieveStations(ac_no: station.ac_no!, stn_no: station.stn_no!) { (stations, status) in
             if status {
-                let stationWanted = stations[0]
-                if stationWanted.is_vulnerable == true{
+                if stations.is_vulnerable == true {
                     marker.icon = UIImage(named: "Vul")
                 }
                 else{
@@ -107,7 +106,7 @@ class DetailDistrictViewController: UIViewController {
             }
         }
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.title = station.location_name
+        marker.title = "\(station.stn_no!)"
         marker.snippet = "Tamil Nadu"
         marker.map = mapView
     }
@@ -143,11 +142,11 @@ class DetailDistrictViewController: UIViewController {
 
 extension DetailDistrictViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        let index = Int(marker.title!) ?? 0
-        let poll = pollStations[index]
+        let index = Int(marker.title!)
+        let poll = pollStations[index!]
         DataHandler.shared.retrieveStations(ac_no: poll.ac_no!, stn_no: poll.stn_no!) { (stations, status) in
-            if status{
-                self.stationDetails = stations[0]
+            if status {
+                print(stations.is_vulnerable)
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "station", sender: Any?.self)
                 }

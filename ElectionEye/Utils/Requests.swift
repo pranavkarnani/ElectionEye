@@ -210,11 +210,11 @@ class Requests : WebSocketDelegate {
     
     func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()) {
         CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
-            if error != nil {
-                let placemark = CLPlacemark()
-                completion(placemark,false)
+            if error != nil && placemarks?.count == 0 {
+                
+                completion(nil,false)
             }
-            if (placemarks?.count)! > 0 {
+            else {
                 let placemark = placemarks?[0]
                 completion(placemark!,true)
             }

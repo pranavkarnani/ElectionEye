@@ -41,7 +41,7 @@ class StationViewController: UIViewController {
         nativeNameLabel.text = pollingStation?.location_name_native
         zoneNumber.text = pollingStation?.zone_no
         boothNumbers.text = pollingStation?.booths
-        stationNumber.text = String(describing: (pollingStation?.stn_no!)!)
+        stationNumber.text = String(describing: (pollingStation?.location_no!)!)
         stationBackView.layer.cornerRadius = stationBackView.frame.height/2
         officerName.text = pollingStation?.police_officer_name
         stationNameLabel.text = pollingStation?.name
@@ -53,11 +53,11 @@ class StationViewController: UIViewController {
         conductNumberLabel.text = pollingStation?.conduct_number
         vulnerableView.layer.cornerRadius = 8
         
-        if (pollingStation?.is_vulnerable)!{
+        if (pollingStation?.is_vulnerable)! {
             vulnerableView.alpha = 1
             boothDetails.text = pollingStation?.vulnerable_booth_detail?[0].vul_habitats
             vulType.text = pollingStation?.vulnerable_booth_detail?[0].vul_types
-            vulStation.text = "\((pollingStation?.vulnerable_booth_detail?[0].stn_no))"
+            vulStation.text = "\(String(describing: (pollingStation?.vulnerable_booth_detail?[0].stn_no)))"
         }
         else{
             vulnerableView.alpha = 0
@@ -127,15 +127,3 @@ class StationViewController: UIViewController {
 extension StationViewController: GMSMapViewDelegate{
     
 }
-
-//extension StationViewController: UITableViewDelegate, UITableViewDataSource{
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        //
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        //
-//    }
-//
-//
-//}

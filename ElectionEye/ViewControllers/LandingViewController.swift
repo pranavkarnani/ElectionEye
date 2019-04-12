@@ -21,7 +21,22 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        locationManager.delegate = self
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.pausesLocationUpdatesAutomatically = false
+        
         loginCheck = UserDefaults.standard.value(forKey: "ElectionEye_login") as? Int ?? 0
+        print(loginCheck)
+        
         if Reachability.isConnectedToNetwork() {
             if  loginCheck == 4 {
                 status = "bypass"
@@ -33,16 +48,6 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
         else {
             self.showAlert(title: "Connection Error", message: "You are not connected to the internet")
         }
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        locationManager.delegate = self
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        locationManager.startMonitoringSignificantLocationChanges()
-        locationManager.pausesLocationUpdatesAutomatically = false
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

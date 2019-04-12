@@ -59,7 +59,7 @@ struct StationMaster: Decodable {
 
 struct Station: Decodable {
     var ac_no : String?
-    var stn_no: Int16?
+    var location_no: Int?
     var location_name: String?
     var location_name_native: String?
     var latitude: Float?
