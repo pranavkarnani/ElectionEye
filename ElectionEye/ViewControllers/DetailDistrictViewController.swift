@@ -140,7 +140,7 @@ class DetailDistrictViewController: UIViewController {
 
 extension DetailDistrictViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        let index = Int(marker.title!)!
+        let index = Int(marker.title!) ?? 0
         let poll = pollStations[index]
         print("LOOK HERE")
         print(poll.stn_no!)

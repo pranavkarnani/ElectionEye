@@ -770,16 +770,18 @@
 			baseConfigurationReference = 49D8A7A87364C23B105E2D4A /* Pods-ElectionEye.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2J3WW2KWBU;
+				DEVELOPMENT_TEAM = K5FU82534M;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ap.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = MD.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -790,16 +792,18 @@
 			baseConfigurationReference = 9D0C585BAAB7878D956E57FB /* Pods-ElectionEye.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2J3WW2KWBU;
+				DEVELOPMENT_TEAM = K5FU82534M;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ap.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = MD.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
