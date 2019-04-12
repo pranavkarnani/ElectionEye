@@ -32,7 +32,7 @@ class DetailDistrictViewController: UIViewController {
         contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
         self.userRole = UserDefaults.standard.value(forKey: "ElectionEye_role") as? Bool ?? false
         for pollStation in pollStations{
-            markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+            markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
         fpcSetup()
     }
@@ -40,7 +40,7 @@ class DetailDistrictViewController: UIViewController {
     @objc func refreshMap() {
         mapView.clear()
         for pollStation in pollStations{
-            markOnMap(title: String(describing: pollStation.stn_no!), latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+            markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
         
         if userRole{

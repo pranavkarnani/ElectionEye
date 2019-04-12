@@ -45,6 +45,7 @@
 		8171EB0A2258C02300C5D032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8171EB082258C02300C5D032 /* LaunchScreen.storyboard */; };
 		8171EB152258C02300C5D032 /* ElectionEyeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171EB142258C02300C5D032 /* ElectionEyeTests.swift */; };
 		8171EB202258C02300C5D032 /* ElectionEyeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171EB1F2258C02300C5D032 /* ElectionEyeUITests.swift */; };
+		81B6A4592260CB4400B08FB9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6A4582260CB4400B08FB9 /* Reachability.swift */; };
 		81B7CAE1225A90110043B9AA /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B7CAE0225A90110043B9AA /* LandingViewController.swift */; };
 		81CF9C00225B4139008B0034 /* DistrictSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF9BFF225B4139008B0034 /* DistrictSearchViewController.swift */; };
 		81CF9C04225C7037008B0034 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF9C03225C7037008B0034 /* StationViewController.swift */; };
@@ -119,6 +120,7 @@
 		8171EB1B2258C02300C5D032 /* ElectionEyeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElectionEyeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8171EB1F2258C02300C5D032 /* ElectionEyeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectionEyeUITests.swift; sourceTree = "<group>"; };
 		8171EB212258C02300C5D032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81B6A4582260CB4400B08FB9 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		81B7CAE0225A90110043B9AA /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		81CF9BFF225B4139008B0034 /* DistrictSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictSearchViewController.swift; sourceTree = "<group>"; };
 		81CF9C03225C7037008B0034 /* StationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				30BB7584225927CF00D6AA47 /* style.json */,
 				816C146F2258C23E00EFF30B /* Requests.swift */,
+				81B6A4582260CB4400B08FB9 /* Reachability.swift */,
 				816C14712258C24500EFF30B /* Model.swift */,
 				8104260E225D257E00150323 /* DataHandler.swift */,
 				30BB758A2259351600D6AA47 /* Extensions.swift */,
@@ -591,6 +594,7 @@
 				30BB758B2259351600D6AA47 /* Extensions.swift in Sources */,
 				8104260F225D257E00150323 /* DataHandler.swift in Sources */,
 				816C14702258C23E00EFF30B /* Requests.swift in Sources */,
+				81B6A4592260CB4400B08FB9 /* Reachability.swift in Sources */,
 				30ADF3CC225C9F4C00083025 /* StationSearchViewController.swift in Sources */,
 				8171EAFF2258C02200C5D032 /* LoginViewController.swift in Sources */,
 				8171EAFD2258C02200C5D032 /* AppDelegate.swift in Sources */,
@@ -772,14 +776,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K5FU82534M;
+				DEVELOPMENT_TEAM = 2J3WW2KWBU;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MD.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = ap.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -794,14 +798,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K5FU82534M;
+				DEVELOPMENT_TEAM = 2J3WW2KWBU;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MD.ElectionEye;
+				PRODUCT_BUNDLE_IDENTIFIER = ap.ElectionEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

@@ -70,7 +70,7 @@ class StationViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19), zoom: 12.0)
-        markOnMap(title: (pollingStation?.location_name)!, latitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19))
+        markOnMap(station: (pollingStation)!, latitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19))
         mapView.camera = camera
     }
     

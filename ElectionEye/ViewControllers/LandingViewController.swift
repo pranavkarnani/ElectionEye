@@ -14,20 +14,26 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
     var status = ""
     var performSegue = false
     let locationManager = CLLocationManager()
-    var userToken = ""
+    var loginCheck = 0
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
-        userToken = UserDefaults.standard.value(forKey: "ElectionEye_token") as? String ?? ""
-        if  userToken != "" {
-            status = "bypass"
+        loginCheck = UserDefaults.standard.value(forKey: "ElectionEye_login") as? Int ?? 0
+        if Reachability.isConnectedToNetwork() {
+            if  loginCheck == 4 {
+                status = "bypass"
+            }
+            else {
+                status = "toLogin"
+            }
         }
         else {
-            status = "toLogin"
+            self.showAlert(title: "Connection Error", message: "You are not connected to the internet")
         }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
