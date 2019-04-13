@@ -193,7 +193,7 @@ class DataHandler {
             request.predicate = predicate
             
             let results = try context.fetch(request) as! [NSManagedObject]
-            print(results.count)
+//            print(results.count)
             
             
            

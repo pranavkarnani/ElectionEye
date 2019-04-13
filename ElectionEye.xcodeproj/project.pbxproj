@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301EAC29226107D200C44AE9 /* FirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301EAC28226107D200C44AE9 /* FirstTableViewCell.swift */; };
+		301EAC2B226107E000C44AE9 /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301EAC2A226107E000C44AE9 /* SecondTableViewCell.swift */; };
+		301EAC2D226107EA00C44AE9 /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301EAC2C226107EA00C44AE9 /* ThirdTableViewCell.swift */; };
+		301EAC2F226107F400C44AE9 /* FourthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301EAC2E226107F400C44AE9 /* FourthTableViewCell.swift */; };
+		301EAC31226107FC00C44AE9 /* FifthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301EAC30226107FC00C44AE9 /* FifthTableViewCell.swift */; };
+		301EAC332261080800C44AE9 /* SixthTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301EAC322261080800C44AE9 /* SixthTableViewCell.swift */; };
+		301EAC352261081200C44AE9 /* SeventhTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301EAC342261081200C44AE9 /* SeventhTableViewCell.swift */; };
 		3081B62A225A787000AD0E1D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3081B629225A787000AD0E1D /* SearchTableViewCell.swift */; };
 		30ADF3CC225C9F4C00083025 /* StationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ADF3CB225C9F4C00083025 /* StationSearchViewController.swift */; };
 		30B139C42258FF0500557FDF /* Lato-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30B139B02258FF0400557FDF /* Lato-HeavyItalic.ttf */; };
@@ -73,6 +80,13 @@
 
 /* Begin PBXFileReference section */
 		28047D25DCA42DA51708C932 /* Pods-ElectionEyeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElectionEyeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElectionEyeTests/Pods-ElectionEyeTests.release.xcconfig"; sourceTree = "<group>"; };
+		301EAC28226107D200C44AE9 /* FirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstTableViewCell.swift; path = ElectionEye/View/FirstTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		301EAC2A226107E000C44AE9 /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
+		301EAC2C226107EA00C44AE9 /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
+		301EAC2E226107F400C44AE9 /* FourthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthTableViewCell.swift; sourceTree = "<group>"; };
+		301EAC30226107FC00C44AE9 /* FifthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthTableViewCell.swift; sourceTree = "<group>"; };
+		301EAC322261080800C44AE9 /* SixthTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixthTableViewCell.swift; sourceTree = "<group>"; };
+		301EAC342261081200C44AE9 /* SeventhTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeventhTableViewCell.swift; sourceTree = "<group>"; };
 		3081B629225A787000AD0E1D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		30ADF3CB225C9F4C00083025 /* StationSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSearchViewController.swift; sourceTree = "<group>"; };
 		30B139B02258FF0400557FDF /* Lato-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HeavyItalic.ttf"; sourceTree = "<group>"; };
@@ -190,6 +204,13 @@
 			isa = PBXGroup;
 			children = (
 				3081B629225A787000AD0E1D /* SearchTableViewCell.swift */,
+				301EAC28226107D200C44AE9 /* FirstTableViewCell.swift */,
+				301EAC2A226107E000C44AE9 /* SecondTableViewCell.swift */,
+				301EAC2C226107EA00C44AE9 /* ThirdTableViewCell.swift */,
+				301EAC2E226107F400C44AE9 /* FourthTableViewCell.swift */,
+				301EAC30226107FC00C44AE9 /* FifthTableViewCell.swift */,
+				301EAC322261080800C44AE9 /* SixthTableViewCell.swift */,
+				301EAC342261081200C44AE9 /* SeventhTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -587,17 +608,24 @@
 				81CF9C00225B4139008B0034 /* DistrictSearchViewController.swift in Sources */,
 				81CF9C04225C7037008B0034 /* StationViewController.swift in Sources */,
 				816C14722258C24500EFF30B /* Model.swift in Sources */,
+				301EAC332261080800C44AE9 /* SixthTableViewCell.swift in Sources */,
+				301EAC31226107FC00C44AE9 /* FifthTableViewCell.swift in Sources */,
 				8171EB052258C02200C5D032 /* ElectionEye.xcdatamodeld in Sources */,
 				81B7CAE1225A90110043B9AA /* LandingViewController.swift in Sources */,
+				301EAC2D226107EA00C44AE9 /* ThirdTableViewCell.swift in Sources */,
+				301EAC2F226107F400C44AE9 /* FourthTableViewCell.swift in Sources */,
 				30B15774225B9AE200FB0D76 /* DetailDistrictViewController.swift in Sources */,
 				30BB75812259224400D6AA47 /* DistrictViewController.swift in Sources */,
 				30BB758B2259351600D6AA47 /* Extensions.swift in Sources */,
 				8104260F225D257E00150323 /* DataHandler.swift in Sources */,
+				301EAC352261081200C44AE9 /* SeventhTableViewCell.swift in Sources */,
 				816C14702258C23E00EFF30B /* Requests.swift in Sources */,
 				81B6A4592260CB4400B08FB9 /* Reachability.swift in Sources */,
+				301EAC2B226107E000C44AE9 /* SecondTableViewCell.swift in Sources */,
 				30ADF3CC225C9F4C00083025 /* StationSearchViewController.swift in Sources */,
 				8171EAFF2258C02200C5D032 /* LoginViewController.swift in Sources */,
 				8171EAFD2258C02200C5D032 /* AppDelegate.swift in Sources */,
+				301EAC29226107D200C44AE9 /* FirstTableViewCell.swift in Sources */,
 				3081B62A225A787000AD0E1D /* SearchTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

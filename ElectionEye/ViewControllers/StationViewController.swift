@@ -11,70 +11,32 @@ class StationViewController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
-    var pollingStation: Station?
+    var pollingStation = Station()
     
-    @IBOutlet weak var locationNameLabel: UILabel!
-    @IBOutlet weak var nativeNameLabel: UILabel!
-    @IBOutlet weak var zoneNumber: UILabel!
-    @IBOutlet weak var boothNumbers: UILabel!
-    @IBOutlet weak var stationNumber: UILabel!
-    @IBOutlet weak var stationBackView: UIView!
-    @IBOutlet weak var officerName: UILabel!
-    @IBOutlet weak var vulnerableView: UIView!
-    @IBOutlet weak var vulStation: UILabel!
-    @IBOutlet weak var vulType: UILabel!
-    @IBOutlet weak var boothDetails: UILabel!
-    @IBOutlet weak var stationNameLabel: UILabel!
-    @IBOutlet weak var stationAddressLabel: UILabel!
-    @IBOutlet weak var officerRankLabel: UILabel!
-    @IBOutlet weak var officerContactLabel: UILabel!
-    @IBOutlet weak var policeStationLabel: UILabel!
-    @IBOutlet weak var sectionalOfficerLabel: UILabel!
-    @IBOutlet weak var conductNumberLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         mapSetup()
-        locationNameLabel.text = pollingStation?.location_name
-        nativeNameLabel.text = pollingStation?.location_name_native
-        zoneNumber.text = pollingStation?.zone_no
-        boothNumbers.text = pollingStation?.booths
-        stationNumber.text = String(describing: (pollingStation?.location_no!)!)
-        stationBackView.layer.cornerRadius = stationBackView.frame.height/2
-        officerName.text = pollingStation?.police_officer_name
-        stationNameLabel.text = pollingStation?.name
-        stationAddressLabel.text = pollingStation?.stn_address
-        officerRankLabel.text = pollingStation?.officer_rank
-        officerContactLabel.text = pollingStation?.officer_contact_number
-        policeStationLabel.text = pollingStation?.police_station
-        sectionalOfficerLabel.text = pollingStation?.sec_officer_names
-        conductNumberLabel.text = pollingStation?.conduct_number
-        vulnerableView.layer.cornerRadius = 8
+        print(pollingStation)
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        if (pollingStation?.is_vulnerable)! {
-            vulnerableView.alpha = 1
-            boothDetails.text = pollingStation?.vulnerable_booth_detail?[0].vul_habitats
-            vulType.text = pollingStation?.vulnerable_booth_detail?[0].vul_types
-            vulStation.text = "\(String(describing: (pollingStation?.vulnerable_booth_detail?[0].stn_no)))"
-        }
-        else{
-            vulnerableView.alpha = 0
-            boothDetails.text = "None"
-            vulType.text = "None"
-            vulStation.text = "All Stations are safe"
-        }
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19), zoom: 12.0)
-        markOnMap(station: (pollingStation)!, latitude: CLLocationDegrees(pollingStation?.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation?.longitude ?? 79.19))
+        let camera = GMSCameraPosition.camera(withLatitude: CLLocationDegrees(pollingStation.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation.longitude ?? 79.19), zoom: 12.0)
+        markOnMap(station: pollingStation, latitude: CLLocationDegrees(pollingStation.latitude ?? 12.93), longitude: CLLocationDegrees(pollingStation.longitude ?? 79.19))
         mapView.camera = camera
     }
     
     func setup(){
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
         backButton.makeCard()
         backButton.layer.cornerRadius = backButton.frame.height/2
     }
@@ -101,7 +63,7 @@ class StationViewController: UIViewController {
     
     func markOnMap(station: Station,latitude: Double, longitude:Double) {
         let marker = GMSMarker()
-        if station.is_vulnerable!{
+        if station.is_vulnerable ?? false{
             marker.icon = UIImage(named: "Vul")
         }
         else{
@@ -114,7 +76,7 @@ class StationViewController: UIViewController {
     }
     
     @IBAction func callTapped(_ sender: Any) {
-        if let url = URL(string: "tel://\(pollingStation!.officer_contact_number!)"), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: "tel://\(pollingStation.officer_contact_number!)"), UIApplication.shared.canOpenURL(url) {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url)
             } else {
@@ -125,5 +87,80 @@ class StationViewController: UIViewController {
 }
 
 extension StationViewController: GMSMapViewDelegate{
+    
+}
+
+extension StationViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = pollingStation.vulnerable_booth_detail?.count{
+            return 6 + count
+        }
+        else{
+            return 6
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1") as! FirstTableViewCell
+            cell.locationName.text = pollingStation.location_name
+            cell.nativeName.text = pollingStation.location_name_native
+            cell.stationNum.text = String(describing: pollingStation.location_no!)
+            return cell
+        }
+        if indexPath.row == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! SecondTableViewCell
+            cell.stationName.text = pollingStation.name
+            cell.stationAddress.text = pollingStation.stn_address
+            return cell
+        }
+        if indexPath.row == 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell3") as! ThirdTableViewCell
+            cell.zoneNumber.text = pollingStation.zone_no
+            cell.boothsNumber.text = pollingStation.booths
+            return cell
+        }
+        if indexPath.row == 3{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell4") as! FourthTableViewCell
+            cell.officerContactNumber.text = pollingStation.officer_contact_number
+            cell.officerName.text = pollingStation.police_officer_name
+            cell.officerRank.text = pollingStation.officer_rank
+            if pollingStation.is_vulnerable == true{
+                cell.vulnerableView.alpha = 1
+            }
+            else{
+                cell.vulnerableView.alpha = 0
+            }
+            return cell
+        }
+        if indexPath.row == 4{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell5") as! FifthTableViewCell
+            cell.policeStationDetails.text = pollingStation.police_station
+            return cell
+        }
+        if pollingStation.is_vulnerable == true{
+            let vul = pollingStation.vulnerable_booth_detail?.count
+            if indexPath.row < 4+vul!{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell6") as! SixthTableViewCell
+                cell.vulBoothDetails.text = pollingStation.vulnerable_booth_detail![indexPath.row-5].vul_habitats
+                cell.vulStations.text = pollingStation.vulnerable_booth_detail![indexPath.row-5].stn_name
+                cell.vulType.text = pollingStation.vulnerable_booth_detail![indexPath.row-5].vul_types
+                return cell
+            }
+            else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell7") as! SeventhTableViewCell
+                cell.secOfficerName.text = pollingStation.sec_officer_names
+                cell.ConductNumber.text = pollingStation.conduct_number
+                return cell
+            }
+        }
+        else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell7") as! SeventhTableViewCell
+            cell.secOfficerName.text = pollingStation.sec_officer_names
+            cell.ConductNumber.text = pollingStation.conduct_number
+            return cell
+        }
+    }
+    
     
 }

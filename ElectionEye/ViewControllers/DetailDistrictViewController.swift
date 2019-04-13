@@ -13,8 +13,7 @@ import FloatingPanel
 class DetailDistrictViewController: UIViewController {
 
     var pollStations = [PollStation]()
-    var stations = [Station]()
-    var stationDetails = Station()
+    var stations = Station()
     var userRole : Bool = false
     var fromModal = false
     
@@ -30,13 +29,15 @@ class DetailDistrictViewController: UIViewController {
         super.viewDidLoad()
         mapSetup()
         contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
-        self.userRole = UserDefaults.standard.value(forKey: "ElectionEye_role") as? Bool ?? false
-        for pollStation in pollStations {
-            
+        
+        for pollStation in pollStations{
             markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
-            print(pollStation)
         }
         fpcSetup()
+        
+        self.userRole = UserDefaults.standard.value(forKey: "ElectionEye_role") as? Bool ?? false
+//        print(self.userRole!)
+        // Do any additional setup after loading the view.
     }
     
     @objc func refreshMap() {
@@ -44,10 +45,12 @@ class DetailDistrictViewController: UIViewController {
         for pollStation in pollStations{
             markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
-        if userRole{
-            for location in locations{
-                carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
-            }
+        if userRole {
+                for location in locations{
+                    print(location)
+                    carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
+                }
+        
         }
     }
     
@@ -99,14 +102,16 @@ class DetailDistrictViewController: UIViewController {
             if status {
                 if stations.is_vulnerable == true {
                     marker.icon = UIImage(named: "Vul")
+                    print("\(stations.location_name!) is vul\n")
+                    marker.title = "\(stations.location_no!)"
                 }
                 else{
                     marker.icon = UIImage(named: "Safe")
+                    marker.title = "\(stations.location_no!)"
                 }
             }
         }
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        marker.title = "\(station.stn_no!)"
         marker.snippet = "Tamil Nadu"
         marker.map = mapView
     }
@@ -134,7 +139,7 @@ class DetailDistrictViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         timer?.invalidate()
         if let viewController = segue.destination as? StationViewController {
-            viewController.pollingStation = stationDetails
+            viewController.pollingStation = stations
         }
     }
     
@@ -143,10 +148,15 @@ class DetailDistrictViewController: UIViewController {
 extension DetailDistrictViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         let index = Int(marker.title!)
-        let poll = pollStations[index!]
+        var poll = PollStation()
+        if let polls = pollStations.first(where: {$0.stn_no == index}) {
+            poll = polls
+        } else {
+            // item could not be found
+        }
         DataHandler.shared.retrieveStations(ac_no: poll.ac_no!, stn_no: poll.stn_no!) { (stations, status) in
             if status {
-                print(stations.is_vulnerable)
+                self.stations = stations
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "station", sender: Any?.self)
                 }
