@@ -38,9 +38,19 @@
         <attribute name="stn_no" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="zone_no" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="VulneribilityData" representedClassName="VulneribilityData" syncable="YES" codeGenerationType="class">
+        <attribute name="ac_no" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="polling_location_no" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="stn_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stn_no" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="undersirable_elements" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vul_habitats" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vul_types" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="ConstituencyData" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="PollingStationData" positionX="-63" positionY="9" width="128" height="195"/>
         <element name="StationData" positionX="-63" positionY="9" width="128" height="315"/>
+        <element name="VulneribilityData" positionX="-63" positionY="135" width="128" height="150"/>
     </elements>
 </model>

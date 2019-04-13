@@ -144,6 +144,7 @@ class Requests : WebSocketDelegate {
             do {
                 stationArray = try JSONDecoder().decode(StationMaster.self, from: data).stations!
                 DataHandler.shared.persistStations(stations : stationArray)
+                DataHandler.shared.persistVulneribility(stations : stationArray)
                 completion(true)
             } catch {
                 completion(false)

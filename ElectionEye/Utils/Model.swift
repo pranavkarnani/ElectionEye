@@ -76,7 +76,6 @@ struct Station: Decodable {
     var sec_officer_names: String?
     var conduct_number: String? //
     var name: String?
-
     var vulnerable_booth_detail: [BoothDetails]?
 }
 

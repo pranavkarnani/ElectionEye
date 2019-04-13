@@ -95,7 +95,27 @@ class DataHandler {
                 print(error.localizedDescription)
             }
         }
-        
+    }
+    
+    func persistVulneribility(stations: [Station]) {
+        DispatchQueue.main.async {
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            let context = delegate.persistentContainer.viewContext
+            for item in stations {
+                if item.is_vulnerable ?? false {
+                    let entity = NSEntityDescription.insertNewObject(forEntityName: "VulneribilityData", into: context)
+                    for vulneribilityDetails in item.vulnerable_booth_detail! {
+                        entity.setValue(item.ac_no, forKey: "ac_no")
+                        entity.setValue(item.location_no, forKey: "stn_no")
+                        entity.setValue(vulneribilityDetails.polling_location_no, forKey: "polling_location_no")
+                        entity.setValue(vulneribilityDetails.stn_name, forKey: "stn_name")
+                        entity.setValue(vulneribilityDetails.undersirable_elements, forKey: "undersirable_elements")
+                        entity.setValue(vulneribilityDetails.vul_habitats, forKey: "vul_habitats")
+                        entity.setValue(vulneribilityDetails.vul_types, forKey: "vul_types")
+                    }
+                }
+            }
+        }
     }
     
     func retrieveConstituencies(completion : @escaping([Constituency],Bool) -> ()) {
@@ -201,6 +221,43 @@ class DataHandler {
             completion(station,true)
         } catch {
             completion(station,false)
+            print("error")
+        }
+    }
+    
+    func retrieveVulneribility(ac_no: String, stn_no : Int, completion : @escaping([BoothDetails],Bool) -> ()) {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        var boothVul : [BoothDetails] = []
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StationData")
+        
+        do {
+            let constPredicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])
+            let stationPredicate = NSPredicate(format: "stn_no == \(stn_no)")
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [constPredicate,stationPredicate])
+            request.predicate = predicate
+            
+            let results = try context.fetch(request) as! [NSManagedObject]
+            print(results.count)
+            
+            for item in results {
+                var vul = BoothDetails()
+                vul.polling_location_no = item.value(forKey: "polling_location_no") as? Int ?? 0
+                vul.stn_name = item.value(forKey: "stn_name") as? String ?? ""
+                vul.stn_no = item.value(forKey: "stn_no") as? Int ?? 0
+                vul.undersirable_elements = item.value(forKey: "undersirable_elements") as? String ?? ""
+                vul.vul_habitats = item.value(forKey: "vul_habitats") as? String ?? ""
+                vul.vul_types = item.value(forKey: "vul_types") as? String ?? ""
+                
+                boothVul.append(vul)
+                
+                if boothVul.count == results.count {
+                    completion(boothVul,true)
+                }
+            }
+        }
+        catch {
+            completion(boothVul,false)
             print("error")
         }
     }
