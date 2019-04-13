@@ -43,9 +43,9 @@
 		<dict/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The FBI wants to know your location</string>
+	<string>ElectionEye needs access to your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The FBI wants to know your location</string>
+	<string>ElectionEye needs access to your location</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
