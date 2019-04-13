@@ -24,7 +24,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
+        DataHandler.shared.clear { (clear) in
+            if clear {
+                self.fetchData()
+            }
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -146,5 +151,8 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    
+    
 }
 

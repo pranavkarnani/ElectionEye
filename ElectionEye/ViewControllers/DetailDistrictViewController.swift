@@ -67,13 +67,13 @@ class DetailDistrictViewController: UIViewController {
         for pollStation in pollStations{
             markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
         }
-        if userRole {
+        //if userRole {
                 for location in locations{
                     print("🚔 \(location)")
                     carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
                 }
         
-        }
+       // }
     }
     
     override func viewDidAppear(_ animated: Bool) {

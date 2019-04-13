@@ -268,4 +268,23 @@ class DataHandler {
             print("❌ Couldn't retrieve station vulnerabilities")
         }
     }
+    
+    func clear(completion : @escaping(Bool) -> ()) {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        for item in ["VulneribilityData","StationData","PollingStationData","ConstituencyData"] {
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CurrentCourse")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+            do {
+                try context.execute(deleteRequest)
+                try context.save()
+                if item == "ConstituencyData" {
+                    completion(true)
+                }
+            } catch {
+                completion(false)
+                print ("There was an error")
+            }
+        }
+    }
 }
