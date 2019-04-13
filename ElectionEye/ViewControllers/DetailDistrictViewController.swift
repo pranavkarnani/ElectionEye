@@ -102,7 +102,7 @@ class DetailDistrictViewController: UIViewController {
             if status {
                 if stations.is_vulnerable == true {
                     marker.icon = UIImage(named: "Vul")
-                    print("\(stations.location_name!) is vul\n")
+//                    print("\(stations.location_name!) is vul\n")
                     marker.title = "\(stations.location_no!)"
                 }
                 else{
@@ -157,8 +157,23 @@ extension DetailDistrictViewController: GMSMapViewDelegate{
         DataHandler.shared.retrieveStations(ac_no: poll.ac_no!, stn_no: poll.stn_no!) { (stations, status) in
             if status {
                 self.stations = stations
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "station", sender: Any?.self)
+                if stations.is_vulnerable == true{
+                    DataHandler.shared.retrieveVulneribility(ac_no: poll.ac_no!, stn_no: poll.stn_no!, completion: { (booths, status) in
+                        if status{
+                            self.stations.vulnerable_booth_detail = booths
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "station", sender: Any?.self)
+                            }
+                        }
+                        else{
+                            print("Oops")
+                        }
+                    })
+                }
+                else{
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "station", sender: Any?.self)
+                    }
                 }
             }
             else{

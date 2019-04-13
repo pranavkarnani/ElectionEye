@@ -22,6 +22,7 @@ class StationViewController: UIViewController {
         print(pollingStation)
         tableView.delegate = self
         tableView.dataSource = self
+
         
         // Do any additional setup after loading the view.
     }
@@ -140,7 +141,8 @@ extension StationViewController: UITableViewDelegate, UITableViewDataSource{
         }
         if pollingStation.is_vulnerable == true{
             let vul = pollingStation.vulnerable_booth_detail?.count
-            if indexPath.row < 4+vul!{
+            print(vul)
+            if indexPath.row < 5+vul!{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell6") as! SixthTableViewCell
                 cell.vulBoothDetails.text = pollingStation.vulnerable_booth_detail![indexPath.row-5].vul_habitats
                 cell.vulStations.text = pollingStation.vulnerable_booth_detail![indexPath.row-5].stn_name
@@ -159,6 +161,21 @@ extension StationViewController: UITableViewDelegate, UITableViewDataSource{
             cell.secOfficerName.text = pollingStation.sec_officer_names
             cell.ConductNumber.text = pollingStation.conduct_number
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            return 175
+        }
+        if indexPath.row == 3{
+            return 120
+        }
+        if indexPath.row == 5{
+            return 250
+        }
+        else{
+            return 80
         }
     }
     

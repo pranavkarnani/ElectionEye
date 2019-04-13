@@ -115,6 +115,11 @@ class DataHandler {
                     }
                 }
             }
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -229,7 +234,7 @@ class DataHandler {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
         var boothVul : [BoothDetails] = []
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StationData")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "VulneribilityData")
         
         do {
             let constPredicate = NSPredicate(format: "ac_no = %@", argumentArray: [ac_no])

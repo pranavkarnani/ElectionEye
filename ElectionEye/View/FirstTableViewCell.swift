@@ -17,7 +17,7 @@ class FirstTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        stationBack.layer.cornerRadius = stationBack.frame.height/2
+        stationBack.layer.cornerRadius = self.contentView.frame.height/2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

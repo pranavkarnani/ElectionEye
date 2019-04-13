@@ -16,6 +16,7 @@ class FourthTableViewCell: UITableViewCell {
     @IBOutlet weak var officerContactNumber: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        vulnerableView.layer.cornerRadius = 8
         // Initialization code
     }
 
