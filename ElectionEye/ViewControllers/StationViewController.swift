@@ -45,7 +45,7 @@ class StationViewController: UIViewController {
         }
         setup()
         mapSetup()
-        print("🏢 \(pollingStation.location_name!)" )
+        print("🏢 \(pollingStation.location_name!)")
         tableView.delegate = self
         tableView.dataSource = self
 
