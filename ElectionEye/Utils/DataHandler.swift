@@ -255,6 +255,10 @@ class DataHandler {
                     completion(boothVul,true)
                 }
             }
+            
+            if results.count == 0 {
+                completion(boothVul,false)
+            }
         }
         catch {
             completion(boothVul,false)
