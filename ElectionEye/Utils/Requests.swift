@@ -178,6 +178,7 @@ class Requests : WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print(text)
         if let locationDetails = text.data(using: .utf8, allowLossyConversion: false) {
             do {
                 let locationList = try JSON(data: locationDetails)

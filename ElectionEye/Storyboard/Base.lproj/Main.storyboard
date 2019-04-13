@@ -195,16 +195,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7L6-vt-K5g" customClass="GMSMapView">
-                                <rect key="frame" x="20" y="50" width="335" height="565"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7L6-vt-K5g" firstAttribute="centerX" secondItem="59s-f2-xlc" secondAttribute="centerX" id="Cg0-gu-crk"/>
-                            <constraint firstItem="7L6-vt-K5g" firstAttribute="leading" secondItem="Wmz-kT-iHo" secondAttribute="leading" constant="20" id="IlG-89-tGm"/>
-                            <constraint firstItem="Wmz-kT-iHo" firstAttribute="trailing" secondItem="7L6-vt-K5g" secondAttribute="trailing" constant="20" id="W51-t7-hMX"/>
-                            <constraint firstItem="7L6-vt-K5g" firstAttribute="height" secondItem="59s-f2-xlc" secondAttribute="height" multiplier="0.85" constant="-1.9499999999999318" id="rJ5-cn-qQ5"/>
+                            <constraint firstItem="7L6-vt-K5g" firstAttribute="leading" secondItem="Wmz-kT-iHo" secondAttribute="leading" id="IlG-89-tGm"/>
+                            <constraint firstItem="Wmz-kT-iHo" firstAttribute="trailing" secondItem="7L6-vt-K5g" secondAttribute="trailing" id="W51-t7-hMX"/>
+                            <constraint firstItem="7L6-vt-K5g" firstAttribute="height" secondItem="59s-f2-xlc" secondAttribute="height" constant="-1.9499999999999318" id="rJ5-cn-qQ5"/>
                             <constraint firstItem="7L6-vt-K5g" firstAttribute="centerY" secondItem="59s-f2-xlc" secondAttribute="centerY" constant="-1" id="yNJ-Vu-xto"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wmz-kT-iHo"/>
@@ -333,7 +333,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1575.2" y="22.938530734632685"/>
+            <point key="canvasLocation" x="1574" y="27"/>
         </scene>
         <!--Station Search View Controller-->
         <scene sceneID="kCQ-rL-mFi">
@@ -525,7 +525,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="O6e-Q8-Qj2">
-                                                    <rect key="frame" x="15" y="18.5" width="345" height="42.5"/>
+                                                    <rect key="frame" x="15" y="19" width="345" height="42.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FUI-8K-3Kr">
                                                             <rect key="frame" x="0.0" y="0.0" width="148.5" height="42.5"/>
@@ -587,7 +587,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="96w-v8-ork">
-                                                    <rect key="frame" x="15" y="12" width="138" height="95.5"/>
+                                                    <rect key="frame" x="15" y="12.5" width="138" height="95.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gUp-qD-6Ex">
                                                             <rect key="frame" x="0.0" y="0.0" width="138" height="95.5"/>
@@ -621,7 +621,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-fA-xau">
-                                                    <rect key="frame" x="285" y="42" width="75" height="35.5"/>
+                                                    <rect key="frame" x="285" y="42" width="75" height="36"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vulnerable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWm-cy-Ngf">
                                                             <rect key="frame" x="4.5" y="9.5" width="66" height="17"/>
@@ -661,7 +661,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="GI3-Kb-tF8">
-                                                    <rect key="frame" x="15" y="21.5" width="345" height="36.5"/>
+                                                    <rect key="frame" x="15" y="22" width="345" height="36.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Police Station" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1B-9b-xjK">
                                                             <rect key="frame" x="0.0" y="0.0" width="79" height="22"/>
@@ -696,7 +696,7 @@
                                         <rect key="frame" x="0.0" y="468" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AXU-xE-4tl" id="taR-aP-VpA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89, 90, 91" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxC-OX-YTc">
@@ -768,7 +768,7 @@
                                         <rect key="frame" x="0.0" y="588" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VbD-pc-T2O" id="pSD-Yw-dv3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="101" translatesAutoresizingMaskIntoConstraints="NO" id="tzg-pT-93H">
@@ -870,7 +870,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xf2-se-hUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1573.5999999999999" y="740.7796101949026"/>
+            <point key="canvasLocation" x="1633" y="741"/>
         </scene>
     </scenes>
     <resources>
