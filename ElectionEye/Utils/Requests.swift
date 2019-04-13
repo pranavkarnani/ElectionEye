@@ -65,7 +65,7 @@ class Requests : WebSocketDelegate {
                     userDetails = try JSONDecoder().decode(UserRoles.self, from: data)
                     completion(userDetails,true)
                 } catch {
-                    print(error.localizedDescription)
+                    print("❗️ \(error.localizedDescription)")
                     completion(userDetails,false)
                 }
                 completion(userDetails,true)
@@ -86,7 +86,7 @@ class Requests : WebSocketDelegate {
                     zones = try JSONDecoder().decode([Zones].self, from: data)
                     completion(zones,true)
                 } catch {
-                    print(error.localizedDescription)
+                    print("❗️ \(error.localizedDescription)")
                     completion(zones,false)
                 }
             }
@@ -164,16 +164,16 @@ class Requests : WebSocketDelegate {
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
-        print(socket)
+        print("✅ \(socket.isConnected)")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if let e = error as? WSError {
-            print("websocket is disconnected: \(e.message)")
+            print("❌ Websocket is disconnected: \(e.message)")
         } else if let e = error {
-            print("websocket is disconnected: \(e.localizedDescription)")
+            print("❌ Websocket is disconnected: \(e.localizedDescription)")
         } else {
-            print("websocket disconnected")
+            print("❌ Websocket disconnected")
         }
     }
     
@@ -197,16 +197,16 @@ class Requests : WebSocketDelegate {
                 
                 
             } catch {
-                print("error")
+                print("❌ Did not recieve location")
             }
         }
         else {
-            print("retry")
+            print("🔁 Retry")
         }
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("Received data: \(data.count)")
+        print("⬇️ Received data: \(data.count)")
     }
     
     func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()) {

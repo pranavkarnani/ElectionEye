@@ -40,7 +40,6 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
                         })
                         
                     }
-                    print(self.contentVC.array)
                     self.contentVC.searchTable.reloadData()
                 }
             }
@@ -60,10 +59,10 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
             if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
                 mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
             } else {
-                print("Unable to find style.json")
+                print("❌ Unable to find style.json")
             }
         } catch {
-            print("One or more of the map styles failed to load. \(error)")
+            print("❌ One or more of the map styles failed to load. \(error)")
         }
     }
     
@@ -76,11 +75,6 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
         fpc.track(scrollView: contentVC.searchTable)
         fpc.addPanel(toParent: self)
         fpc.move(to: .tip, animated: true)
-    }
-    
-    func detail(pollStations: [PollStation]){
-        let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
-        self.present(ddvc, animated: true)
     }
     
     func markOnMap(title: String,latitude: Double, longitude:Double) {

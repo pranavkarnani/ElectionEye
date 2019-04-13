@@ -12,14 +12,40 @@ class StationViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
     var pollingStation = Station()
+    var fromModal = false
+    var tappedStation = PollStation()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if fromModal{
+            let poll = tappedStation
+            DataHandler.shared.retrieveStations(ac_no: poll.ac_no!, stn_no: poll.stn_no!) { (stations, status) in
+                if status {
+                    self.pollingStation = stations
+                    if stations.is_vulnerable == true{
+                        DataHandler.shared.retrieveVulneribility(ac_no: poll.ac_no!, stn_no: poll.stn_no!, completion: { (booths, status) in
+                            if status{
+                                self.pollingStation.vulnerable_booth_detail = booths
+                            }
+                            else{
+                                print("❌ Unable to Fetch")
+                            }
+                        })
+                    }
+                }
+                else{
+                    self.showAlert(title: "Couldn't Fetch", message: "Fuck.")
+                }
+            }
+        }
+        else{
+            
+        }
         setup()
         mapSetup()
-        print(pollingStation)
+        print("🏢 \(pollingStation.name)" )
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -49,10 +75,10 @@ class StationViewController: UIViewController {
             if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
                 mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
             } else {
-                print("Unable to find style.json")
+                print("❌ Unable to find style.json")
             }
         } catch {
-            print("One or more of the map styles failed to load. \(error)")
+            print("❌ One or more of the map styles failed to load. \(error)")
         }
     }
     
@@ -141,7 +167,7 @@ extension StationViewController: UITableViewDelegate, UITableViewDataSource{
         }
         if pollingStation.is_vulnerable == true{
             let vul = pollingStation.vulnerable_booth_detail?.count
-            print(vul)
+//            print(vul)
             if indexPath.row < 5+vul!{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell6") as! SixthTableViewCell
                 cell.vulBoothDetails.text = pollingStation.vulnerable_booth_detail![indexPath.row-5].vul_habitats

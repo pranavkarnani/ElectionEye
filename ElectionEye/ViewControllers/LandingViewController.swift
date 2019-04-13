@@ -35,7 +35,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.pausesLocationUpdatesAutomatically = false
         
         loginCheck = UserDefaults.standard.value(forKey: "ElectionEye_login") as? Int ?? 0
-        print(loginCheck)
+        print("🔓 \(loginCheck)")
         
         if Reachability.isConnectedToNetwork() {
             if  loginCheck == 4 {

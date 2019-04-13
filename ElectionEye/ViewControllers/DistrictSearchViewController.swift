@@ -19,7 +19,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.searchTable.register(SearchTableViewCell.self, forCellReuseIdentifier: "searchCell")
+        
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
@@ -86,45 +86,21 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
         }
         if searchController.isActive == true {
             searchController.dismiss(animated: true, completion: {
-                let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
-                let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "District") as! DistrictViewController
-                let ac_no: String?
-                ac_no = self.constituency.ac_no
-                DataHandler.shared.retrievePollingStations(ac_no: ac_no!) { (pollstation, status) in
-                    if status{
-                        DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: {
-                                ddvc.fromModal = true
-                                ddvc.pollStations = pollstation
-                                ddvc.modalTransitionStyle = .coverVertical
-                                dvc.present(ddvc, animated: true)
-                            })
-                        }
-                    }
-                }
-
+                print("✅ Tapped \(self.constituency.name!)")
+                let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
+                dvc.fromModal = true
+                dvc.constituency = self.constituency
+                self.parent?.present(dvc, animated: true, completion: nil)
             })
         }
         else{
-            let ddvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
-            let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "District") as! DistrictViewController
-            let ac_no: String?
-            ac_no = constituency.ac_no
-            DataHandler.shared.retrievePollingStations(ac_no: ac_no!) { (pollstation, status) in
-                if status{
-                    DispatchQueue.main.async {
-                        dvc.fpc.hide()
-                        self.dismiss(animated: true, completion: {
-                            ddvc.fromModal = true
-                            ddvc.pollStations = pollstation
-                            ddvc.modalTransitionStyle = .coverVertical
-                            dvc.present(ddvc,animated: true)
-                        })
-                    }
-                }
-            }
+            print("✅ Tapped \(constituency.name!)")
+            let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
+            dvc.fromModal = true
+            dvc.constituency = self.constituency
+            self.parent?.present(dvc, animated: true, completion: nil)
         }
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

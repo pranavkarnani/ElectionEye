@@ -30,7 +30,7 @@ class DataHandler {
             do {
                 try context.save()
             } catch {
-                print(error.localizedDescription)
+                print("❗️ \(error.localizedDescription)")
             }
         }
     }
@@ -58,7 +58,7 @@ class DataHandler {
             do {
                 try context.save()
             } catch {
-                print(error.localizedDescription)
+                print("❗️ \(error.localizedDescription)")
             }
         }
     }
@@ -92,7 +92,7 @@ class DataHandler {
             do {
                 try context.save()
             } catch {
-                print(error.localizedDescription)
+                print("❗️ \(error.localizedDescription)")
             }
         }
     }
@@ -118,7 +118,7 @@ class DataHandler {
             do {
                 try context.save()
             } catch {
-                print(error.localizedDescription)
+                print("❗️ \(error.localizedDescription)")
             }
         }
     }
@@ -148,7 +148,7 @@ class DataHandler {
             
         } catch {
             completion([],false)
-            print("error")
+            print("❌ Couldn't retrieve constituencies")
         }
     }
     
@@ -181,7 +181,7 @@ class DataHandler {
             }
         } catch {
             completion([],false)
-            print("error")
+            print("❌ Couldn't retrieve polling stations")
         }
     }
 
@@ -198,7 +198,6 @@ class DataHandler {
             request.predicate = predicate
             
             let results = try context.fetch(request) as! [NSManagedObject]
-//            print(results.count)
             
             
            
@@ -226,7 +225,7 @@ class DataHandler {
             completion(station,true)
         } catch {
             completion(station,false)
-            print("error")
+            print("❌ Couldn't retrieve stations")
         }
     }
     
@@ -243,7 +242,6 @@ class DataHandler {
             request.predicate = predicate
             
             let results = try context.fetch(request) as! [NSManagedObject]
-            print(results.count)
             
             for item in results {
                 var vul = BoothDetails()
@@ -267,7 +265,7 @@ class DataHandler {
         }
         catch {
             completion(boothVul,false)
-            print("error")
+            print("❌ Couldn't retrieve station vulnerabilities")
         }
     }
 }

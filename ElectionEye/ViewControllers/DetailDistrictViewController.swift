@@ -16,6 +16,7 @@ class DetailDistrictViewController: UIViewController {
     var stations = Station()
     var userRole : Bool = false
     var fromModal = false
+    var constituency = Constituency()
     
     let fpc = FloatingPanelController()
     var contentVC = StationSearchViewController()
@@ -27,16 +28,37 @@ class DetailDistrictViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapSetup()
-        contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
-        
-        for pollStation in pollStations{
-            markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+        if fromModal{
+            let ac_no = constituency.ac_no
+            DataHandler.shared.retrievePollingStations(ac_no: ac_no!) { (pollstation, status) in
+                if status{
+                    DispatchQueue.main.async {
+                        self.pollStations = pollstation
+                        self.contentVC = (self.storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
+                        
+                        for pollStation in self.pollStations{
+                            self.markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+                        }
+                        
+                        self.mapSetup()
+                        self.fpcSetup()
+                    }
+                }
+            }
         }
-        fpcSetup()
+        else{
+            contentVC = (storyboard?.instantiateViewController(withIdentifier: "stationSearch") as? StationSearchViewController)!
+            
+            for pollStation in pollStations{
+                markOnMap(station: pollStation, latitude: pollStation.latitude!, longitude: pollStation.longitude!)
+            }
+            
+            mapSetup()
+            fpcSetup()
+        }
         
         self.userRole = UserDefaults.standard.value(forKey: "ElectionEye_role") as? Bool ?? false
-//        print(self.userRole!)
+        print("🙋🏻‍♂️ \(self.userRole)")
         // Do any additional setup after loading the view.
     }
     
@@ -47,7 +69,7 @@ class DetailDistrictViewController: UIViewController {
         }
         if userRole {
                 for location in locations{
-                    print(location)
+                    print("🚔 \(location)")
                     carOnMap(zone_no: location.zone_no! , latitude: Double(location.lat!), longitude: Double(location.lng!))
                 }
         
@@ -71,8 +93,15 @@ class DetailDistrictViewController: UIViewController {
         //map
         searchBar = contentVC.searchController.searchBar
         searchBar.delegate = self
+        pollStations.sort{ (this, that) -> Bool in
+            return sortFunc(num1: this.stn_no!, num2: that.stn_no!)
+        }
         contentVC.array = pollStations
         contentVC.searchTable.reloadData()
+    }
+    
+    func sortFunc(num1: Int, num2: Int) -> Bool {
+        return num1 < num2
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,10 +118,10 @@ class DetailDistrictViewController: UIViewController {
             if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
                 mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
             } else {
-                print("Unable to find style.json")
+                print("❌ Unable to find style.json")
             }
         } catch {
-            print("One or more of the map styles failed to load. \(error)")
+            print("❌ One or more of the map styles failed to load. \(error)")
         }
     }
     
@@ -102,7 +131,6 @@ class DetailDistrictViewController: UIViewController {
             if status {
                 if stations.is_vulnerable == true {
                     marker.icon = UIImage(named: "Vul")
-//                    print("\(stations.location_name!) is vul\n")
                     marker.title = "\(stations.location_no!)"
                 }
                 else{
@@ -166,7 +194,7 @@ extension DetailDistrictViewController: GMSMapViewDelegate{
                             }
                         }
                         else{
-                            print("Oops")
+                            print("❌ Couldn't fetch Vulnerable Booths")
                         }
                     })
                 }
@@ -177,7 +205,7 @@ extension DetailDistrictViewController: GMSMapViewDelegate{
                 }
             }
             else{
-                self.showAlert(title: "Couldn't Fetch", message: "Fuck.")
+                self.showAlert(title: "Couldn't Fetch", message: "")
             }
         }
         return true

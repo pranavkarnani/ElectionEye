@@ -8,12 +8,15 @@
 
 import UIKit
 
+var tappedStation: PollStation?
+
 class StationSearchViewController: UIViewController {
 
     var array : [PollStation] = []
     let searchController = UISearchController(searchResultsController: nil)
     var filteredLocations = [PollStation]()
     var selected = 0
+    var poll = PollStation()
     
     @IBOutlet weak var searchTable: UITableView!
     
@@ -43,6 +46,10 @@ class StationSearchViewController: UIViewController {
         searchTable.reloadData()
     }
     
+    func sortFunc(num1: Int, num2: Int) -> Bool {
+        return num1 < num2
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -50,6 +57,7 @@ class StationSearchViewController: UIViewController {
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         var index = Int(searchText) ?? -1
         index = index - 1
+        
         if index == -2{
             filteredLocations = array
         }
@@ -58,7 +66,7 @@ class StationSearchViewController: UIViewController {
                 index = 0
             }
             else{
-            filteredLocations = [array[index]]
+                filteredLocations = [array[index]]
             }
         }
         self.searchTable.reloadData()
@@ -85,6 +93,33 @@ extension StationSearchViewController: UITableViewDataSource, UITableViewDelegat
         }
         cell.resultLabel.text = poll.location_name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var poll: PollStation
+        if isFiltering(){
+            poll = filteredLocations[indexPath.row]
+        }
+        else{
+            poll = array[indexPath.row]
+        }
+        if searchController.isActive == true {
+            searchController.dismiss(animated: true, completion: {
+                print("🏢 Tapped \(poll)")
+                let station =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Station") as! StationViewController
+                station.fromModal = true
+                station.tappedStation = poll
+                self.parent?.present(station, animated: true, completion: nil)
+            })
+        }
+        else{
+            print("🏢 Tapped \(poll)")
+            let station =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Station") as! StationViewController
+            station.fromModal = true
+            station.tappedStation = poll
+            self.parent?.present(station, animated: true, completion: nil)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
