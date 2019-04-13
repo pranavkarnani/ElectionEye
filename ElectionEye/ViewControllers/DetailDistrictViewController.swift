@@ -58,7 +58,7 @@ class DetailDistrictViewController: UIViewController {
         }
         
         self.userRole = UserDefaults.standard.value(forKey: "ElectionEye_role") as? Bool ?? false
-        print("🙋🏻‍♂️ \(self.userRole)")
+        print("🙋🏻‍♂️ Admin: \(self.userRole)")
         // Do any additional setup after loading the view.
     }
     

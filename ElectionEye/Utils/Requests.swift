@@ -164,7 +164,7 @@ class Requests : WebSocketDelegate {
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
-        print("✅ \(socket.isConnected)")
+        print("✅ Socket Connected: \(socket.isConnected)")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
