@@ -159,8 +159,9 @@ class Requests : WebSocketDelegate {
         userLocation.lng = Float(coordinates.longitude)
         
         let location = try? JSONEncoder().encode(userLocation)
-        
+        print("⤴️ \(userLocation)")
         streamLocationSocket?.write(data: location!)
+        
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
@@ -168,6 +169,7 @@ class Requests : WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("❓ Socket Disconnected: \(!socket.isConnected)")
         if let e = error as? WSError {
             print("❌ Websocket is disconnected: \(e.message)")
         } else if let e = error {
@@ -178,7 +180,7 @@ class Requests : WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
+        print("⤵️ \(text)")
         if let locationDetails = text.data(using: .utf8, allowLossyConversion: false) {
             do {
                 let locationList = try JSON(data: locationDetails)
