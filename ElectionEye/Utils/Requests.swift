@@ -194,7 +194,6 @@ class Requests : WebSocketDelegate {
                     individual.lng = locationJSON["lng"].floatValue
                     individual.time = locationJSON["time"].doubleValue
                     individual.zone_no = locationJSON["zone_no"].string
-                    
                     locations.append(individual)
                 }
                 

@@ -273,7 +273,7 @@ class DataHandler {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let context = delegate.persistentContainer.viewContext
         for item in ["VulneribilityData","StationData","PollingStationData","ConstituencyData"] {
-            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CurrentCourse")
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: item)
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
             do {
                 try context.execute(deleteRequest)
