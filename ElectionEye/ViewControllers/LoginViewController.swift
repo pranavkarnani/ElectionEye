@@ -99,13 +99,13 @@ class LoginViewController: UIViewController {
             if verified {
                 Requests.shared.performLogin(phone: self.phone) {(details, verifiedUser) in
                     if verifiedUser {
-                        print(details.token)
+                        print("token is: ",details.token)
                         UserDefaults.standard.set(details.ac_no, forKey: "ElectionEye_ac_no")
                         UserDefaults.standard.set(details.phone_no, forKey: "ElectionEye_phone_no")
                         UserDefaults.standard.set(details.role, forKey: "ElectionEye_role")
                         UserDefaults.standard.set(details.token, forKey: "ElectionEye_token")
                         UserDefaults.standard.set(details.zone_no, forKey: "ElectionEye_zone_no")
-                        Requests.shared.setupSockets()
+                        Requests.shared.setupSockets("nil", stream: false)
                         self.transition()
                     } else {
                         DispatchQueue.main.async {

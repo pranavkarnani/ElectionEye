@@ -504,7 +504,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FloatingPanel/FloatingPanel.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -523,7 +523,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		41E8288B19C773546EB18C3D /* [CP] Check Pods Manifest.lock */ = {
@@ -568,7 +568,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -577,7 +577,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ElectionEye/Pods-ElectionEye-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8B5C98CCB04E6BF578419F94 /* [CP] Check Pods Manifest.lock */ = {
@@ -804,7 +804,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2J3WW2KWBU;
+				DEVELOPMENT_TEAM = N4FDL334LZ;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -826,7 +826,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2J3WW2KWBU;
+				DEVELOPMENT_TEAM = N4FDL334LZ;
 				INFOPLIST_FILE = ElectionEye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (

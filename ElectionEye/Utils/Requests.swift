@@ -12,7 +12,7 @@ import Starscream
 import CoreLocation
 import SwiftyJSON
 
-class Requests : WebSocketDelegate {
+class Requests: WebSocketDelegate {
     
     static let shared : Requests = Requests()
     
@@ -160,14 +160,14 @@ class Requests : WebSocketDelegate {
         
         let location = try? JSONEncoder().encode(userLocation)
         print("⤴️ \(userLocation)")
-        streamLocationSocket?.write(data: location!)
         
+        streamLocationSocket?.write(data: location!)
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("✅ Socket Connected: \(socket.isConnected)")
     }
-    
+
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         print("❓ Socket Disconnected: \(!socket.isConnected)")
         if let e = error as? WSError {
@@ -178,9 +178,9 @@ class Requests : WebSocketDelegate {
             print("❌ Websocket disconnected")
         }
     }
-    
+
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("⤵️ \(text)")
+        print("⤵️ \(text) and socket status \(socket.isConnected)")
         if let locationDetails = text.data(using: .utf8, allowLossyConversion: false) {
             do {
                 let locationList = try JSON(data: locationDetails)
@@ -196,8 +196,8 @@ class Requests : WebSocketDelegate {
                     individual.zone_no = locationJSON["zone_no"].string
                     locations.append(individual)
                 }
-                
-                
+
+
             } catch {
                 print("❌ Did not recieve location")
             }
@@ -206,43 +206,54 @@ class Requests : WebSocketDelegate {
             print("🔁 Retry")
         }
     }
-    
+
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("⬇️ Received data: \(data.count)")
     }
     
     func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()) {
+        
         CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
-            if error != nil && placemarks?.count == 0 {
+            
+            if error != nil && placemarks?.count == 0  {
                 
                 completion(nil,false)
             }
             else {
-                let placemark = placemarks?[0]
-                completion(placemark!,true)
+                guard let placemark = placemarks?[0] else { return }
+                print("placement \(placemark)")
+                completion(placemark,true)
             }
         })
     }
     
-    func setupSockets() {
-        
+    func setupSockets(_ ac_no:String? = "nil",stream:Bool) {
+
         let userToken = UserDefaults.standard.value(forKey: "ElectionEye_token") as? String ?? ""
-        guard let locationStreamURL = locationStreamURL else { return }
+        guard let locationStreamURLString = (locationStreamURL!.absoluteString + "?ac_no=" + ac_no!) as? String else { return }
+        guard let locationStreamURL = URL(string: locationStreamURLString) else { return }
         guard let locationFetchURL = locationFetchURL else { return }
         
-        var request = URLRequest(url: locationStreamURL)
-        request.timeoutInterval = 5
-        request.setValue("Bearer "+userToken, forHTTPHeaderField: "Authorization")
-        streamLocationSocket = WebSocket(request: request)
-        streamLocationSocket?.delegate = self
-        streamLocationSocket?.connect()
+        if stream == true{
+            DispatchQueue.main.async {
+                var request = URLRequest(url: locationStreamURL)
+                request.timeoutInterval = 5
+                request.addValue("jwt "+userToken, forHTTPHeaderField: "Authorization")
+                streamLocationSocket = WebSocket(request: request)
+                streamLocationSocket?.delegate = self
+                streamLocationSocket?.connect()
+                
+            }
+        }
         
-        request = URLRequest(url: locationFetchURL)
-        request.timeoutInterval = 5
-        request.setValue("Bearer "+userToken, forHTTPHeaderField: "Authorization")
-        fetchLocationSocket = WebSocket(request: request)
-        fetchLocationSocket?.delegate = self
-        fetchLocationSocket?.connect()
+        DispatchQueue.main.async {
+            var request = URLRequest(url: locationFetchURL)
+            request.timeoutInterval = 5
+            request.addValue("jwt "+userToken, forHTTPHeaderField: "Authorization")
+            fetchLocationSocket = WebSocket(request: request)
+            fetchLocationSocket?.delegate = self
+            fetchLocationSocket?.connect()
+            }
     }
     
 }

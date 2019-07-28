@@ -11,6 +11,7 @@ target 'ElectionEye' do
   pod 'Firebase'
   pod 'FloatingPanel', '~> 1.4'
   pod 'SwiftyJSON', '~> 4.0'
+  #pod 'SwiftWebSocket'
   
   target 'ElectionEyeTests' do
     inherit! :search_paths

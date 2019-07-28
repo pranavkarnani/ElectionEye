@@ -89,8 +89,8 @@ struct BoothDetails: Decodable {
 }
 
 struct Location : Codable {
-    var lat: Float?
     var lng: Float?
+    var lat: Float?
 }
 
 struct AdminLocation {

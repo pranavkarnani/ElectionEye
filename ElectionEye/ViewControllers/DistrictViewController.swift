@@ -8,7 +8,7 @@
 
 import UIKit
 import GoogleMaps
-import Starscream
+//import Starscream
 import FloatingPanel
 import CoreLocation
 
@@ -33,13 +33,17 @@ class DistrictViewController: UIViewController, CLLocationManagerDelegate {
                 self.contentVC.array = constituencies
                 DispatchQueue.main.async {
                     for place in constituencies{
+                        
+                        print("place: \(place)")
+                        
                         Requests.shared.geoLocation(address: place.name!, completion: { (placemark, status) in
                             if status{
                                 self.markOnMap(title: place.name!, latitude: (placemark?.location?.coordinate.latitude)!, longitude: (placemark?.location?.coordinate.longitude)!)
                             }
                         })
-                        
+
                     }
+                    
                     self.contentVC.searchTable.reloadData()
                 }
             }
