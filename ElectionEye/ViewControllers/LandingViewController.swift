@@ -51,7 +51,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        Requests.shared.sendLocationData(coordinates: (locations.last?.coordinate)!)
+            Requests.shared.sendLocationData(coordinates: (locations.last?.coordinate)!)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -64,7 +64,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate {
     func transition() {
         if performSegue {
             if status == "bypass" {
-                Requests.shared.setupSockets()
+                Requests.shared.setupSockets("nil", stream: false)
                 self.performSegue(withIdentifier: status, sender: Any?.self)
             }
             else {

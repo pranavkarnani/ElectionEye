@@ -66,6 +66,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchTableViewCell
         let const: Constituency
         if isFiltering() {
@@ -87,6 +88,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
         if searchController.isActive == true {
             searchController.dismiss(animated: true, completion: {
                 print("✅ Tapped \(self.constituency.name!)")
+                //start sockets
+                Requests.shared.setupSockets(self.constituency.ac_no!, stream: true)
+                
                 let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
                 dvc.fromModal = true
                 dvc.constituency = self.constituency
@@ -95,6 +99,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate{
         }
         else{
             print("✅ Tapped \(constituency.name!)")
+            //start sockets
+            Requests.shared.setupSockets(self.constituency.ac_no!, stream: true)
+            
             let dvc =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Detail") as! DetailDistrictViewController
             dvc.fromModal = true
             dvc.constituency = self.constituency
