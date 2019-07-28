@@ -213,14 +213,16 @@ class Requests: WebSocketDelegate {
     
     func geoLocation(address: String, completion : @escaping(CLPlacemark?,Bool) -> ()) {
         
-        CLGeocoder().geocodeAddressString("Vellore", completionHandler: { (placemarks, error) in
-            if error != nil && placemarks?.count == 0 {
+        CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
+            
+            if error != nil && placemarks?.count == 0  {
                 
                 completion(nil,false)
             }
             else {
-                let placemark = placemarks?[0]
-                completion(placemark!,true)
+                guard let placemark = placemarks?[0] else { return }
+                print("placement \(placemark)")
+                completion(placemark,true)
             }
         })
     }
